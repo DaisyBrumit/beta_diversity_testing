@@ -1,0 +1,61 @@
+---
+title: "Phylo-rpca/ctf Protocol"
+author: "Daisy Fry Brumit"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Jones Dataset
+
+### Publication Information 
+
+  - **Title**: Inter-niche and inter-individual variation in gut microbial community assessment using stool, rectal      swab, and mucosal samples
+
+  - **DOI**: 10.1038/s41598-018-22408-4
+
+  - [link to publication](https://www.nature.com/articles/s41598-018-22408-4)
+
+### Study Design
+
+Repeated measures design follows
+
+- 60 healthy participants over 
+- 12 months (@ approx 3 month intervals), taking
+- stool, rectal mucus, and rectal swab samples.
+
+Repeated measures design warrants testing using phylo-ctf pathway. 
+
+### Procedure Notes
+
+Input:
+
+- 
+
+Steps:
+
+1) Convert asv count table to a qiime2 artifact
+    - From *jones_asvCounts_original.txt*, add single column label #OTU ID over indices for biom compatibility. Output as *jones_asvCounts_forBiom.txt*.
+    
+    - Convert input file *jones_asvCounts_forBiom.txt* to biom format file called *asv_txt2json.biom* (aka biom table) using `biom convert`:
+        `biom convert -i jones_asvCounts_forBiom.txt -o asv_txt2json.biom --table-type="OTU table" --to-json`
+    
+    - Import biom table to qiime2 as a frequency table, output a qiime2 artifact called *asv_featureTable.qza*
+        `qiime tools import --input-path asv_txt2json.biom --type 'FeatureTable[Frequency]' --input-format BIOMV100Format --output-path asv_featureTable.qza`
+
+2) Generate taxonomy information corresponding to sequences in biom table/frequency table.
+    - Reference source: Greengenes 13_8 99% OTUs full-length sequences 
+
+    - Above source utilised in a pre-trained qiime2 classifier. Else, need a (ref) sequence set and (ref) taxonomy label set to train the classifier yourself. (If using in publication, citations can be found [here](https://docs.qiime2.org/2022.11/data-resources/))
+        - Jones cites useing Greengenes closed reference OTUs, no % specified, but this terminology was not found on qiime2's webpage on reference material.
+
+    - Use the pre-trained classifier
+        ````{verbatim, lang = "markdown"}
+        qiime feature-classifier classify-sklearn /
+        --i-classifier classifier.qza /
+        --i-reads rep-seqs.qza /
+        --o-classification taxonomy.qza`
+        ````
