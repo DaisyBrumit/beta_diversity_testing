@@ -23,5 +23,7 @@ Example: It is recommended that all reference information stay in one directory.
 - output: `freqTable.qza` qiime2 FeatureTable[Frequency] type
 - output: seqTable.qza` qiime2 FeatureTable[Sequence] type
 
+To run: `sbatch 1_myData_to_Q2.sh <path to sequences> <path to count table> <output directory>`
+
 ## General workflow through QIIME2.2021.2
 0) Upload reference taxonomy and sequences as QIIME (Q2) artifacts.
