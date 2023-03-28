@@ -42,6 +42,13 @@ Create study specific taxonomy file based on reference input from step 0 and que
 
 To run: Note that this script pulls files from 2 locations: the reference directory and the study-specific directory, and all input files have been generated with **pre-assigned** names from previous scripts. Therefore, running this (and subsequent) scripts will generally be as easy as specifying directories. Run command `sbatch 2_classify_Q2.sh <target directory> <reference directory>`.
 
+**2p5_visualTaxonomy_Q2.sh**
+
+Create barplot(s) corresponding to newly created taxonomy. Think of this as step "2.5" that I chose to run in a separate script because step 2 takes a while.
+- input: `freqTable.qza` `taxonomy.qza` `meta.txt`
+- output: `taxa_barplot.qzv` visual artifact for viewing taxonomy data
+
+To run: `sbatch 2p5_visualTaxonomy_Q2.sh <target directory>`
 
 ## General workflow through QIIME2.2021.2
 0) Upload reference taxonomy and sequences as QIIME (Q2) artifacts.
