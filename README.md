@@ -27,7 +27,8 @@ Import sequence, meta-, and count data into qime artifacts for downstream use.
 - input: tsv/txt file with associated metadata
 - output: `freqTable.qza` & `freqTable.qzv` qiime2 FeatureTable[Frequency] type and visual
 - output: `seqTable.qza` & `seqTable.qzv` qiime2 FeatureData[Sequence] type and visual
-- output: 'meta.qzv' visual artifact for metadata
+- output: `meta.qzv` visual artifact for metadata
+- output: `meta.txt` a renamed replica of the orignal metadata file (if not already named as such) to reduce need for extra input arguments in future scripts
 
 To run: `sbatch 1_myData_to_Q2.sh <directory path> <sequence file> <count data file> <metadata file>`
 
