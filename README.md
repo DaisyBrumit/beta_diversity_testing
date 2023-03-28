@@ -11,19 +11,21 @@ This repository is organized by 2 main categories: general scripts and study-spe
 - output: `refSeqs.qza` qiime2 FeatureTable[Sequence] artifact for sequences
 - output: `refTaxonomy.qza` FeatureTable[Taxonomy] artifact for taxonomy
 
-To run: `sbatch 0_ref_to_Q2.sh <path to taxonomy file> <path to sequence file> <path to output directory>`
+To run: `sbatch 0_ref_to_Q2.sh <directory path> <reference taxonomy file> <reference sequence file>`
 
 Example: It is recommended that all reference information stay in one directory. For example, for the Jones study, I used greengenes via [qiime resources page](https://docs.qiime2.org/2018.2/data-resources/#greengenes-16s-rrna) and kept all of the associated information in a directory called `greengene`. Thus, to run this script from one directory *above* my reference directory, I ran command 
 
-`sbatch 0_ref_to_Q2.sh greengene/99_otu_taxonomy.txt greengene/99_otus.fasta greengene/`
+`sbatch 0_ref_to_Q2.sh greengene/ 99_otu_taxonomy.txt 99_otus.fasta`
 
 **1_myData_to_Q2.sh**
 - input: dada2 count table (or some other count table recognized by qiime)
 - input: fasta file with sequences found in count table **(if not supplied, there is a script to deal with this)**
-- output: `freqTable.qza` qiime2 FeatureTable[Frequency] type
-- output: seqTable.qza` qiime2 FeatureTable[Sequence] type
+- input: tsv/txt file with associated metadata
+- output: `freqTable.qza` & `freqTable.qzv` qiime2 FeatureTable[Frequency] type and visual
+- output: `seqTable.qza` & `seqTable.qzv` qiime2 FeatureTable[Sequence] type and visual
+- output: 'meta.qzv' visual artifact for metadata
 
-To run: `sbatch 1_myData_to_Q2.sh <path to sequences> <path to count table> <output directory>`
+To run: `sbatch 1_myData_to_Q2.sh <directory path> <sequence file> <count data file> <metadata file>`
 
 ## General workflow through QIIME2.2021.2
 0) Upload reference taxonomy and sequences as QIIME (Q2) artifacts.
