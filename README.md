@@ -6,6 +6,8 @@ This repository is organized by 2 main categories: general scripts and study-spe
 
 ### Scripts
 **0_ref_to_Q2.sh**
+
+Import reference sequence and taxonomy data into qiime artifacts for downstream use
 - input: reference taxonomy file (tab separated textfile)
 - input: reference sequence file (fasta format)
 - output: `refSeqs.qza` qiime2 FeatureTable[Sequence] artifact for sequences
@@ -18,14 +20,27 @@ Example: It is recommended that all reference information stay in one directory.
 `sbatch 0_ref_to_Q2.sh greengene/ 99_otu_taxonomy.txt 99_otus.fasta`
 
 **1_myData_to_Q2.sh**
+
+Import sequence, meta-, and count data into qime artifacts for downstream use.
 - input: dada2 count table (or some other count table recognized by qiime)
 - input: fasta file with sequences found in count table **(if not supplied, there is a script to deal with this)**
 - input: tsv/txt file with associated metadata
 - output: `freqTable.qza` & `freqTable.qzv` qiime2 FeatureTable[Frequency] type and visual
-- output: `seqTable.qza` & `seqTable.qzv` qiime2 FeatureTable[Sequence] type and visual
+- output: `seqTable.qza` & `seqTable.qzv` qiime2 FeatureData[Sequence] type and visual
 - output: 'meta.qzv' visual artifact for metadata
 
 To run: `sbatch 1_myData_to_Q2.sh <directory path> <sequence file> <count data file> <metadata file>`
+
+**2_classify_Q2.sh**
+
+Create study specific taxonomy file based on reference input from step 0 and query input from step 1. This classification process uses qiime's `classify-consensus-blast` option, which uses blast+.
+- input: `refSeqs.qza` from script 0
+- input: `refTaxonomy.qza` from script 0
+- input: `seqTable.qza` from script 1 (this is the query data)
+- output: `taxonomy.qza` qiime2 [FeatureData[Taxonomy]' artifact
+
+To run: Note that this script pulls files from 2 locations: the reference directory and the study-specific directory, and all input files have been generated with **pre-assigned** names from previous scripts. Therefore, running this (and subsequent) scripts will generally be as easy as specifying directories. Run command `sbatch 2_classify_Q2.sh <target directory> <reference directory>`.
+
 
 ## General workflow through QIIME2.2021.2
 0) Upload reference taxonomy and sequences as QIIME (Q2) artifacts.
