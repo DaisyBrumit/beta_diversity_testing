@@ -42,11 +42,23 @@ To run: Note that this script pulls files from 2 locations: the reference direct
 
 **2p5_visualTaxonomy_Q2.sh**
 
+**NOTE THAT AS OF MARCH 28 THE METADATA FILE PATH IS NOT OPERATIONAL AS SPECIFIED FOR UNKNOWN REASONS. THIS RUN WORKS AS A STANDALONE IN CML.**
+
 Create barplot(s) corresponding to newly created taxonomy. Think of this as step "2.5" that I chose to run in a separate script because step 2 takes a while.
 - input: `freqTable.qza` `taxonomy.qza` `meta.txt`
 - output: `taxa_barplot.qzv` visual artifact for viewing taxonomy data
 
 To run: `sbatch 2p5_visualTaxonomy_Q2.sh <target directory>`
+
+**3_betaDiversityValues_Q2.sh**
+
+Generate beta diversity statistics using a wide variety of metrics through qiime.
+- input: some tree file, whether from a reference or self-built. **this needs to be input as an argument with an absolute path, not a relative one**
+- input: `freqTable.qza` `meta.txt`
+- parameter: associated sampling depth. Read more about selecting the appropriate value [here](https://docs.qiime2.org/2018.6/tutorials/moving-pictures/#moving-pics-diversity) and use `freqTable.qzv` as a guide for your own data.
+- output: `core-metrics-results` a whole directory of output values and visuals for all metrics included in this suite
+
+To run: `sbatch 3_betaDiversityValues_Q2.sh <absolute path to tree> <study directory> <sampling depth>`
 
 ## General workflow through QIIME2.2021.2
 0) Upload reference taxonomy and sequences as QIIME (Q2) artifacts.
