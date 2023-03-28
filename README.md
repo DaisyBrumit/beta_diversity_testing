@@ -35,9 +35,7 @@ To run: `sbatch 1_myData_to_Q2.sh <directory path> <sequence file> <count data f
 **2_classify_Q2.sh**
 
 Create study specific taxonomy file based on reference input from step 0 and query input from step 1. This classification process uses qiime's `classify-consensus-blast` option, which uses blast+.
-- input: `refSeqs.qza` from script 0
-- input: `refTaxonomy.qza` from script 0
-- input: `seqTable.qza` from script 1 (this is the query data)
+- input: `refSeqs.qza` `refTaxonomy.qza` `seqTable.qza`
 - output: `taxonomy.qza` qiime2 [FeatureData[Taxonomy]' artifact
 
 To run: Note that this script pulls files from 2 locations: the reference directory and the study-specific directory, and all input files have been generated with **pre-assigned** names from previous scripts. Therefore, running this (and subsequent) scripts will generally be as easy as specifying directories. Run command `sbatch 2_classify_Q2.sh <target directory> <reference directory>`.
