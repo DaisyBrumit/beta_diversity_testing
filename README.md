@@ -46,7 +46,7 @@ To run: Note that this script pulls files from 2 locations: the reference direct
 
 Read in a tree (reference or self-built), filter the current frequency/count table using the tree, then generate visual output of new freq table
 - input: some tree file, whether from a reference or self-built. **If this tree is not in the sample directory, cml argument 1 needs to be input as an absolute path, not a relative path**
-- input: `meta.txt` `freqTable.qza`
+- input: `meta.txt` `freqTable_grouped.qza`
 - output: `tree.qzv` qiime Phylogeny[Rooted] artifact
 - output: `freqTable_filtered.qza` `freqTable_filtered.qzv` another FeatureTable[Frequeny] artifact of the now-filtered counts (and visual)
 
