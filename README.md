@@ -34,21 +34,13 @@ To run: `sbatch 1_myData_to_Q2.sh <directory path> <sequence file> <count data f
 
 **2_classify_Q2.sh**
 
-Create study specific taxonomy file based on reference input from step 0 and query input from step 1. This classification process uses qiime's `classify-consensus-blast` option, which uses blast+.
+Create study specific taxonomy file based on reference input from step 0 and query input from step 1. This classification process uses qiime's `classify-consensus-blast` option, which uses blast+. After taxonomy is created, group orginal count data by taxonomy and re-label features accourdingly. This grouping will be achieved by summing up frequencies as the current iteration uses absolute counts, not relative counts. Create visual artifacts for the taxonomy and the new frequency table.
 - input: `refSeqs.qza` `refTaxonomy.qza` `seqTable.qza`
-- output: `taxonomy.qza` qiime2 [FeatureData[Taxonomy]' artifact
+- output: `taxonomy.qza` qiime2 `FeatureData[Taxonomy]' artifact
+- output: `taxa_barplot.qzv` visual artifact for viewing taxonomy data
+- output `freqTable_grouped.qza` `freqTable_grouped.qzv` new FeatureTable[Frequency] artifact with taxa as labels (and visual)
 
 To run: Note that this script pulls files from 2 locations: the reference directory and the study-specific directory, and all input files have been generated with **pre-assigned** names from previous scripts. Therefore, running this (and subsequent) scripts will generally be as easy as specifying directories. Run command `sbatch 2_classify_Q2.sh <target directory> <reference directory>`.
-
-**2p5_visualTaxonomy_Q2.sh**
-
-**NOTE THAT AS OF MARCH 28 THE METADATA FILE PATH IS NOT OPERATIONAL AS SPECIFIED FOR UNKNOWN REASONS. THIS RUN WORKS AS A STANDALONE IN CML.**
-
-Create barplot(s) corresponding to newly created taxonomy. Think of this as step "2.5" that I chose to run in a separate script because step 2 takes a while.
-- input: `freqTable.qza` `taxonomy.qza` `meta.txt`
-- output: `taxa_barplot.qzv` visual artifact for viewing taxonomy data
-
-To run: `sbatch 2p5_visualTaxonomy_Q2.sh <target directory>`
 
 **3_importTree_filterFreq_Q2.sh**
 
