@@ -50,15 +50,24 @@ Create barplot(s) corresponding to newly created taxonomy. Think of this as step
 
 To run: `sbatch 2p5_visualTaxonomy_Q2.sh <target directory>`
 
-**3_betaDiversityValues_Q2.sh**
+**3_importTree_filterFreq_Q2.sh**
 
-Generate beta diversity statistics using a wide variety of metrics through qiime.
-- input: some tree file, whether from a reference or self-built. **this needs to be input as an argument with an absolute path, not a relative one**
-- input: `freqTable.qza` `meta.txt`
+Read in a tree (reference or self-built), filter the current frequency/count table using the tree, then generate visual output of new freq table
+- input: some tree file, whether from a reference or self-built. **If this tree is not in the sample directory, cml argument 1 needs to be input as an absolute path, not a relative path**
+- input: `meta.txt` `freqTable.qza`
+- output: `tree.qzv` qiime Phylogeny[Rooted] artifact
+- output: `freqTable_filtered.qza` `freqTable_filtered.qzv` another FeatureTable[Frequeny] artifact of the now-filtered counts (and visual)
+
+To run: `sbatch 3_betaDiversityValues_Q2.sh <absolute path to tree> <study directory>`
+
+**4_betaDiversityValues_Q2.sh**
+
+Generate diversity statistics using a wide variety of metrics through qiime.
+- input: `freqTable_filtered.qza` `meta.txt` `tree.qza`
 - parameter: associated sampling depth. Read more about selecting the appropriate value [here](https://docs.qiime2.org/2018.6/tutorials/moving-pictures/#moving-pics-diversity) and use `freqTable.qzv` as a guide for your own data.
 - output: `core-metrics-results` a whole directory of output values and visuals for all metrics included in this suite
 
-To run: `sbatch 3_betaDiversityValues_Q2.sh <absolute path to tree> <study directory> <sampling depth>`
+To run: `sbatch 4_importTree_filterFreq_Q2.sh <study directory> <sampling depth>`
 
 ## General workflow through QIIME2.2021.2
 0) Upload reference taxonomy and sequences as QIIME (Q2) artifacts.
