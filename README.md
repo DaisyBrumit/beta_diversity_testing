@@ -62,4 +62,6 @@ Generate diversity statistics using a wide variety of metrics through qiime.
 To run: `sbatch 4_importTree_filterFreq_Q2.sh <study directory> <sampling depth>`
 
 ## General workflow through QIIME2.2021.2
-0) Upload reference taxonomy and sequences as QIIME (Q2) artifacts.
+
+![image](https://user-images.githubusercontent.com/82405964/228918280-571541da-0d71-42a2-990a-90d6d4b9d5e7.png)
+
