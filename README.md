@@ -50,7 +50,7 @@ Filter frequency table (study) features to only include those included in the ne
 - output: `filtered_table.qza` `filtered_table.qzv` frequency table with retained (filtered) features (and visual)
 - output: `discarded_table.qza` `discarded_table.qzv` frequency table with features that were discarded for not overlapping with the tree (and visual)
 
-To run: `sbatch 2_insertionTree_Q2.sh <target directory>
+To run: `sbatch 2_insertionTree_Q2.sh <target directory>`
 
 **3_importTree_filterFreq_Q2.sh**
 
