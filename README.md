@@ -52,24 +52,17 @@ Filter frequency table (study) features to only include those included in the ne
 
 To run: `sbatch 2_insertionTree_Q2.sh <target directory>`
 
-**3_importTree_filterFreq_Q2.sh**
+**3_coreBetaValues_Q2.sh**
 
-Read in a tree (reference or self-built), filter the current frequency/count table using the tree, then generate visual output of new freq table
-- input: some tree file, whether from a reference or self-built. **If this tree is not in the sample directory, cml argument 1 needs to be input as an absolute path, not a relative path**
-- input: `meta.txt` `freqTable_grouped.qza`
-- output: `tree.qzv` qiime Phylogeny[Rooted] artifact
-- output: `freqTable_filtered.qza` `freqTable_filtered.qzv` another FeatureTable[Frequeny] artifact of the now-filtered counts (and visual)
-
-To run: `sbatch 3_betaDiversityValues_Q2.sh <absolute path to tree> <study directory>`
-
-**4_betaDiversityValues_Q2.sh**
-
-Generate diversity statistics using a wide variety of metrics through qiime.
-- input: `freqTable_filtered.qza` `meta.txt` `tree.qza`
+Generate diversity metrics using a qiime's core diversity function.
+- input: `insertionTree.qza` `filtered_table.qza` `meta.txt`
 - parameter: associated sampling depth. Read more about selecting the appropriate value [here](https://docs.qiime2.org/2018.6/tutorials/moving-pictures/#moving-pics-diversity) and use `freqTable.qzv` as a guide for your own data.
-- output: `core-metrics-results` a whole directory of output values and visuals for all metrics included in this suite
+- output: `core-metrics-results` a whole directory of output values and visuals for all metrics included in this suite. Each output will include files for bray curtis, jaccard, and weighted/unweighted unifrac distances.
+   - `<metric>_distance_matrix.qza` corresponds to table output `<metric>_distance_matrix.tsv`
+   - `<metric>_pcoa_results.qza` corresponds to table output `<metric>_pcoa_results.txt`
+   - `<metric>_emperor.qzv` contains a qiime visualization of emperor (pcoa) plots by each metadata field in the dataset.
 
-To run: `sbatch 4_importTree_filterFreq_Q2.sh <study directory> <sampling depth>`
+To run: `sbatch 3_importTree_filterFreq_Q2.sh <target directory> <sampling depth>`
 
 ## General workflow through QIIME2.2021.2
 
