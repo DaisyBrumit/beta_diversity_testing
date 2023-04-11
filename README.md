@@ -14,14 +14,13 @@ The scripts are meant to be run from a directory that is 1 position above any di
 Import reference sequence and taxonomy data into qiime artifacts for downstream use. NOT CURRENTLY IN USE AS DIFFERENT REFERENCE METHODS ARE EXECUTED IN SCRIPT `2_insertionTree_Q2.sh `
 - input: reference taxonomy file (tab separated textfile)
 - input: reference sequence file (fasta format)
-- output: `refSeqs.qza` qiime2 FeatureTable[Sequence] artifact for sequences
-- output: `refTaxonomy.qza` FeatureTable[Taxonomy] artifact for taxonomy
+- input: reference tree file (newick format)
+- output: `refSeqs.qza` qiime2 FeatureTable[Sequence] artifact for sequences to target directory
+- output: `refTaxonomy.qza` FeatureTable[Taxonomy] artifact for taxonomy to target directory
 
-To run: `sbatch 0_ref_to_Q2.sh <target directory> <reference taxonomy file> <reference sequence file> <reference tree file>`
+To run: `sbatch 0_ref_to_Q2.sh <target directory> <reference sequence file> <reference taxonomy file> <reference tree file>`
 
-Note: The directory path should be the path to study-specific content. 
-
-`sbatch 0_ref_to_Q2.sh greengene/ 99_otu_taxonomy.txt 99_otus.fasta`
+Example: `sbatch 0_ref_to_Q2.sh my_study/ greengene/99_otus.fasta greengene/99_otu_taxonomy.txt greengene/99_otus.tree`
 
 **1_myData_to_Q2.sh**
 
@@ -35,6 +34,7 @@ Import sequence, meta-, and count data into qime artifacts for downstream use.
 - output: `meta.txt` a renamed replica of the orignal metadata file (if not already named as such) to reduce need for extra input arguments in future scripts
 
 To run: `sbatch 1_myData_to_Q2.sh <directory path> <sequence file> <count data file> <metadata file>`
+Example: `sbatch 1_myData_to_Q2.sh my_study dada2seqs.fa dada2_forward_reads.txt metadata.txt`
 
 **2_classify_Q2.sh**
 
