@@ -34,17 +34,21 @@ Import sequence, meta-, and count data into qime artifacts for downstream use.
 - output: `meta.txt` a renamed replica of the orignal metadata file (if not already named as such) to reduce need for extra input arguments in future scripts
 
 To run: `sbatch 1_myData_to_Q2.sh <directory path> <sequence file> <count data file> <metadata file>`
+
 Example: `sbatch 1_myData_to_Q2.sh my_study dada2seqs.fa dada2_forward_reads.txt metadata.txt`
 
-**2_classify_Q2.sh**
+**2_insertionTree_Q2.sh**
 
-Create study specific taxonomy file based on reference input from step 0 and query input from step 1. This classification process uses qiime's `classify-consensus-blast` option, which uses blast+. After taxonomy is created, group orginal count data by taxonomy and re-label features accourdingly. This grouping will be achieved by summing up frequencies as the current iteration uses absolute counts, not relative counts. Create visual artifacts for the taxonomy and the new frequency table.
-- input: `refSeqs.qza` `refTaxonomy.qza` `seqTable.qza`
-- output: `taxonomy.qza` qiime2 `FeatureData[Taxonomy]' artifact
-- output: `taxa_barplot.qzv` visual artifact for viewing taxonomy data
-- output `freqTable_grouped.qza` `freqTable_grouped.qzv` new FeatureTable[Frequency] artifact with taxa as labels (and visual)
+*Task 1* Create a study-specific tree by using a preconstructed tree from greengenes. This process uses Qiime2's `fragment-insertion` plugin and will let us build a tree based on a vetted reference instead of building one from scratch and hoping for the best. 
 
-To run: Note that this script pulls files from 2 locations: the reference directory and the study-specific directory, and all input files have been generated with **pre-assigned** names from previous scripts. Therefore, running this (and subsequent) scripts will generally be as easy as specifying directories. Run command `sbatch 2_classify_Q2.sh <target directory> <reference directory>`.
+- inputs: `seqTable.qza` & greengenes reference database (provided by Qiime2, already loaded as a Qiime artifact)
+- outputs: `insertionTree.qza` `insertionPlacements.qza` study specific tree and a fragment placement map to that tree.
+  
+*Task 2* Filter frequency table (study) features to only include those included in the new tree
+
+- inputs: `freqTable.qza` `insertionTree.qza` `meta.txt`
+- output: `filtered_table.qza` `filtered_table.qzv` frequency table with retained (filtered) features (and visual)
+- output: `discarded_table.qza` `discarded_table.qzv` frequency table with features that were discarded for not overlapping with the tree (and visual)
 
 **3_importTree_filterFreq_Q2.sh**
 
