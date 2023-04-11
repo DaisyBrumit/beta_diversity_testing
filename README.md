@@ -39,16 +39,18 @@ Example: `sbatch 1_myData_to_Q2.sh my_study dada2seqs.fa dada2_forward_reads.txt
 
 **2_insertionTree_Q2.sh**
 
-*Task 1* Create a study-specific tree by using a preconstructed tree from greengenes. This process uses Qiime2's `fragment-insertion` plugin and will let us build a tree based on a vetted reference instead of building one from scratch and hoping for the best. 
+Create a study-specific tree by using a preconstructed tree from greengenes. This process uses Qiime2's `fragment-insertion` plugin and will let us build a tree based on a vetted reference instead of building one from scratch and hoping for the best. 
 
 - inputs: `seqTable.qza` & greengenes reference database (provided by Qiime2, already loaded as a Qiime artifact)
 - outputs: `insertionTree.qza` `insertionPlacements.qza` study specific tree and a fragment placement map to that tree.
   
-*Task 2* Filter frequency table (study) features to only include those included in the new tree
+Filter frequency table (study) features to only include those included in the new tree
 
 - inputs: `freqTable.qza` `insertionTree.qza` `meta.txt`
 - output: `filtered_table.qza` `filtered_table.qzv` frequency table with retained (filtered) features (and visual)
 - output: `discarded_table.qza` `discarded_table.qzv` frequency table with features that were discarded for not overlapping with the tree (and visual)
+
+To run: `sbatch 2_insertionTree_Q2.sh <target directory>
 
 **3_importTree_filterFreq_Q2.sh**
 
