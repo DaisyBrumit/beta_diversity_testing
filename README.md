@@ -4,18 +4,22 @@ project dedicated to testing phylogenetically aware beta diversity metrics propo
 ## Repository Navigation
 This repository is organized by 2 main categories: general scripts and study-specific content. The `scripts` directory contains scripts meant for general use by all or some studies used in this project. They contain slurm/bash, R, and python scripts (potentially to later include java). Other directories are named for studies by their authors' surnames. Contents of each are detailed below. All .sh (SLURM) scripts are meant to be run from the HPC cluster but can be repurposed for general use to run from a local command line. 
 
+The scripts are meant to be run from a directory that is 1 position above any directory that will hold *all* study-specific content. When any shell script accepts a <target directory> argument, this directory should always point to the study-specific directory. For all examples, assume I am working from a fiel system organized as shown below, where `working directory` is where all automated scripts are stored, `greengenes` is where gg reference data is stored, and `my_study` is where all files related to the "my_study" study is stored. 
+
+![image](https://user-images.githubusercontent.com/82405964/231242766-c6f1a68c-16df-489b-9273-ddcb8b39cf56.png)
+
 ### Scripts
 **0_ref_to_Q2.sh**
 
-Import reference sequence and taxonomy data into qiime artifacts for downstream use
+Import reference sequence and taxonomy data into qiime artifacts for downstream use. NOT CURRENTLY IN USE AS DIFFERENT REFERENCE METHODS ARE EXECUTED IN SCRIPT `2_insertionTree_Q2.sh `
 - input: reference taxonomy file (tab separated textfile)
 - input: reference sequence file (fasta format)
 - output: `refSeqs.qza` qiime2 FeatureTable[Sequence] artifact for sequences
 - output: `refTaxonomy.qza` FeatureTable[Taxonomy] artifact for taxonomy
 
-To run: `sbatch 0_ref_to_Q2.sh <directory path> <reference taxonomy file> <reference sequence file>`
+To run: `sbatch 0_ref_to_Q2.sh <target directory> <reference taxonomy file> <reference sequence file> <reference tree file>`
 
-Example: It is recommended that all reference information stay in one directory. For example, for the Jones study, I used greengenes via [qiime resources page](https://docs.qiime2.org/2018.2/data-resources/#greengenes-16s-rrna) and kept all of the associated information in a directory called `greengene`. Thus, to run this script from one directory *above* my reference directory, I ran command 
+Note: The directory path should be the path to study-specific content. 
 
 `sbatch 0_ref_to_Q2.sh greengene/ 99_otu_taxonomy.txt 99_otus.fasta`
 
