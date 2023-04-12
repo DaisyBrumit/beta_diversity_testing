@@ -14,11 +14,13 @@ echo "Start Time : $start"
 directory=$1
 taxaPath=$2
 seqPath=$3
+treePath=$4
 
 echo "RECEIVED ARGUMENTS"
-echo "DIRECTORY = $directory"
+echo "OUTPUT DIRECTORY = $directory"
 echo "SEQ FILE = $seqPath"
-echo "FREQ FILE = $freqPath"
+echo "TAXONOMY FILE = $taxaPath"
+echo "TREE FILE = $treePath"
 
 echo "Changing directory and loading module"
 cd $directory
@@ -34,6 +36,8 @@ qiime tools import\
 echo "Reference sequences imported" 
 
 ## convert ref taxonomy to q2 artifact
+## for headerless, tsv input styles.
+## for tsv with headers, use --input-format TSVTaxonomyFormat
 qiime tools import \
 	--input-path $taxaPath \
 	--output-path refTaxonomy.qza \
@@ -41,8 +45,17 @@ qiime tools import \
 	--input-format HeaderlessTSVTaxonomyFormat
 
 echo "Reference taxonomy imported" 
+
+## convert (ROOTED!) ref tree to q2 artifact
+## for unrooted trees, change --type to Phylogeny[Unrooted]
+qiime tools import \
+	--input-path $treePath \
+	--output-path refTree.qza \
+	--type 'Phylogeny[Rooted]'
+
+echo "Reference tree imported"
 echo "End of script"
 
 end=$(date)
-echo "Run Time : $end - $start"
+echo "End Time : $end"
 echo "===================================================="

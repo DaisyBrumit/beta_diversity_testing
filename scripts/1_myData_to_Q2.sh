@@ -21,48 +21,50 @@ echo "DIRECTORY = $directory"
 echo "SEQ FILE = $seqPath"
 echo "FREQ FILE = $freqPath"
 echo "META FILE = $metaPath"
+echo "Loading module and changing directory"
 
 module load qiime2
 
-cd $directory
+echo ""
+echo "moving metadata to file meta.txt"
+mv $metaPath meta.txt
+
 echo ""
 echo "Beginning imports..."
-
 ## convert seqs to qiime2 artifact
 qiime tools import\
 	--input-path $seqPath \
-	--output-path seqTable.qza \
+	--output-path ${directory}seqTable.qza \
 	--type 'FeatureData[Sequence]'
-
 echo "Sequences imported" 
 
 ## convert frequency table to q2 artifact
 qiime tools import \
-	--input-path $taxaPath \
-	--output-path freqTable.qza \
+	--input-path $freqPath \
+	--output-path ${directory}freqTable.qza \
 	--type 'FeatureTable[Frequency]'
-
 echo "Count data imported" 
-echo "Making visual artifacts..."
 
+echo ""
+echo "Making visual artifacts..."
 qiime metadata tabulate \
 	--m-input-file $metaPath \
-	--o-visualization metadata.qzv
+	--o-visualization ${directory}meta.qzv
 echo "metadata visual created"
 
 qiime feature-table summarize \
-	--i-table freqTable.qza \
+	--i-table ${directory}freqTable.qza \
 	--m-sample-metadata-file $metaPath \
-	--o-visualization freqTable.qzv
+	--o-visualization ${directory}freqTable.qzv
 echo "frequency visual created"
 
 qiime feature-table tabulate-seqs \
-	--i-data seqTable.qza \
-	--o-visualization seqTable.qzv
+	--i-data ${directory}seqTable.qza \
+	--o-visualization ${directory}seqTable.qzv
 echo "sequence visual created"
 echo "End of script"
 echo ""
 
 end=$(date)
-echo "Run Time : $end-$start"
+echo "End Time : $end"
 echo "===================================================="
