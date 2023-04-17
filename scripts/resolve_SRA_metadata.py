@@ -42,6 +42,15 @@ def sra_parser(path):
                 studyID = ''
         return map
 
-map = sra_parser('/Users/dfrybrum/Downloads/biosample_result.txt')
+def meta_merge(df1, df2, merge_on, integrate):
+    mergedDF = pd.merge(df2[[merge_on, integrate]], df1, on=merge_on, how='inner')
+    return mergedDF
 
+meta1 = pd.read_table('/Users/dfrybrum/Documents/FodorLab/gemelli/Jones/meta_noStudyID.txt')
+meta2 = pd.read_csv('/Users/dfrybrum/Documents/FodorLab/gemelli/Jones/SraRunTable.csv')
+
+meta2 = meta2.rename(columns={'Run': 'sampleid'})
+
+metaMerged = meta_merge(meta1, meta2, 'sampleid', 'Study_ID')
+metaMerged.to_csv('Users/dfrybrum/Documents/FodorLab/gemelli/Jones/meta.csv')
 print('Beam me up, Scotty!')
