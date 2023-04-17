@@ -2,10 +2,13 @@
 # export fasta file as an output for taxonomic assignments
 
 import pandas as pd
+import sys
+input = sys.argv[1]
+outPath = sys.argv[2]
 
 def makeFasta(inPath, outPath):
-    table = pd.read_table(inPath)
-    with open(outPath, 'w') as f:
+    table = pd.read_table(input)
+    with open('seqs.fasta', 'w') as f:
         for colname in table.columns:
             f.write(">")
             f.write(colname)
