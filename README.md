@@ -64,6 +64,17 @@ Generate diversity metrics using a qiime's core diversity function.
 
 To run: `sbatch 3_importTree_filterFreq_Q2.sh <target directory> <sampling depth>`
 
+**DADA_to_fasta.py**
+
+Generates a fasta file where the sequences are *also* the headers for studies where fasta files are not a given or sequence space is preferred. Achieved by reading in headers from a dada2 output file where headers are sequences. The resulting fasta file can be used in qiime later.
+
+- input: DADA2 file path
+- output: fasta file
+
+To run: access via `run_DADA_to_fasta.sh` with the following command
+
+`sbatch run_DADA_to_fasta.sh <path to DADA2 file> <desired output path>`
+
 ## General workflow through QIIME2.2021.2
 
 ![image](https://user-images.githubusercontent.com/82405964/228918280-571541da-0d71-42a2-990a-90d6d4b9d5e7.png)
