@@ -15,7 +15,7 @@ outPath=$2
 echo ""
 echo "INPUT RECIEVED:\n INPUT: $input \n OUTPUT PATH: $outPath"
 
-python DATA_to_fasta.py $input $outPath
+python DADA_to_fasta.py $input $outPath
 
 echo ""
 echo "FASTA FILE GENERATED"

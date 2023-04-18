@@ -8,10 +8,12 @@ outPath = sys.argv[2]
 
 def makeFasta(inPath, outPath):
     table = pd.read_table(input)
-    with open('seqs.fasta', 'w') as f:
+    with open(outPath, 'w') as f:
         for colname in table.columns:
             f.write(">")
             f.write(colname)
             f.write("\n")
             f.write(colname)
             f.write("\n")
+
+makeFasta(input,outPath)
