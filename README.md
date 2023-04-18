@@ -25,7 +25,7 @@ Example: `sbatch 0_ref_to_Q2.sh my_study/ greengene/99_otus.fasta greengene/99_o
 **1_myData_to_Q2.sh**
 
 Import sequence, meta-, and count data into qime artifacts for downstream use.
-- input: dada2 count table (or some other count table recognized by qiime)
+- input: dada2 count table (or some other count table recognized by qiime)in BIOM format
 - input: fasta file with sequences found in count table **(if not supplied, there is a script to deal with this)**
 - input: tsv/txt file with associated metadata
 - output: `freqTable.qza` & `freqTable.qzv` qiime2 FeatureTable[Frequency] type and visual
@@ -35,7 +35,7 @@ Import sequence, meta-, and count data into qime artifacts for downstream use.
 
 To run: `sbatch 1_myData_to_Q2.sh <directory path> <sequence file> <count data file> <metadata file>`
 
-Example: `sbatch 1_myData_to_Q2.sh my_study dada2seqs.fa dada2_forward_reads.txt metadata.txt`
+Example: `sbatch 1_myData_to_Q2.sh my_study/ my_study/dada2seqs.fa my_study/dada2_forward_reads.biom my_study/metadata.txt`
 
 **2_insertionTree_Q2.sh**
 
