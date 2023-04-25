@@ -17,3 +17,5 @@ def makeFasta(inPath, outPath):
             f.write("\n")
 
 makeFasta(input,outPath)
+
+nog = pd.read_table('/Users/dfrybrum/Documents/FodorLab/gemelli/Noguera-Julian/Noguera-Julian_ForwardReads_DADA2.txt', index_col=0)
