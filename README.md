@@ -77,5 +77,5 @@ To run: access via `run_DADA_to_fasta.sh` with the following command
 
 ## General workflow through QIIME2.2021.2
 
-![image](https://user-images.githubusercontent.com/82405964/228918280-571541da-0d71-42a2-990a-90d6d4b9d5e7.png)
+![beta_diversity_flowchart(2)](https://user-images.githubusercontent.com/82405964/233413946-73e1ae99-cc6a-44fd-867b-92f4d388b265.png)
 
