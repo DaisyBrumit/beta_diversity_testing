@@ -79,3 +79,9 @@ To run: access via `run_DADA_to_fasta.sh` with the following command
 
 ![beta_diversity_flowchart(2)](https://user-images.githubusercontent.com/82405964/233413946-73e1ae99-cc6a-44fd-867b-92f4d388b265.png)
 
+## Notes to self regarding future script integrations
+
+- `generic_pylo_trans_out` should be integrated into `4_gemelliBetaValues.sh` to convert gemelli FeatureTable[Frequency] artifact into a .biom table to a .tsv file. 
+- `phylo2pcoa.py` should be added to the beginning of `beta_ml.py` as a precursor to random forest classification.
+
+
