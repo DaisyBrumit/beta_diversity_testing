@@ -83,4 +83,7 @@ To run: access via `run_DADA_to_fasta.sh` with the following command
 
 - `generic_pylo_trans_out.sh` should be integrated into `4_gemelliBetaValues.sh` to convert gemelli FeatureTable[Frequency] artifact into a .biom table to a .tsv file. 
 
+- `packageComps.py` calls from `randForest.py` and (ideally...) `permanova.py` to fetch actual performance metrics, tabulate them neatly, and then export for visuals creation in R package. Thus, consider renaming script (later) to `5_betaCompare.py` or something similarly descriptive and label the accessory scripts as such.
 
+- final script step name: `6_visualGeneration.R`. Try to get all visuals out of one script. Shouldn't be too hard.
+  
