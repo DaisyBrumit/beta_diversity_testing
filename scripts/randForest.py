@@ -80,8 +80,8 @@ def qualitativeRF(metadata,dat):
 def quantitativeRF(metadata, dat):
     # make empty dictionaries for column-wide metrics
     r2Dict = {}
-    rocDict = {}
-    truefalse_aggregates = {}
+    #rocDict = {}
+    #truefalse_aggregates = {}
 
     # get cat data
     meta_quant = metadata.select_dtypes(include=['float64'])
@@ -89,9 +89,9 @@ def quantitativeRF(metadata, dat):
     for column in meta_quant.columns:
         # run RF for w/ each quantitative column as 'y'
         r2List = []
-        rocList = []
-        truefalse_rates = {}
-        run = 1
+        #rocList = []
+        #truefalse_rates = {}
+        #run = 1
 
         # join meta and full data
         full_table = meta_quant.join(dat, how='inner', on=None)  # None specifies index join. Inner b/c only want full matches
@@ -102,10 +102,10 @@ def quantitativeRF(metadata, dat):
         y = full_table.loc[:, full_table.columns.isin(meta_quant.columns)]
 
         for i in range(0, 100):
-            x_train, x_test, y_train, y_test = train_test_split(X, y[column], test_size=0.25, train_size=0.75, random_state=1)
+            x_train, x_test, y_train, y_test = train_test_split(X, y[column], test_size=0.25, train_size=0.75)
 
             # train the classifier and predict y values
-            randForest = RandomForestRegressor(n_estimators=50, random_state=1)
+            randForest = RandomForestRegressor(n_estimators=50)
             randForest.fit(x_train, y_train)
             y_predict = randForest.predict(x_test) # predicts classes, good for R2 and interpretation
 
@@ -117,7 +117,7 @@ def quantitativeRF(metadata, dat):
             r2List.append(R2)
             #rocList.append(roc_auc)
             #truefalse_rates[run] = [fpr, tpr]
-            run += 1
+            #run += 1
 
             # package performance metrics in a list for output
             r2Dict[column] = r2List
@@ -126,11 +126,3 @@ def quantitativeRF(metadata, dat):
 
         outList = [r2Dict] #, rocDict, truefalse_aggregates]
         return outList
-
-df = pd.read_table('/Users/dfrybrum/Documents/FodorLab/gemelli/Zeller/jaccard_pcoa_results_ordination.txt',
-                   skiprows=[0,1,2,3,4,5,6,7,8,9,10], header=None, sep='\t', index_col=0)
-meta = pd.read_table('/Users/dfrybrum/Documents/FodorLab/gemelli/Zeller/meta.txt', index_col=0, on_bad_lines='skip')
-meta=meta.drop(columns=['host_subject_id'])
-qual_out = qualitativeRF(meta,df)
-quant_out = quantitativeRF(meta,df)
-print("Beam me up, Scotty!")
