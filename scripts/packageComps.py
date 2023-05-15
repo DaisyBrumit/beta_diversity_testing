@@ -30,29 +30,30 @@ for study in studyList:
 
                 # read in the appropriate data file and get qual and quant RF output
                 if string_elements[0] not in gemelliList:
-                    pass
-                    #dat = pd.read_table(rootdir + study + '/' + file, skiprows=range(0, 11), header=None, index_col=0)
+                    dat = pd.read_table(rootdir + study + '/' + file, skiprows=range(0, 11), header=None, index_col=0)
                 else:
                     dat = pd.read_table(rootdir+study+'/'+file, skiprows=range(0,9), header=None, index_col=0)
-                    catRF = rf.qualitativeRF(meta, dat)
-                    quantRF = rf.quantitativeRF(meta, dat)
+                    dat = dat.T
 
-                    # expand dictionary contents
-                    acc_expand = pd.DataFrame(catRF[0]) # 0 == dictionary w/ accuracy scores to features
-                    roc_expand = pd.DataFrame(catRF[1]) # 1 == {roc_auc scores : features}
-                    r2_expand = pd.DataFrame(quantRF[0]) # 0 == {r2 scores : features}
+                catRF = rf.qualitativeRF(meta, dat)
+                quantRF = rf.quantitativeRF(meta, dat)
 
-                    length = len(acc_expand) # all 'expand' lists should == 100, but just in case RF iterations change later...
-                    method_expand = pd.DataFrame({'method':[beta_method] * length})
+                # expand dictionary contents
+                acc_expand = pd.DataFrame(catRF[0]) # 0 == dictionary w/ accuracy scores to features
+                roc_expand = pd.DataFrame(catRF[1]) # 1 == {roc_auc scores : features}
+                r2_expand = pd.DataFrame(quantRF[0]) # 0 == {r2 scores : features}
+
+                length = len(acc_expand) # all 'expand' lists should == 100, but just in case RF iterations change later...
+                method_expand = pd.DataFrame({'method':[beta_method] * length})
 
                     # append contents to dataframes
-                    acc_merge = method_expand.join(acc_expand)
-                    roc_merge = method_expand.join(roc_expand)
-                    r2_merge = method_expand.join(r2_expand)
+                acc_merge = method_expand.join(acc_expand)
+                roc_merge = method_expand.join(roc_expand)
+                r2_merge = method_expand.join(r2_expand)
 
-                    accuracy_df = accuracy_df.append(acc_merge, ignore_index=True)
-                    roc_df = roc_df.append(roc_merge, ignore_index=True)
-                    r2_df = r2_df.append(r2_merge, ignore_index=True)
+                accuracy_df = accuracy_df.append(acc_merge, ignore_index=True)
+                roc_df = roc_df.append(roc_merge, ignore_index=True)
+                r2_df = r2_df.append(r2_merge, ignore_index=True)
 
             elif file.endswith('distance_matrix.tsv'):
                 pass
