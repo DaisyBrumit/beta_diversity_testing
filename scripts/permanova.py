@@ -13,3 +13,14 @@ def perma(dat, meta):
     f_dict = {}
     p_dct = {}
 
+    for (colName, colValues) in meta.iteritems():
+        print(colName)
+        output = permanova(dat, colValues)
+
+    return output
+
+dm = pd.read_table('/Users/dfrybrum/Documents/FodorLab/gemelli/Zeller/phylo_rpca_distance_matrix.tsv', header=0, index_col=0)
+meta = pd.read_table('/Users/dfrybrum/Documents/FodorLab/gemelli/Zeller/meta.txt', index_col=0)
+perma(dm,meta)
+
+print("Beam me up, Scotty!")

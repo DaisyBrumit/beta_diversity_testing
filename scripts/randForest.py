@@ -38,39 +38,46 @@ def qualitativeRF(metadata,dat):
         x = full_table.loc[:, ~full_table.columns.isin(meta_cat.columns)]  # ~ is a negation operator. Isolate non-meta columns for x
         y = full_table.loc[:, full_table.columns.isin(meta_cat.columns)]  # Isolate metadata columns for y
 
-        # perform random forest 100 times with 0.25, 0.75 test train split
-        accuracyList = []
-        rocList = []
-        truefalse_rates = {}  # will hold all fpr, tpr for aggregation into a plot later
-        run = 1  # for the ^^ dictionary keys
+        # check that categorical values occur more than once so training can proceed
+        if 1 not in dict(y[column].value_counts()).values():
+            # perform random forest 100 times with 0.25, 0.75 test train split
+            accuracyList = []
+            rocList = []
+            truefalse_rates = {}  # will hold all fpr, tpr for aggregation into a plot later
+            run = 1  # for the ^^ dictionary keys
 
-        for i in range(0, 100):
-            x_train, x_test, y_train, y_test = train_test_split(x, y[column], test_size=0.25, train_size=0.75)
+            for i in range(0, 100):
+                x_train, x_test, y_train, y_test = train_test_split(x, y[column], test_size=0.25, train_size=0.75)
 
-            # train the classifier, predict y values on test data
-            randForest = RandomForestClassifier()
-            randForest.fit(x_train, y_train)
-            y_predict = randForest.predict(x_test) # predicts classes, good for accuracy and interpretation
+                # train the classifier, predict y values on test data
+                randForest = RandomForestClassifier()
+                randForest.fit(x_train, y_train)
+                y_predict = randForest.predict(x_test) # predicts classes, good for accuracy and interpretation
 
-            # generate performance metrics and save
-            accuracy = accuracy_score(y_test, y_predict)
+                # generate performance metrics and save
+                accuracy = accuracy_score(y_test, y_predict)
 
-            try:
-                roc_auc = roc_auc_score(y_test, randForest.predict_proba(x_test)[:, 1], multi_class='ovr', average='macro')
-            except:
-                print("error in column ", column, "\n"+str(IOError))
-                roc_auc = 999 # give nonsensical value for errors raised.
-            #fpr, tpr, _ = roc_curve(y_test, randForest.predict_proba(x_test)[:, 1])
+                try:
+                    roc_auc = roc_auc_score(y_test, randForest.predict_proba(x_test)[:, 1], multi_class='ovr', average='macro')
+                except:
+                    try:
 
-            accuracyList.append(accuracy)
-            rocList.append(roc_auc)
-            #truefalse_rates[run] = [fpr, tpr]
-            run += 1
+                #try:
+                    #roc_auc = roc_auc_score(y_test, randForest.predict_proba(x_test)[:, 1], multi_class='ovr', average='macro')
+                #except:
+                    #print("error in column ", column, "\n"+str(IOError))
+                    #roc_auc = 999 # give nonsensical value for errors raised.
+                #fpr, tpr, _ = roc_curve(y_test, randForest.predict_proba(x_test)[:, 1])
 
-            # package performance metrics in a list for output
-            accuracyDict[column] = accuracyList
-            rocDict[column] = rocList
-            #truefalse_aggregates[column] = truefalse_rates
+                accuracyList.append(accuracy)
+                rocList.append(roc_auc)
+                #truefalse_rates[run] = [fpr, tpr]
+                run += 1
+
+                # package performance metrics in a list for output
+                accuracyDict[column] = accuracyList
+                rocDict[column] = rocList
+                #truefalse_aggregates[column] = truefalse_rates
 
     outList = [accuracyDict, rocDict] #, truefalse_aggregates]
     return outList
@@ -89,9 +96,6 @@ def quantitativeRF(metadata, dat):
     for column in meta_quant.columns:
         # run RF for w/ each quantitative column as 'y'
         r2List = []
-        #rocList = []
-        #truefalse_rates = {}
-        #run = 1
 
         # join meta and full data
         full_table = meta_quant.join(dat, how='inner', on=None)  # None specifies index join. Inner b/c only want full matches
@@ -111,18 +115,12 @@ def quantitativeRF(metadata, dat):
 
             # generate performance metrics and save
             R2 = r2_score(y_test, y_predict)
-            #roc_auc = roc_auc_score(y_test, x_test, multi_class='ovr', average="macro") # ovo == one versus one
-            #fpr, tpr, _ = roc_curve(y_test, randForest.predict_proba(x_test)[:, 1], multi_class='ovr', average="macro")
-
             r2List.append(R2)
-            #rocList.append(roc_auc)
-            #truefalse_rates[run] = [fpr, tpr]
-            #run += 1
 
             # package performance metrics in a list for output
             r2Dict[column] = r2List
-            #rocDict[column] = rocList
-            #truefalse_aggregates[column] = truefalse_rates
 
         outList = [r2Dict] #, rocDict, truefalse_aggregates]
         return outList
+
+
