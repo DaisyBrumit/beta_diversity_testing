@@ -3,9 +3,10 @@
 # AUTHORED BY: DAISY FRY BRUMIT
 
 # Imports
+import os
 import pandas as pd
 import numpy as np
-from skbio.stats import composition
+#from skbio.stats import composition
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.ensemble import RandomForestRegressor
@@ -43,7 +44,6 @@ def qualitativeRF(metadata,dat):
             # perform random forest 100 times with 0.25, 0.75 test train split
             accuracyList = []
             rocList = []
-            truefalse_rates = {}  # will hold all fpr, tpr for aggregation into a plot later
             run = 1  # for the ^^ dictionary keys
 
             for i in range(0, 100):
@@ -59,25 +59,17 @@ def qualitativeRF(metadata,dat):
 
                 try:
                     roc_auc = roc_auc_score(y_test, randForest.predict_proba(x_test)[:, 1], multi_class='ovr', average='macro')
-                except:
-                    try:
-
-                #try:
-                    #roc_auc = roc_auc_score(y_test, randForest.predict_proba(x_test)[:, 1], multi_class='ovr', average='macro')
-                #except:
-                    #print("error in column ", column, "\n"+str(IOError))
-                    #roc_auc = 999 # give nonsensical value for errors raised.
-                #fpr, tpr, _ = roc_curve(y_test, randForest.predict_proba(x_test)[:, 1])
+                except Exception as exc:
+                    print(column,'\n',exc)
+                    roc_auc = 999
 
                 accuracyList.append(accuracy)
                 rocList.append(roc_auc)
-                #truefalse_rates[run] = [fpr, tpr]
                 run += 1
 
                 # package performance metrics in a list for output
                 accuracyDict[column] = accuracyList
                 rocDict[column] = rocList
-                #truefalse_aggregates[column] = truefalse_rates
 
     outList = [accuracyDict, rocDict] #, truefalse_aggregates]
     return outList
@@ -106,7 +98,7 @@ def quantitativeRF(metadata, dat):
         y = full_table.loc[:, full_table.columns.isin(meta_quant.columns)]
 
         for i in range(0, 100):
-            x_train, x_test, y_train, y_test = train_test_split(X, y[column], test_size=0.25, train_size=0.75)
+            x_train, x_test, y_train, y_test = train_test_split(X, y[column], test_size=0.25, train_size=0.75, stratify=y[column])
 
             # train the classifier and predict y values
             randForest = RandomForestRegressor(n_estimators=50)
