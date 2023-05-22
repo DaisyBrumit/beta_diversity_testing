@@ -83,7 +83,7 @@ def quantitativeRF(metadata, dat):
     #truefalse_aggregates = {}
 
     # get cat data
-    meta_quant = metadata.select_dtypes(include=['float64'])
+    meta_quant = metadata.select_dtypes(include=['float64', 'int64'])
 
     for column in meta_quant.columns:
         # run RF for w/ each quantitative column as 'y'
@@ -98,7 +98,7 @@ def quantitativeRF(metadata, dat):
         y = full_table.loc[:, full_table.columns.isin(meta_quant.columns)]
 
         for i in range(0, 100):
-            x_train, x_test, y_train, y_test = train_test_split(X, y[column], test_size=0.25, train_size=0.75, stratify=y[column])
+            x_train, x_test, y_train, y_test = train_test_split(X, y[column], test_size=0.25, train_size=0.75)
 
             # train the classifier and predict y values
             randForest = RandomForestRegressor(n_estimators=50)
