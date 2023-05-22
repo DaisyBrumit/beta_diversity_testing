@@ -1,6 +1,6 @@
-import randForest as rf
+import randForest as rf # reference my randForest.py in same directory
 import pandas as pd
-import os# for directory walkthroughwh
+import os # for directory walkthrough
 from skbio.stats.ordination import pcoa, OrdinationResults
 
 #rootdir = '/Users/dfrybrum/Documents/FodorLab/gemelli/' # reference directory where ALL files are stored
