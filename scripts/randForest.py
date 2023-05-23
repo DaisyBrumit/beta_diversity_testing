@@ -8,6 +8,7 @@ import pandas as pd
 import numpy as np
 #from skbio.stats import composition
 from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import LabelBinarizer
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import accuracy_score
@@ -31,6 +32,7 @@ def qualitativeRF(metadata,dat):
 
     # run RF for w/ each categorical column as 'y'
     for column in meta_cat.columns:
+        print("CAT COLUMN: ", column)
         # join metadata and full data
         full_table = meta_cat.join(dat, how='inner', on=None)  # None specifies index join. Inner b/c we only want full matches
         full_table = full_table.dropna(subset=[column])
@@ -58,18 +60,27 @@ def qualitativeRF(metadata,dat):
                 accuracy = accuracy_score(y_test, y_predict)
 
                 try:
-                    roc_auc = roc_auc_score(y_test, randForest.predict_proba(x_test)[:, 1], multi_class='ovr', average='macro')
-                except Exception as exc:
-                    print(column,'\n',exc)
-                    roc_auc = 999
+                    # use label binarizer to enable multiclass application of roc_auc score calculation
+                    lb = LabelBinarizer() # call a binarizer object
+                    lb.fit(y_test) # train the binarizer using actual test-set class labels
+                    y_test = lb.transform(y_test) # convert true class labels to binarized set
+                    y_predict = lb.transform(y_predict) # convert predicted class labels to binarized set
 
+                    # calculate (unweighted) averaged roc_auc value using one-versus-rest approach
+                    roc_auc = roc_auc_score(y_test, y_predict, multi_class='ovr', average='macro')
+
+                except:
+                    roc_auc = 999
+                    print(column, "error. y_test shape = ", y_test.shape, 'y_predict shape = ', y_predict.shape)
+
+                # append performance metrics to list
                 accuracyList.append(accuracy)
                 rocList.append(roc_auc)
                 run += 1
 
-                # package performance metrics in a list for output
-                accuracyDict[column] = accuracyList
-                rocDict[column] = rocList
+            # package performance metrics in a list for output
+            accuracyDict[column] = accuracyList
+            rocDict[column] = rocList
 
     outList = [accuracyDict, rocDict] #, truefalse_aggregates]
     return outList
@@ -86,6 +97,7 @@ def quantitativeRF(metadata, dat):
     meta_quant = metadata.select_dtypes(include=['float64', 'int64'])
 
     for column in meta_quant.columns:
+        print("QUANT COLUMN: ", column)
         # run RF for w/ each quantitative column as 'y'
         r2List = []
 
