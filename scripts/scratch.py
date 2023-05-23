@@ -6,9 +6,10 @@ from skbio.stats.ordination import pcoa
 from sklearn.ensemble import RandomForestRegressor, RandomForestClassifier
 from sklearn.metrics import roc_auc_score, r2_score
 from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import LabelBinarizer
 
-table = pd.read_table('/Users/dfrybrum/beta_diversity_testing/jones/phylo_ctf_distance_matrix.tsv', index_col=0)
-meta = pd.read_table('/Users/dfrybrum/beta_diversity_testing/jones/meta.txt', index_col=0)
+table = pd.read_table('/Jones/phylo_ctf_distance_matrix.tsv', index_col=0)
+meta = pd.read_table('/Jones/meta.txt', index_col=0)
 meta_cat = meta.select_dtypes(include=['object'])
 dat = pcoa(table, method='eigh', number_of_dimensions=3, inplace=False)
 dat = dat.samples.set_index(keys=table.index)
@@ -30,6 +31,13 @@ for column in meta_cat.columns:
 
     y_proba = randForest.predict_proba(x_test)[:, 1]
     y_predict = randForest.predict(x_test)
+
+    def multiclass_roc_auc_score(y_test, y_pred, average="macro"):
+        lb = LabelBinarizer()
+        lb.fit(y_test)
+        y_test = lb.transform(y_test)
+        y_pred = lb.transform(y_pred)
+        return roc_auc_score(y_test, y_pred, average=average)
 
     roc_auc = roc_auc_score(y_test, y_proba, multi_class='ovr', average='macro')
 
