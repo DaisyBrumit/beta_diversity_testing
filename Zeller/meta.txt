@@ -1,4 +1,4 @@
-sampleid	Age	host_subject_id	geographic_location_(country_and/or_sea region)
+sampleid	Age	host_subject_id	geographic_location
 			
 ERR674075	82	DE-001	Germany
 			
