@@ -1,4 +1,4 @@
-method	geographic_location_(country_and/or_sea region)
+method	geographic_location
 phylo_rpca	0.9298245614035088
 phylo_rpca	0.9298245614035088
 phylo_rpca	0.8771929824561403
