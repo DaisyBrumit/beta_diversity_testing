@@ -3,8 +3,9 @@ import pandas as pd
 import os # for directory walkthrough
 from skbio.stats.ordination import pcoa, OrdinationResults
 
-rootdir = '/Users/dfrybrum/git/beta_diversity_testing/'
-studyList = ['Zeller', 'Jones', 'Vangay', 'Noguera-Julian'] # study names, also subdirs for rootdir
+rootdir = '/Users/dfrybrum/beta_diversity_testing/'
+#studyList = ['Zeller', 'Jones', 'Vangay', 'Noguera-Julian'] # study names, also subdirs for rootdir
+studyList = ['Jones', 'Vangay', 'Noguera-Julian']
 
 for study in studyList:
     # load in metadata

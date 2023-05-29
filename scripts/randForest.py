@@ -48,7 +48,8 @@ def qualitativeRF(metadata,dat):
             rocList = []
             run = 1  # for the ^^ dictionary keys
 
-            for i in range(0, 100):
+            #for i in range(0, 100):
+            for i in range(0,2):
                 x_train, x_test, y_train, y_test = train_test_split(x, y[column], test_size=0.25, train_size=0.75)
 
                 # train the classifier, predict y values on test data
@@ -88,13 +89,11 @@ def qualitativeRF(metadata,dat):
 # RANDOM FOREST FOR QUANTITATIVE METADATA
 
 def quantitativeRF(metadata, dat):
-    # make empty dictionaries for column-wide metrics
-    r2Dict = {}
-    #rocDict = {}
-    #truefalse_aggregates = {}
-
     # get cat data
     meta_quant = metadata.select_dtypes(include=['float64', 'int64'])
+
+    # make empty dictionaries for column-wide metrics
+    r2Dict = {}
 
     for column in meta_quant.columns:
         print("QUANT COLUMN: ", column)
@@ -109,7 +108,8 @@ def quantitativeRF(metadata, dat):
         X = full_table.loc[:, ~full_table.columns.isin(meta_quant.columns)]
         y = full_table.loc[:, full_table.columns.isin(meta_quant.columns)]
 
-        for i in range(0, 100):
+        #for i in range(0, 100):
+        for i in range(0, 2):
             x_train, x_test, y_train, y_test = train_test_split(X, y[column], test_size=0.25, train_size=0.75)
 
             # train the classifier and predict y values
