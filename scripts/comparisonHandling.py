@@ -4,8 +4,7 @@ import os # for directory walkthrough
 from skbio.stats.ordination import pcoa, OrdinationResults
 
 rootdir = '/Users/dfrybrum/beta_diversity_testing/'
-#studyList = ['Zeller', 'Jones', 'Vangay', 'Noguera-Julian'] # study names, also subdirs for rootdir
-studyList = ['Jones', 'Vangay', 'Noguera-Julian']
+studyList = ['Zeller', 'Jones', 'Vangay', 'Noguera-Julian'] # study names, also subdirs for rootdir
 
 for study in studyList:
     # load in metadata
@@ -36,6 +35,7 @@ for study in studyList:
                 ord = ord.samples.set_index(keys=dist.index) # convert OrdinationResults obj to pd DataFrame with samples as indices
 
                 # generate quant and qual rand forest output
+                print('STUDY: ', study, '\nMETHOD: ', beta_method)
                 catRF = rf.qualitativeRF(meta, ord)
                 quantRF = rf.quantitativeRF(meta, ord)
 

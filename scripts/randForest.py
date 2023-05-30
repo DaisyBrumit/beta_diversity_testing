@@ -28,29 +28,31 @@ def qualitativeRF(metadata,dat):
     # make empty dictionaries for column-wide metrics
     accuracyDict = {}
     rocDict = {}
-    truefalse_aggregates = {}
+
+    # join metadata and full data
+    full_table = meta_cat.join(dat, how='left', on=None) # None specifies index join. Inner b/c we only want full matches
 
     # run RF for w/ each categorical column as 'y'
     for column in meta_cat.columns:
-        print("CAT COLUMN: ", column)
-        # join metadata and full data
-        full_table = meta_cat.join(dat, how='inner', on=None)  # None specifies index join. Inner b/c we only want full matches
-        full_table = full_table.dropna(subset=[column])
+        print("CAT COLUMN: ", column, "\nPRE-FILTER Y VALUE COUNTS: ", dict(full_table[column].value_counts()))
+        # remove na values from full table FOR THIS COLUMN ONLY
+        #full_table = full_table.dropna(subset=[column])
+        full_table = full_table.dropna(axis=0, how='any', subset=[column])
+        full_table = full_table.dropna(axis=0, how='any', subset=dat.columns)
 
         # set test and training groups
         x = full_table.loc[:, ~full_table.columns.isin(meta_cat.columns)]  # ~ is a negation operator. Isolate non-meta columns for x
-        y = full_table.loc[:, full_table.columns.isin(meta_cat.columns)]  # Isolate metadata columns for y
-
+        y = full_table[column]  # Isolate desired metadata column for y
+        print('POST-FILTER Y VALUE COUNTS: ', dict(full_table[column].value_counts()))
         # check that categorical values occur more than once so training can proceed
-        if 1 not in dict(y[column].value_counts()).values():
+        if 1 not in dict(y.value_counts()).values():
             # perform random forest 100 times with 0.25, 0.75 test train split
             accuracyList = []
             rocList = []
             run = 1  # for the ^^ dictionary keys
 
-            #for i in range(0, 100):
-            for i in range(0,2):
-                x_train, x_test, y_train, y_test = train_test_split(x, y[column], test_size=0.25, train_size=0.75)
+            for i in range(0, 100):
+                x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.25, train_size=0.75)
 
                 # train the classifier, predict y values on test data
                 randForest = RandomForestClassifier()
@@ -83,6 +85,9 @@ def qualitativeRF(metadata,dat):
             accuracyDict[column] = accuracyList
             rocDict[column] = rocList
 
+        else:
+            print('insufficient unique values')
+
     outList = [accuracyDict, rocDict] #, truefalse_aggregates]
     return outList
 
@@ -108,12 +113,11 @@ def quantitativeRF(metadata, dat):
         X = full_table.loc[:, ~full_table.columns.isin(meta_quant.columns)]
         y = full_table.loc[:, full_table.columns.isin(meta_quant.columns)]
 
-        #for i in range(0, 100):
-        for i in range(0, 2):
+        for i in range(0, 100):
             x_train, x_test, y_train, y_test = train_test_split(X, y[column], test_size=0.25, train_size=0.75)
 
             # train the classifier and predict y values
-            randForest = RandomForestRegressor(n_estimators=50)
+            randForest = RandomForestRegressor()
             randForest.fit(x_train, y_train)
             y_predict = randForest.predict(x_test) # predicts classes, good for R2 and interpretation
 
@@ -124,7 +128,7 @@ def quantitativeRF(metadata, dat):
             # package performance metrics in a list for output
             r2Dict[column] = r2List
 
-        outList = [r2Dict] #, rocDict, truefalse_aggregates]
-        return outList
+    outList = [r2Dict] #, rocDict, truefalse_aggregates]
+    return outList
 
 

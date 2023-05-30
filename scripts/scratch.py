@@ -8,8 +8,8 @@ from sklearn.metrics import roc_auc_score, r2_score
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelBinarizer
 
-table = pd.read_table('/Users/dfrybrum/git/beta_diversity_testing/Jones/phylo_ctf_distance_matrix.tsv', index_col=0)
-meta = pd.read_table('/Users/dfrybrum/git/beta_diversity_testing/Jones/meta.txt', index_col=0)
+table = pd.read_table('/Users/dfrybrum/beta_diversity_testing/Jones/phylo_ctf_distance_matrix.tsv', index_col=0)
+meta = pd.read_table('/Users/dfrybrum/beta_diversity_testing/Jones/meta.txt', index_col=0)
 meta_cat = meta.select_dtypes(include=['object'])
 meta_quant = meta.select_dtypes(include=['float64', 'int64'])
 dat = pcoa(table, method='eigh', number_of_dimensions=3, inplace=False)
