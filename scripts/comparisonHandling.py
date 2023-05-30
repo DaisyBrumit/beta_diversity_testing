@@ -68,8 +68,8 @@ for study in studyList:
                 print("missing RF out")
 
     # print the collection of scores for every method associated with this study in the study's directory
-    accuracy_df.to_csv(rootdir + study + '/binarized_accuracy_table.txt', sep='\t', index=False)
-    roc_df.to_csv(rootdir + study + '/binarized_roc_auc_table.txt', sep='\t', index=False)
-    r2_df.to_csv(rootdir + study + '/add_int_r2_table.txt', sep='\t', index=False)
+    accuracy_df.to_csv(rootdir + study + '/accuracy_table.txt', sep='\t', index=False)
+    roc_df.to_csv(rootdir + study + '/roc_auc_table.txt', sep='\t', index=False)
+    r2_df.to_csv(rootdir + study + '/r2_table.txt', sep='\t', index=False)
 
 print("beam me up, scotty!")
