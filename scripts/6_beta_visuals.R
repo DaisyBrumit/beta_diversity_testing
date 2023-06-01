@@ -7,13 +7,18 @@ library(naniar)
 library(reshape2)
 
 ### SET GLOBAL VARS ### 
-rootDir <- '/Users/dfrybrum/git/beta_diversity_testing/' # path to working dir
+rootDir <- '/Users/dfrybrum/beta_diversity_testing/' # path to working dir
 studyList <- c('Zeller', 'Jones', 'Vangay', 'Noguera-Julian') # all studies (also Directories!)
-metricList <- c('accuracy', 'roc_auc', 'r2') # all performace metrics
+metricList <- c('Accuracy', 'Roc_Auc', 'R2') # all performace metrics
+
+metaPlotList <- list() # hold 3 total plots: one meta per metric
+metaPlot_index <- 1 # will run through all indices as we add plots
+
+avgPlotList <- list() # hold all averaged plots for pdf
+avgPlot_index <- 1 # run through indices as we add plots
+
 plotList <- list() # hold all plots for single pdf later
-avgPlotList <- list()
 plot_index <- 1 # will run through indices as we ad plots
-avgPlot_index <- 1
 
 ### SET FUNCTIONS ###
 # import tsv, return as df
@@ -24,24 +29,71 @@ df_import <- function(metric_string) {
 
 # take in df and all relevant strings, return a plot with appropriate titles and data
 # tilt labels to fit with 'theme', add descriptive title, remove bulky x-axis label
-make_boxplot <- function(df, study, feature_as_string, metric) {
+single_feature_boxplot <- function(df, study, feature_as_string, metric) 
+{
   plot <- ggplot(df, aes_string(x = 'method', y = feature)) + 
     geom_boxplot() +
-    labs(title = paste(study,feature), subtitle = paste('RF',metric), x=NULL) +
+    labs(title = paste(study, feature), subtitle = paste('RF',metric), x=NULL) +
     theme(axis.text.x = element_text(angle=45, hjust = 0.5, vjust = 0.5),
-          plot.title = element_text(size=12, face='bold'))
+          plot.title = element_text(size=10, face='bold'))
+}
+
+multi_feature_boxplot <- function(df, study_label, metric)
+{
+  plot <- ggplot(df, aes(x=method, y=values)) +
+    geom_boxplot() +
+    labs(title = paste(study_label, 'Average Performance Per Method'), 
+         subtitle = paste('Random Forest', metric, 'Values')) +
+    theme(axis.text.x = element_text(angle=45, hjust=0.5, vjust=0.5), 
+          plot.title = element_text(size=10, face = 'bold'))
 }
 
 #### EXECUTE FUNCTIONS FOR ALL DATASETS ###
 setwd(rootDir) # set working directory
-for (study in studyList) {
+
+for (metric in metricList)
+{
+  metaDF <- data_frame() # DF will hold all avgs for meta plots
   
+  for (study in studyList)
+  {
+    
+    # use my import function to get this study at this metric
+    df <- df_import(str_to_lower(metric))
+    
+    # replace nonsense variables with NA
+    for (column in df) 
+    {
+      df <- replace_with_na_all(df, condition = ~.x == 999)
+    }
+    
+    feature_names <- colnames(df)[-which(colnames(df) == 'method')]
+    
+    # average performance metric values per feature
+    feature_avgs <- df %>% group_by(method) %>% summarise(across(everything(), mean, na.rm=TRUE))
+    
+    # expand averages into long form with 3 columns: method, feature name, and average value
+    feature_avgs <-feature_avgs %>% mutate(id = row_number()) %>% 
+      pivot_longer(cols = !contains('method'), names_to = "names", values_to = "values") %>%
+      filter(names != 'id')
+    
+    # add current study to larger DF for meta plot
+    metaDF <- bind_rows(metaDF, feature_avgs)
+  }
+  
+  plot <- multi_feature_boxplot(metaDF, '', metric)
+  metaPlotList[[metaPlot_index]] <- plot
+  metaPlot_index <- metaPlot_index + 1
+}
+
+for (study in studyList) {
   for (metric in metricList) {
     
-    df <- df_import(metric)
+    df <- df_import(str_to_lower(metric))
     
-    # replace nonsense values with na
-    for (column in df) {
+    # replace nonsense values with NA
+    for (column in df) 
+    {
       df <- replace_with_na_all(df, condition = ~.x == 999)
     }
      
@@ -57,10 +109,7 @@ for (study in studyList) {
       filter(names != 'id')
     
     # generate plot specifically for averaged feature values
-    plot <- ggplot(feature_avgs, aes(x=method, y=values)) +
-      geom_boxplot() +
-      labs(title = paste(study, 'average performance per method'), subtitle = paste('RF', metric)) +
-      theme(axis.text.x = element_text(angle=45, hjust = 0.5, vjust = 0.5), plot.title = element_text(size=12, face='bold'))
+    plot <- multi_feature_boxplot(feature_avgs, study, metric)
     
     # add plot objects to separate list
     # this wll let me print these items first to the PDF, with individual feature figures after
@@ -69,7 +118,7 @@ for (study in studyList) {
     
     # make plots for all indvidual features, add to separate list
     for (feature in feature_names) {
-      plot <- make_boxplot(df, study, feature, metric)
+      plot <- single_feature_boxplot(df, study, feature, metric)
       plotList[[plot_index]] <- plot
       plot_index <- plot_index + 1 # next index value
     } 
@@ -78,13 +127,14 @@ for (study in studyList) {
 
 ### EXPORT ALL PLOTS AS 1 PDF ###
 # create global list
-fullList <- append(avgPlotList, plotList)
+fullList <- append(metaPlotList, avgPlotList)
+fullList <- append(fullList, plotList)
 
 # open pdf document
 pdf('beta_div_comp_plots.pdf', onefile = TRUE)
 
 # add plots as 'grobs' to arrange them 4 per page
-marrangeGrob(grobs = fullList, nrow=2, ncol=2)
+marrangeGrob(grobs = fullList, nrow=2, ncol=1)
 
 # close the pdf
 dev.off() # end of pdf creation
