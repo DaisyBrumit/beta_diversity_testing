@@ -64,6 +64,13 @@ Generate diversity metrics using a qiime's core diversity function.
 
 To run: `sbatch 3_importTree_filterFreq_Q2.sh <target directory> <sampling depth>`
 
+**6_beta_visuals.R**
+
+Generate summary plots of random forest performance metrics.
+- input: for *each* study, `accuracy_table_<component count>.txt`, `roc_auc_table_<component count>.txt`, `r2_table_<component count>.txt`
+   - for example, for study "my study" where random forest was run with 3 PCoA axes, the accuracy input table will read `accuracy_table_3PC.txt`
+- output: `beta_div_comp_plots.pdf` a single PDF with plots of beta diversity performance across all studies, plots within studies across features, and plots for each feature per study. This is, obviously, a lot of information, so all plots are printed from most to least information, so meta summaries are at the top of the file.
+  
 **DADA_to_fasta.py**
 
 Generates a fasta file where the sequences are *also* the headers for studies where fasta files are not a given or sequence space is preferred. Achieved by reading in headers from a dada2 output file where headers are sequences. The resulting fasta file can be used in qiime later.
