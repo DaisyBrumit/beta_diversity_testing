@@ -22,9 +22,9 @@ Import sequence, meta-, and count data into qime artifacts for downstream use.
   - `meta.qzv` visual artifact for metadata
   - `meta.txt` a renamed replica of the orignal metadata file for uniform input to future scripts
 
-To run: `sbatch 1_myData_to_Q2.sh <directory path> <sequence file> <count data file> <metadata file>`
+To run: `sbatch scripts/1_myData_to_Q2.sh <directory path> <sequence file> <count data file> <metadata file>`
 
-Example: `sbatch 1_myData_to_Q2.sh my_study/ my_study/dada2seqs.fa my_study/dada2_forward_reads.biom my_study/metadata.txt`
+Example: `sbatch scripts/1_myData_to_Q2.sh my_study/ my_study/dada2seqs.fa my_study/dada2_forward_reads.biom my_study/metadata.txt`
 
 **2_insertionTree_Q2.sh**
 
