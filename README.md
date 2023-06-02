@@ -39,7 +39,7 @@ Filter frequency table (study) features to only include those included in the ne
 - output: `filtered_table.qza` `filtered_table.qzv` frequency table with retained (filtered) features (and visual)
 - output: `discarded_table.qza` `discarded_table.qzv` frequency table with features that were discarded for not overlapping with the tree (and visual)
 
-To run: `sbatch 2_insertionTree_Q2.sh <target directory>`
+To run: `sbatch scripts/2_insertionTree_Q2.sh <target directory>`
 
 **3_coreBetaValues_Q2.sh**
 
@@ -51,7 +51,7 @@ Generate diversity metrics using a qiime's core diversity function.
    - `<metric>_pcoa_results.qza` corresponds to table output `<metric>_pcoa_results.txt`
    - `<metric>_emperor.qzv` contains a qiime visualization of emperor (pcoa) plots by each metadata field in the dataset.
 
-To run: `sbatch 3_importTree_filterFreq_Q2.sh <target directory> <sampling depth>`
+To run: `sbatch scripts/3_importTree_filterFreq_Q2.sh <target directory> <sampling depth>`
 
 **6_beta_visuals.R**
 
