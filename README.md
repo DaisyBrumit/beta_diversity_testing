@@ -2,36 +2,25 @@
 project dedicated to testing phylogenetically aware beta diversity metrics proposed by Rob Knight's lab ([publication link](https://pubmed.ncbi.nlm.nih.gov/35477286/))
 
 ## Repository Navigation
-This repository is organized by 2 main categories: general scripts and study-specific content. The `scripts` directory contains scripts meant for general use by all or some studies used in this project. They contain slurm/bash, R, and python scripts (potentially to later include java). Other directories are named for studies by their authors' surnames. Contents of each are detailed below. All .sh (SLURM) scripts are meant to be run from the HPC cluster but can be repurposed for general use to run from a local command line. 
+This repository is organized by 2 main categories: general scripts and study-specific content. The `scripts` directory contains scripts meant for general use by all or some studies used in this project. Other directories are named for studies by their authors' surnames. Contents of each are detailed below. All .sh (SLURM) scripts are meant to be run using a SLURM scheduler but can be repurposed for general use to run from a local command line. 
 
-In practice, the scripts are meant to be run from in command line with a directory that is 1 position above any directory that will hold *all* study-specific content. When any shell script accepts a <target directory> argument, this directory should always point to the study-specific directory. For all examples, assume I am working from a fiel system organized as shown below, where `working directory` is where all automated scripts are stored, `greengenes` is where gg reference data is stored, and `my_study` is where all files related to the "my_study" study is stored. All .sh scripts are written for use with a SLURM scheduler.
+Scripts are meant to be run from command line with a directory that is 1 position above the `scripts` and study-specific directories. When any shell script accepts a <target directory> argument, this directory should always point to the study-specific directory. For all examples, assume I am working from a file system organized as shown below, where `working directory` is where I type my commands, `scripts` is where I access scripts, and `my_study` is where all files related to the "my_study" study is stored. 
 
 ![image](https://user-images.githubusercontent.com/82405964/231242766-c6f1a68c-16df-489b-9273-ddcb8b39cf56.png)
 
 ### Scripts
-**0_ref_to_Q2.sh**
-
-Import reference sequence and taxonomy data into qiime artifacts for downstream use. NOT CURRENTLY IN USE AS DIFFERENT REFERENCE METHODS ARE EXECUTED IN SCRIPT `2_insertionTree_Q2.sh `
-- input: reference taxonomy file (tab separated textfile)
-- input: reference sequence file (fasta format)
-- input: reference tree file (newick format)
-- output: `refSeqs.qza` qiime2 FeatureTable[Sequence] artifact for sequences to target directory
-- output: `refTaxonomy.qza` FeatureTable[Taxonomy] artifact for taxonomy to target directory
-
-To run: `sbatch 0_ref_to_Q2.sh <target directory> <reference sequence file> <reference taxonomy file> <reference tree file>`
-
-Example: `sbatch 0_ref_to_Q2.sh my_study/ greengene/99_otus.fasta greengene/99_otu_taxonomy.txt greengene/99_otus.tree`
-
 **1_myData_to_Q2.sh**
 
 Import sequence, meta-, and count data into qime artifacts for downstream use.
-- input: dada2 count table (or some other count table recognized by qiime)in BIOM format
-- input: fasta file with sequences found in count table **(if not supplied, there is a script to deal with this)**
-- input: tsv/txt file with associated metadata
-- output: `freqTable.qza` & `freqTable.qzv` qiime2 FeatureTable[Frequency] type and visual
-- output: `seqTable.qza` & `seqTable.qzv` qiime2 FeatureData[Sequence] type and visual
-- output: `meta.qzv` visual artifact for metadata
-- output: `meta.txt` a renamed replica of the orignal metadata file (if not already named as such) to reduce need for extra input arguments in future scripts
+- input: 
+  - dada2 count table in BIOM format. To convert to biom format, reference `dada_to_biom.sh` in the supplemental scripts directory.
+  - fasta file with sequences found in count table. If not supplied, reference `dada_to_fasta.py` in the supplemental scripts directory.
+  - tsv/txt file with associated metadata
+- output: 
+  - `freqTable.qza` & `freqTable.qzv` qiime2 FeatureTable[Frequency] type and visual
+  - `seqTable.qza` & `seqTable.qzv` qiime2 FeatureData[Sequence] type and visual
+  - `meta.qzv` visual artifact for metadata
+  - `meta.txt` a renamed replica of the orignal metadata file for uniform input to future scripts
 
 To run: `sbatch 1_myData_to_Q2.sh <directory path> <sequence file> <count data file> <metadata file>`
 
