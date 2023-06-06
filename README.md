@@ -12,11 +12,11 @@ Scripts are meant to be run from command line with a directory that is 1 positio
 **1_myData_to_Q2.sh**
 
 Import sequence, meta-, and count data into qime artifacts for downstream use.
-- input: 
+- inputs: 
   - dada2 count table in BIOM format. To convert to biom format, reference `dada_to_biom.sh` in the supplemental scripts directory.
   - fasta file with sequences found in count table. If not supplied, reference `dada_to_fasta.py` in the supplemental scripts directory.
   - tsv/txt file with associated metadata
-- output: 
+- outputs: 
   - `freqTable.qza` & `freqTable.qzv` qiime2 FeatureTable[Frequency] type and visual
   - `seqTable.qza` & `seqTable.qzv` qiime2 FeatureData[Sequence] type and visual
   - `meta.qzv` visual artifact for metadata
@@ -36,8 +36,9 @@ Create a study-specific tree by using a preconstructed tree from greengenes. Thi
 Filter frequency table (study) features to only include those included in the new tree
 
 - inputs: `freqTable.qza` `insertionTree.qza` `meta.txt`
-- output: `filtered_table.qza` `filtered_table.qzv` frequency table with retained (filtered) features (and visual)
-- output: `discarded_table.qza` `discarded_table.qzv` frequency table with features that were discarded for not overlapping with the tree (and visual)
+- outputs: 
+  - `filtered_table.qza` `filtered_table.qzv` frequency table with retained (filtered) features (and visual)
+  - `discarded_table.qza` `discarded_table.qzv` frequency table with features that were discarded for not overlapping with the tree (and visual)
 
 To run: `sbatch scripts/2_insertionTree_Q2.sh <target directory>`
 
@@ -48,8 +49,6 @@ Generate diversity metrics using a qiime's core diversity function.
 - parameter: associated sampling depth. Read more about selecting the appropriate value [here](https://docs.qiime2.org/2018.6/tutorials/moving-pictures/#moving-pics-diversity) and use `freqTable.qzv` as a guide for your own data.
 - output: `core-metrics-results` a whole directory of output values and visuals for all metrics included in this suite. Each output will include files for bray curtis, jaccard, and weighted/unweighted unifrac distances.
    - `<metric>_distance_matrix.qza` corresponds to table output `<metric>_distance_matrix.tsv`
-   - `<metric>_pcoa_results.qza` corresponds to table output `<metric>_pcoa_results.txt`
-   - `<metric>_emperor.qzv` contains a qiime visualization of emperor (pcoa) plots by each metadata field in the dataset.
 
 To run: `sbatch scripts/3_importTree_filterFreq_Q2.sh <target directory> <sampling depth>`
 
