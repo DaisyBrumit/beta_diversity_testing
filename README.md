@@ -45,12 +45,29 @@ To run: `sbatch scripts/2_insertionTree_Q2.sh <target directory>`
 **3_coreBetaValues_Q2.sh**
 
 Generate diversity metrics using a qiime's core diversity function.
-- input: `insertionTree.qza` `filtered_table.qza` `meta.txt`
+- inputs: `insertionTree.qza` `filtered_table.qza` `meta.txt`
 - parameter: associated sampling depth. Read more about selecting the appropriate value [here](https://docs.qiime2.org/2018.6/tutorials/moving-pictures/#moving-pics-diversity) and use `freqTable.qzv` as a guide for your own data.
-- output: `core-metrics-results` a whole directory of output values and visuals for all metrics included in this suite. Each output will include files for bray curtis, jaccard, and weighted/unweighted unifrac distances.
+- outpust: `core-metrics-results` a whole directory of output values and visuals for all metrics included in this suite. Each output will include files for bray curtis, jaccard, and weighted/unweighted unifrac distances.
    - `<metric>_distance_matrix.qza` corresponds to table output `<metric>_distance_matrix.tsv`
 
 To run: `sbatch scripts/3_importTree_filterFreq_Q2.sh <target directory> <sampling depth>`
+  
+**4_gemelliBetaValues_Q2.sh**
+ 
+Generate diversty metrics using gemelli's phylogenetically aware approach, as well as phylogenetically naive equivalents. For repeated-measures design, use `ctf` options, otherwise, use `rpca` options.
+
+For RPCA
+- inputs: `filtered_table.qza` `insertionTree.qza`
+- outputs: **EDIT THIS WHEN YOU HAVE A CLEAN OUTPUT TO TEXT**
+
+To run: `sbatch scripts/4_gemelliBetaValues_Q2.sh <target directory> rpca`
+  
+For CTF
+- inputs: `filtered_table.qza` `insertionTree.qza`, `meta.txt`
+- outputs:
+  - **EDIT THIS WHEN YOU HAVE A CLEAN OUTPUT TO TEXT**
+
+To run: `sbatch scripts/4_gemelliBetaValues_Q2.sh <target directory> ctf <repeat id> <state of interest>` where repeat id is the column name in metadata the represents repeated sample ids, and state of interest represents some metadata column that contains categorical information of interest. These addtional parameters are not of supreme importance as we will conduct pcoa ourselves downstream for *every* feature of interest, but they are required arguments in the gemell plugin for qiime.
 
 **6_beta_visuals.R**
 
