@@ -58,16 +58,12 @@ Generate diversty metrics using gemelli's phylogenetically aware approach, as we
 
 For RPCA
 - inputs: `filtered_table.qza` `insertionTree.qza`
-- outputs: **EDIT THIS WHEN YOU HAVE A CLEAN OUTPUT TO TEXT**
+  - ctf only: also `meta.txt`
+- outputs: `<metric>_distance_matrix.tsv` for both relevant metrics
 
-To run: `sbatch scripts/4_gemelliBetaValues_Q2.sh <target directory> rpca`
-  
-For CTF
-- inputs: `filtered_table.qza` `insertionTree.qza`, `meta.txt`
-- outputs:
-  - **EDIT THIS WHEN YOU HAVE A CLEAN OUTPUT TO TEXT**
+To run rpca: `sbatch scripts/4_gemelliBetaValues_Q2.sh <target directory> rpca`
 
-To run: `sbatch scripts/4_gemelliBetaValues_Q2.sh <target directory> ctf <repeat id> <state of interest>` where repeat id is the column name in metadata the represents repeated sample ids, and state of interest represents some metadata column that contains categorical information of interest. These addtional parameters are not of supreme importance as we will conduct pcoa ourselves downstream for *every* feature of interest, but they are required arguments in the gemell plugin for qiime.
+To run ctf: `sbatch scripts/4_gemelliBetaValues_Q2.sh <target directory> ctf <repeat id> <state of interest>` where repeat id is the column name in metadata the represents repeated sample ids, and state of interest represents some metadata column that contains categorical information of interest. These addtional parameters are not of supreme importance as we will conduct pcoa ourselves downstream for *every* feature of interest, but they are required arguments in the gemell plugin for qiime.
 
 **6_beta_visuals.R**
 
