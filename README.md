@@ -6,7 +6,7 @@ This repository is organized by 2 main categories: general scripts and study-spe
 
 Scripts are meant to be run from command line with a directory that is 1 position above the `scripts` and study-specific directories. When any shell script accepts a <target directory> argument, this directory should always point to the study-specific directory. For all examples, assume I am working from a file system organized as shown below, where `working directory` is where I type my commands, `scripts` is where I access scripts, and `my_study` is where all files related to the "my_study" study is stored. 
 
-![image]([https://user-images.githubusercontent.com/82405964/231242766-c6f1a68c-16df-489b-9273-ddcb8b39cf56.png](https://drive.google.com/file/d/1gpcj66d58pinCzOCUGS3Da6clFd--Vp0/view?usp=share_link))
+![image](https://drive.google.com/file/d/1gpcj66d58pinCzOCUGS3Da6clFd--Vp0/view?usp=share_link)
 
 ### Scripts
 **1_myData_to_Q2.sh**
