@@ -1,11 +1,9 @@
 #!/bin/bash
 #SBATCH --partition=Orion
 #SBATCH --nodes=1
-#SBATCH --time=0:10:00
+#SBATCH --time=10:00:00
 #SBATCH --job-name=gemelli
 #SBATCH --mem=20GB
-#SBATCH --output=gemelli%j.out
-#SBATCH --error=gemelli%j.err
 
 start=$(date)
 
@@ -24,8 +22,9 @@ echo "Loading module and changing directory"
 
 module load qiime2/2021.2
 cd $directory
-
 echo ""
+
+### ctf procedure: requires 2 extra arguments in cml
 if [[ $method == "ctf" ]] 
 then
 	id=$3
@@ -38,12 +37,34 @@ then
 		--m-sample-metadata-file meta.txt \
 		--p-individual-id-column $id \
 		--p-state-column $state \
-		--p-n-components 10 \
 		--output-dir ctf_out
 	
 	echo "RUNNING PHYLO-CTF"
-	qiime gemelli phylogenetic-ctf-without-taxonomy --i-table filtered_table.qza --i-phylogeny insertionTree.qza --m-sample-metadata-file meta.txt --p-individual-id-column $id --p-state-column $state --p-n-components 10 --output-dir phylo_ctf_out
+	qiime gemelli phylogenetic-ctf-without-taxonomy \
+		--i-table filtered_table.qza \
+		--i-phylogeny insertionTree.qza \
+		--m-sample-metadata-file meta.txt \
+		--p-individual-id-column $id \
+		--p-state-column $state \
+		--output-dir phylo_ctf_out
+	
+	echo "Converting phyo/nonphylo ctf artifacts to txt"
+	out_list=("ctf" "phylo_ctf") # run for phylo and no phylo
+	
+	# generate txt file
+	for prefix in "${out_list[@]}"; do
+		qiime tools export \
+			--input-path ${prefix}_out/distance_matrix.qza \
+			--output-path outdir
 
+		# rename file and move from new directory to existing directory
+		mv outdir/* ${prefix}_distance_matrix.tsv
+		# delete unused directory
+		rm -r outdir/
+		rm -r ${prefix}_out/
+	done
+
+### rpca procedure
 elif [[ $method == *"rpca"* ]]
 then
 
@@ -51,11 +72,30 @@ then
 	echo "RUNNING RPCA"
 	qiime gemelli rpca \
 		--i-table filtered_table.qza \
-		--p-n-components 10 \
        		--output-dir rpca_out	
-
+	
 	echo "RUNNING PHYLO RPCA"
-	qiime gemelli phylogenetic-rpca-without-taxonomy --i-table filtered_table.qza --i-phylogeny insertionTree.qza --p-n-components 10 --output-dir phylo_rpca_out
+	qiime gemelli phylogenetic-rpca-without-taxonomy \
+		--i-table filtered_table.qza \
+		--i-phylogeny insertionTree.qza \
+		--output-dir phylo_rpca_out
+	
+	echo "Converting phyo/nonphylo rpca artifacts to txt"
+	out_list=("rpca" "phylo_rpca") # run for phylo and no phylo
+	
+	# make txt file
+	for prefix in "${out_list[@]}"; do
+		echo "$prefix"
+		qiime tools export \
+			--input-path ${prefix}_out/distance_matrix.qza \
+			--output-path outdir
+		
+		# rename and relocate file
+		mv outdir/* ${prefix}_distance_matrix.tsv
+		# remove unused directory
+		rm -r outdir/
+		rm -r ${prefix}_out/
+	done
 fi
 
 end=$(date)

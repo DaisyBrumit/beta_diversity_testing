@@ -27,7 +27,7 @@ module load qiime2
 
 echo ""
 echo "moving metadata to file meta.txt"
-mv $metaPath meta.txt
+mv $metaPath ${directory}meta.txt
 
 echo ""
 echo "Beginning imports..."

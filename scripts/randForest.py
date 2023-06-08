@@ -34,7 +34,7 @@ def qualitativeRF(metadata,dat):
 
     # run RF for w/ each categorical column as 'y'
     for column in meta_cat.columns:
-        print("CAT COLUMN: ", column, "\nPRE-FILTER Y VALUE COUNTS: ", dict(full_table[column].value_counts()))
+        #print("CAT COLUMN: ", column, "\nPRE-FILTER Y VALUE COUNTS: ", dict(full_table[column].value_counts()))
         # remove na values from full table FOR THIS COLUMN ONLY
         #full_table = full_table.dropna(subset=[column])
         full_table = full_table.dropna(axis=0, how='any', subset=[column])
@@ -43,7 +43,7 @@ def qualitativeRF(metadata,dat):
         # set test and training groups
         x = full_table.loc[:, ~full_table.columns.isin(meta_cat.columns)]  # ~ is a negation operator. Isolate non-meta columns for x
         y = full_table[column]  # Isolate desired metadata column for y
-        print('POST-FILTER Y VALUE COUNTS: ', dict(full_table[column].value_counts()))
+        #print('POST-FILTER Y VALUE COUNTS: ', dict(full_table[column].value_counts()))
         # check that categorical values occur more than once so training can proceed
         if 1 not in dict(y.value_counts()).values():
             # perform random forest 100 times with 0.25, 0.75 test train split
@@ -74,7 +74,7 @@ def qualitativeRF(metadata,dat):
 
                 except:
                     roc_auc = 999
-                    print(column, "error. y_test shape = ", y_test.shape, 'y_predict shape = ', y_predict.shape)
+                    #print(column, "error. y_test shape = ", y_test.shape, 'y_predict shape = ', y_predict.shape)
 
                 # append performance metrics to list
                 accuracyList.append(accuracy)
@@ -86,7 +86,8 @@ def qualitativeRF(metadata,dat):
             rocDict[column] = rocList
 
         else:
-            print('insufficient unique values')
+            pass
+            #print('insufficient unique values')
 
     outList = [accuracyDict, rocDict] #, truefalse_aggregates]
     return outList
@@ -123,6 +124,8 @@ def quantitativeRF(metadata, dat):
 
             # generate performance metrics and save
             R2 = r2_score(y_test, y_predict)
+            if (R2 > 1):
+                print("INVALID R2")
             r2List.append(R2)
 
             # package performance metrics in a list for output

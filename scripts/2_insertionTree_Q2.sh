@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --partition=Orion
 #SBATCH --nodes=1
-#SBATCH --time=6:00:00
+#SBATCH --time=200:00:00
 #SBATCH --job-name=classifyQ2
 #SBATCH --mem=32GB
 
@@ -49,7 +49,7 @@ echo "Generating visuals"
 # get a visual for retained fragments
 qiime feature-table summarize \
 	--i-table filtered_table.qza \
-	--m-sample-exitmetadata-file meta.txt \
+	--m-sample-metadata-file meta.txt \
 	--o-visualization filtered_table.qzv
 
 # get a visual for discarded fragments

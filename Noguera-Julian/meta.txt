@@ -1,4 +1,4 @@
-sampleid	Host_Age	ETHNICITY	geo_loc_name_country	HIV_RiskGroup	HIV_serostatus	host_other_gender	host_sex	HIV_Profile	PCR_human_papilloma_virus	host_allergy	host_deposition_frequency_per_day	host_abdominal_transit_alterations	host_Residency_Area	HCV_coinfection	Anal_cytology	host_sexual_orientation	Syphilis_serology	HBV_coinfection	PCR_Chlamydia_trachomatis	HIV_viral_load	CD4+_Tcell_counts	leukocytes	stool_consistency	lymphocytes	host_body_mass_index
+sampleid	Host_Age	ETHNICITY	geo_loc_name_country	HIV_RiskGroup	HIV_serostatus	host_other_gender	host_sex	HIV_Profile	PCR_human_papilloma_virus	host_allergy	host_deposition_frequency_per_day	host_abdominal_transit_alterations	host_Residency_Area	HCV_coinfection	Anal_cytology	host_sexual_orientation	Syphilis_serology	HBV_coinfection	PCR_Chlamydia_trachomatis	HIV_viral_load	CD4plus_Tcell_counts	leukocytes	stool_consistency	lymphocytes	host_body_mass_index
 																									
 SRR3094678	56	caucasian	Spain	hts	positive	f	female	concordant	yes	no	1	yes	Rest	negative	Normal	nonMSM	negative	negative	negative	undetectable	561	8.2	hard	2.3	22.4
 																									

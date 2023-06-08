@@ -5,21 +5,123 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="80898f6b-a812-4e27-962f-5480f93bfe31" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/scripts/comparisonHandling.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/comparisonHandling.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/randForest.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/randForest.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/scratch.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/scratch.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jones/Jones_ForwardReads_DADA2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jones/PhyloProtocol.Rmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jones/PhyloProtocol.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jones/accuracy_table.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jones/bray_curtis_distance_matrix.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jones/bray_curtis_pcoa_results_ordination.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jones/ctf_distance_matrix.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jones/gg-13-8-99-nb-classifier.qza" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jones/jaccard_distance_matrix.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jones/jaccard_pcoa_results_ordination.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jones/jones_meta.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jones/meta.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jones/phylo_ctf_distance_matrix.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jones/phylo_distance_matrix.qza" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jones/phylo_ordination.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jones/phylo_state_feature_ordination.qza" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jones/phylo_state_subject_ordination.qza" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jones/r2_table.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jones/roc_auc_table.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jones/unweighted_unifrac_distance_matrix.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jones/unweighted_unifrac_pcoa_results_ordination.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jones/weighted_unifrac_distance_matrix.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jones/weighted_unifrac_pcoa_results_ordination.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Noguera-Julian/Noguera-Julian_ForwardReads_DADA2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Noguera-Julian/accuracy_table.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Noguera-Julian/bray_curtis_distance_matrix.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Noguera-Julian/bray_curtis_pcoa_results_ordination.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Noguera-Julian/freqTable.qzv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Noguera-Julian/jaccard_distance_matrix.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Noguera-Julian/jaccard_pcoa_results_ordination.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Noguera-Julian/meta.qzv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Noguera-Julian/meta.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Noguera-Julian/phylo_ordination.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Noguera-Julian/phylo_rpca_distance_matrix.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Noguera-Julian/r2_table.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Noguera-Julian/roc_auc_table.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Noguera-Julian/rpca_distance_matrix.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Noguera-Julian/rpca_ordination.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Noguera-Julian/seqTable.qzv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Noguera-Julian/unweighted_unifrac_distance_matrix.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Noguera-Julian/unweighted_unifrac_pcoa_results_ordination.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Noguera-Julian/weighted_unifrac_distance_matrix.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Noguera-Julian/weighted_unifrac_pcoa_results_ordination.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vangay/Vangay_ForwardReads_DADA2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vangay/accuracy_table.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vangay/bray_curtis_distance_matrix.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vangay/bray_curtis_pcoa_results_ordination.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vangay/discarded_table.qzv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vangay/filtered_table.qzv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vangay/freqTable.qzv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vangay/jaccard_distance_matrix.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vangay/jaccard_pcoa_results_ordination.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vangay/meta.qzv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vangay/meta.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vangay/phylo_rpca_distance_matrix.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vangay/phylo_rpca_ordination.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vangay/r2_table.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vangay/rarefied_table.qza" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vangay/rarefied_table.qzv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vangay/roc_auc_table.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vangay/rpca_distance_matrix.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vangay/rpca_ordination.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vangay/seqTable.qzv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vangay/unweighted_unifrac_distance_matrix.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vangay/unweighted_unifrac_pcoa_results_ordination.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vangay/weighted_unifrac_distance_matrix.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vangay/weighted_unifrac_pcoa_results_ordination.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zeller/Zeller_ForwardReads_DADA2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zeller/accuracy_table.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zeller/bray_curtis_distance_matrix.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zeller/bray_curtis_pcoa_results_ordination.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zeller/discarded_table.qzv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zeller/filtered_table.qzv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zeller/freqTable.qzv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zeller/jaccard_distance_matrix.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zeller/jaccard_pcoa_results_ordination.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zeller/meta.qzv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zeller/meta.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zeller/phylo_ordination.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zeller/phylo_rpca_distance_matrix.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zeller/r2_table.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zeller/rarefied_table.qza" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zeller/rarefied_table.qzv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zeller/roc_auc_table.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zeller/rpca_distance_matrix.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zeller/rpca_ordination.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zeller/seqTable.qzv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zeller/unweighted_unifrac_distance_matrix.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zeller/unweighted_unifrac_pcoa_results_ordination.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zeller/weighted_unifrac_distance_matrix.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zeller/weighted_unifrac_pcoa_results_ordination.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/beta_div_comp_plots.pdf" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2QW6lYaJjYiW3GqdllDmI9YOemE" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main"
   }
 }]]></component>
-  <component name="RunManager" selected="Python.comparisonHandling">
+  <component name="RunManager" selected="Python.scratch">
     <configuration name="comparisonHandling" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="beta_diversity_testing" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -69,7 +171,15 @@
       <item itemvalue="Python.scratch" />
     </list>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="80898f6b-a812-4e27-962f-5480f93bfe31" name="Changes" comment="" />
+      <created>1685457142146</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1685457142146</updated>
+    </task>
     <servers />
   </component>
   <component name="XDebuggerManager">
@@ -77,33 +187,8 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/scripts/scratch.py</url>
-          <line>46</line>
-          <option name="timeStamp" value="27" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/scripts/scratch.py</url>
-          <line>51</line>
-          <option name="timeStamp" value="28" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/scripts/scratch.py</url>
-          <line>57</line>
-          <option name="timeStamp" value="29" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/scripts/scratch.py</url>
-          <line>62</line>
-          <option name="timeStamp" value="30" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/scripts/comparisonHandling.py</url>
-          <line>74</line>
-          <option name="timeStamp" value="31" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/scripts/randForest.py</url>
-          <line>58</line>
-          <option name="timeStamp" value="37" />
+          <line>12</line>
+          <option name="timeStamp" value="44" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
