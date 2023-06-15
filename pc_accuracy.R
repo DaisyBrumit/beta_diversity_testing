@@ -25,7 +25,7 @@ for (beta in beta.div) # one dataframe per beta diversity approach
 }
 
 # read in dataframes
-for (i in 3:10) # for every PC count available
+for (i in 2:10) # for every PC count available
 {
   list.index <- 1 # index through the list of dataframes, ONE per beta diversity metric
   for (beta in beta.div) # for every metric
@@ -33,9 +33,17 @@ for (i in 3:10) # for every PC count available
     for (study in study.list) # read in every study associated with this metric executed on this many PCs 
     {
       df <- read_tsv(paste0(study,'/',metric,'_table_',i,'.txt')) # read in the table
-      df['pc_count'] <- paste0(i) # create a variable for PC count
-      df['study'] <- paste0(study) # create a variable for study (not used. Sanity check)
       
+      if (i == 2)
+      {
+        df['pc_count'] <- 'all'
+      }
+      else
+      {
+        df['pc_count'] <- paste0(i) # create a variable for PC count 
+      }
+      
+      df['study'] <- paste0(study) # create a variable for study (not used. Sanity check)
       df.tmp <- filter(df, method == beta) # filter out only observations with desired diversity metric
       df.vector[[list.index]] <- bind_rows(df.vector[list.index], df.tmp) # append the subsetted values to the final dataframe of interest
     }
@@ -68,6 +76,50 @@ for (item in df.vector)
     filter(names != 'id')
   
   metaDF <- bind_rows(metaDF, feature_avgs)
+  #metaDF$pc_count <- as.factor(metaDF$pc_count)
 }
 
-plot <- multi_feature_boxplot(metaDF, '', metric)
+meta.avg <- metaDF %>% drop_na(values) %>% group_by(method, pc_count) %>% summarise(values = mean(values))
+
+ 
+plot_box <- metaDF %>% 
+  mutate(pc_count = fct_relevel(pc_count, "3", "4", "5", "6", "7", "8", "9", "10", 'all')) %>% 
+  ggplot(aes(x=pc_count, y=values, fill=method)) +
+  geom_boxplot() +
+  labs(title = paste('RF Performance Over PCOA Axes'), 
+       subtitle = paste(metric, 'Values')) +
+  theme(axis.text.x = element_text(angle=45, hjust=0.5, vjust=0.5), 
+        plot.title = element_text(size=10, face = 'bold'))
+
+plot_line <- metaDF %>% 
+  mutate(pc_count = fct_relevel(pc_count, "3", "4", "5", "6", "7", "8", "9", "10", 'all')) %>% 
+  ggplot(aes(x=pc_count, y=values, color=method, group=method)) +
+  #geom_line() +
+  geom_smooth(na.rm=TRUE, se=FALSE) +
+  scale_y_continuous(limits=c(0.6,0.9)) +
+  labs(title = paste('RF Performance Over PCOA Axes'), 
+       subtitle = paste(metric, 'Values')) +
+  theme(axis.text.x = element_text(angle=45, hjust=0.5, vjust=0.5), 
+        plot.title = element_text(size=10, face = 'bold'))
+
+plot.list <- list()
+plot.index <- 1
+for (beta in beta.div)
+{
+  
+  plot <- metaDF %>% filter(method == beta) %>%
+    mutate(pc_count = fct_relevel(pc_count, "3", "4", "5", "6", "7", "8", "9", "10", 'all')) %>% 
+    ggplot(aes(x=pc_count, y=values)) +
+    geom_boxplot() +
+    labs(title = paste(beta, 'Performance Over PCOA Axes'), 
+         subtitle = paste(metric, 'Values')) +
+    theme(axis.text.x = element_text(angle=45, hjust=0.5, vjust=0.5), 
+          plot.title = element_text(size=10, face = 'bold'))
+    
+    plot.list[[plot.index]] <- plot
+    plot.index = plot.index + 1
+}
+
+print(plot_box)
+print(plot.list[[5]])
+print(plot_line)
