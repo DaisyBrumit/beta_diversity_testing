@@ -10,12 +10,14 @@ for study in studyList:
     # load in metadata
     meta = pd.read_table(rootdir+study+'/meta.txt', index_col=0) # look for meta.txt in all study subdirs of the root dir
 
-    # dataframes will be packaged for later visualization
-    accuracy_df = pd.DataFrame()
-    roc_df = pd.DataFrame()
-    r2_df = pd.DataFrame()
+    #for i in range(3, 11):
+    for i in range(0,1): # set an arbitrary single run loop for full dataset
 
-    for i in range(3, 11):
+        # dataframes will be packaged for later visualization
+        accuracy_df = pd.DataFrame()
+        roc_df = pd.DataFrame()
+        r2_df = pd.DataFrame()
+
         # walk through all files under rootdir
         for root, dirs, files, in os.walk(rootdir+study+'/'):
             # look at each individual file
@@ -32,7 +34,8 @@ for study in studyList:
                     dist = (pd.read_table(rootdir + study + '/' + file, header=0, index_col=0))
 
                     # run pcoa (for random forest)
-                    ord = pcoa(dist, method='eigh', number_of_dimensions=i, inplace=False) # RUN IN FOR LOOP FOR MULTIPLE DIMS LATER
+                    #ord = pcoa(dist, method='eigh', number_of_dimensions=i, inplace=False) # RUN IN FOR LOOP FOR MULTIPLE DIMS LATER
+                    ord = pcoa(dist, method='eigh', number_of_dimensions=dist.shape[0], inplace=False)
                     ord = ord.samples.set_index(keys=dist.index) # convert OrdinationResults obj to pd DataFrame with samples as indices
 
                     # generate quant and qual rand forest output
@@ -70,8 +73,12 @@ for study in studyList:
                     #print("missing RF out")
 
         # print the collection of scores for every method associated with this study in the study's directory
-        accuracy_df.to_csv(rootdir + study + '/accuracy_table_' + str(i) + '.txt', sep='\t', index=False)
-        roc_df.to_csv(rootdir + study + '/roc_auc_table_' + str(i) + '.txt', sep='\t', index=False)
-        r2_df.to_csv(rootdir + study + '/r2_table_' + str(i) + '.txt', sep='\t', index=False)
+        #accuracy_df.to_csv(rootdir + study + '/accuracy_table_' + str(i) + '.txt', sep='\t', index=False)
+        #roc_df.to_csv(rootdir + study + '/roc_auc_table_' + str(i) + '.txt', sep='\t', index=False)
+        #r2_df.to_csv(rootdir + study + '/r2_table_' + str(i) + '.txt', sep='\t', index=False)
+
+        accuracy_df.to_csv(rootdir + study + '/accuracy_table_all.txt', sep='\t', index=False)
+        roc_df.to_csv(rootdir + study + '/roc_auc_table_all.txt', sep='\t', index=False)
+        r2_df.to_csv(rootdir + study + '/r2_table_all.txt', sep='\t', index=False)
 
 print("beam me up, scotty!")
