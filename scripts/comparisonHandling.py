@@ -4,7 +4,8 @@ import os # for directory walkthrough
 from skbio.stats.ordination import pcoa, OrdinationResults
 
 rootdir = '/Users/dfrybrum/beta_diversity_testing/'
-studyList = ['Zeller', 'Jones', 'Vangay', 'Noguera-Julian'] # study names, also subdirs for rootdir
+#studyList = ['Zeller', 'Jones', 'Vangay', 'Noguera-Julian'] # study names, also subdirs for rootdir
+studyList = ['gemelli_ECAM']
 
 for study in studyList:
     # load in metadata
