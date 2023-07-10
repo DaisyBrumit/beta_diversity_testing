@@ -16,43 +16,46 @@ from sklearn.metrics import r2_score
 from sklearn.metrics import roc_auc_score
 from sklearn.metrics import roc_curve
 
-###################################################
-# APPLY RANDOM FOREST ON ORDINATION (PCOA) OUTPUT
-###################################################
+###########################################
+# APPLY RANDOM FOREST TO CATEGORICAL AND
+# QUANTITATIVE INPUT PER METADATA FEATURE
+###########################################
 
 # RANDOM FOREST FOR CATEGORICAL METADATA
 
 def qualitativeRF(metadata,dat):
-    meta_cat = metadata.select_dtypes(include=['object'])
-
-    # make empty dictionaries for column-wide metrics
+    # make empty dictionaries for performance metrics
     accuracyDict = {}
     rocDict = {}
 
-    # join metadata and full data
-    full_table = meta_cat.join(dat, how='left', on=None) # None specifies index join. Inner b/c we only want full matches
+    # only use categorial metadata, join to data
+    meta_cat = metadata.select_dtypes(include=['object'])
+    preFilter_table = meta_cat.join(dat, how='inner', on=None)
 
     # run RF for w/ each categorical column as 'y'
     for column in meta_cat.columns:
-        #print("CAT COLUMN: ", column, "\nPRE-FILTER Y VALUE COUNTS: ", dict(full_table[column].value_counts()))
-        # remove na values from full table FOR THIS COLUMN ONLY
-        #full_table = full_table.dropna(subset=[column])
-        full_table = full_table.dropna(axis=0, how='any', subset=[column])
-        full_table = full_table.dropna(axis=0, how='any', subset=dat.columns)
+        print("CAT COLUMN: ", column)
+        # store performance metrics for all RF runs
+        accuracyList = []
+        rocList = []
 
-        # set test and training groups
-        x = full_table.loc[:, ~full_table.columns.isin(meta_cat.columns)]  # ~ is a negation operator. Isolate non-meta columns for x
-        y = full_table[column]  # Isolate desired metadata column for y
-        #print('POST-FILTER Y VALUE COUNTS: ', dict(full_table[column].value_counts()))
-        # check that categorical values occur more than once so training can proceed
-        if 1 not in dict(y.value_counts()).values():
+        # filter data one more time
+        #print("CAT COLUMN: ", column, "\nPRE-FILTER Y VALUE COUNTS: ", dict(preFilter_table[column].value_counts()))
+        full_table = preML_filter(preFilter_table, column)
+
+        if type(full_table) == int:
+            pass # skip this column if there's insufficient data
+        else:
+            print('POST-FILTER Y VALUE COUNTS: ', dict(full_table[column].value_counts()))
+            # set test and training groups
+            x = full_table.loc[:, ~full_table.columns.isin(meta_cat.columns)]  # ~ is a negation operator. Isolate non-meta columns for x
+            y = full_table[column]  # Isolate desired metadata column for y
+            print(y.shape)
+
             # perform random forest 100 times with 0.25, 0.75 test train split
-            accuracyList = []
-            rocList = []
-            run = 1  # for the ^^ dictionary keys
-
+            #time = 1
             for i in range(0, 100):
-                x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.25, train_size=0.75)
+                x_train, x_test, y_train, y_test = train_test_split(x, y, stratify=y, test_size=0.25, train_size=0.75)
 
                 # train the classifier, predict y values on test data
                 randForest = RandomForestClassifier()
@@ -62,76 +65,90 @@ def qualitativeRF(metadata,dat):
                 # generate performance metrics and save
                 accuracy = accuracy_score(y_test, y_predict)
 
-                try:
-                    # use label binarizer to enable multiclass application of roc_auc score calculation
-                    lb = LabelBinarizer() # call a binarizer object
-                    lb.fit(y_test) # train the binarizer using actual test-set class labels
-                    y_test = lb.transform(y_test) # convert true class labels to binarized set
-                    y_predict = lb.transform(y_predict) # convert predicted class labels to binarized set
+                #try:
+                # use label binarizer to enable multiclass application of roc_auc score calculation
+                lb = LabelBinarizer() # call a binarizer object
+                lb.fit(y_test) # train the binarizer using actual test-set class labels
+                y_test = lb.transform(y_test) # convert true class labels to binarized set
+                #if time == 1: print(y_test.shape)
+                y_predict = lb.transform(y_predict) # convert predicted class labels to binarized set
 
-                    # calculate (unweighted) averaged roc_auc value using one-versus-rest approach
-                    roc_auc = roc_auc_score(y_test, y_predict, multi_class='ovr', average='macro')
+                # calculate (unweighted) averaged roc_auc value using one-versus-rest approach
+                roc_auc = roc_auc_score(y_test, y_predict, multi_class='ovr', average='macro')
 
-                except:
-                    roc_auc = 999
-                    #print(column, "error. y_test shape = ", y_test.shape, 'y_predict shape = ', y_predict.shape)
+                #except Exception as e:
+                    #roc_auc = 999
 
                 # append performance metrics to list
                 accuracyList.append(accuracy)
                 rocList.append(roc_auc)
-                run += 1
+                #time += 1
 
             # package performance metrics in a list for output
             accuracyDict[column] = accuracyList
             rocDict[column] = rocList
 
-        else:
-            pass
-            #print('insufficient unique values')
 
-    outList = [accuracyDict, rocDict] #, truefalse_aggregates]
+    outList = [accuracyDict, rocDict]
     return outList
 
 # RANDOM FOREST FOR QUANTITATIVE METADATA
 
 def quantitativeRF(metadata, dat):
-    # get cat data
-    meta_quant = metadata.select_dtypes(include=['float64', 'int64'])
-
     # make empty dictionaries for column-wide metrics
     r2Dict = {}
+
+    # only use quantitative metadata, make one table with data
+    meta_quant = metadata.select_dtypes(include=['float64', 'int64'])
+    preFilter_table = meta_quant.join(dat, how='inner', on=None)
 
     for column in meta_quant.columns:
         print("QUANT COLUMN: ", column)
         # run RF for w/ each quantitative column as 'y'
         r2List = []
 
-        # join meta and full data
-        full_table = meta_quant.join(dat, how='inner', on=None)  # None specifies index join. Inner b/c only want full matches
-        full_table = full_table.dropna(subset=[column])
+        # filter data one more time
+        full_table = preML_filter(preFilter_table, column)
 
-        # set test and train groups
-        X = full_table.loc[:, ~full_table.columns.isin(meta_quant.columns)]
-        y = full_table.loc[:, full_table.columns.isin(meta_quant.columns)]
+        if type(full_table) == int:
+            pass # skip this column if there's insufficient data
+        else:
+            # set test and train groups
+            x = full_table.loc[:, ~full_table.columns.isin(meta_quant.columns)]
+            y = full_table[column]
+            print(y.shape)
 
-        for i in range(0, 100):
-            x_train, x_test, y_train, y_test = train_test_split(X, y[column], test_size=0.25, train_size=0.75)
+            for i in range(0, 100):
+                x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.25, train_size=0.75)
 
-            # train the classifier and predict y values
-            randForest = RandomForestRegressor()
-            randForest.fit(x_train, y_train)
-            y_predict = randForest.predict(x_test) # predicts classes, good for R2 and interpretation
+                # train the classifier and predict y values
+                randForest = RandomForestRegressor()
+                randForest.fit(x_train, y_train)
+                y_predict = randForest.predict(x_test) # predicts classes, good for R2 and interpretation
 
-            # generate performance metrics and save
-            R2 = r2_score(y_test, y_predict)
-            if (R2 > 1):
-                print("INVALID R2")
-            r2List.append(R2)
+                # generate performance metrics and save
+                R2 = r2_score(y_test, y_predict)
+                if (R2 > 1):
+                    print("INVALID R2 IN COLUMN ", column)
+                r2List.append(R2)
 
-            # package performance metrics in a list for output
-            r2Dict[column] = r2List
+                # package performance metrics in a list for output
+                r2Dict[column] = r2List
 
-    outList = [r2Dict] #, rocDict, truefalse_aggregates]
-    return outList
+    return r2Dict
 
+### RUN LAST DATA FILTER FOR COLUMN-SPECIFIC ISSUES ###
+def preML_filter(table, column):
+    # drop all rows with no data
+    noNull_table = table.dropna(axis=0, how='any')
 
+    # drop rows with unique values
+    unique_values = table[column].value_counts() == 1
+    rowFiltered_table = noNull_table[~noNull_table[column].isin(unique_values[unique_values].index)]
+
+    # check that the table has more than 2 values
+    if len(rowFiltered_table) <= 2:
+        print("Not enough post-filter data in ", column, "to proceed. Skipping.")
+        return 0
+    else:
+        return rowFiltered_table
