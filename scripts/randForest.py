@@ -46,16 +46,16 @@ def qualitativeRF(metadata,dat):
         if type(full_table) == int:
             pass # skip this column if there's insufficient data
         else:
-            print('POST-FILTER Y VALUE COUNTS: ', dict(full_table[column].value_counts()))
+            #print('POST-FILTER Y VALUE COUNTS: ', dict(full_table[column].value_counts()))
             # set test and training groups
             x = full_table.loc[:, ~full_table.columns.isin(meta_cat.columns)]  # ~ is a negation operator. Isolate non-meta columns for x
             y = full_table[column]  # Isolate desired metadata column for y
-            print(y.shape)
+            #print(y.shape)
 
             # perform random forest 100 times with 0.25, 0.75 test train split
             #time = 1
             for i in range(0, 100):
-                x_train, x_test, y_train, y_test = train_test_split(x, y, stratify=y, test_size=0.25, train_size=0.75)
+                x_train, x_test, y_train, y_test = train_test_split(x, y, stratify=y, test_size=0.4, train_size=0.6)
 
                 # train the classifier, predict y values on test data
                 randForest = RandomForestClassifier()
@@ -119,7 +119,7 @@ def quantitativeRF(metadata, dat):
             print(y.shape)
 
             for i in range(0, 100):
-                x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.25, train_size=0.75)
+                x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.40, train_size=0.60)
 
                 # train the classifier and predict y values
                 randForest = RandomForestRegressor()
@@ -140,7 +140,7 @@ def quantitativeRF(metadata, dat):
 ### RUN LAST DATA FILTER FOR COLUMN-SPECIFIC ISSUES ###
 def preML_filter(table, column):
     # drop all rows with no data
-    noNull_table = table.dropna(axis=0, how='any')
+    noNull_table = table.dropna(axis=0, how='any', subset=column)
 
     # drop rows with unique values
     unique_values = table[column].value_counts() == 1
