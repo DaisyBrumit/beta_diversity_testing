@@ -8,12 +8,12 @@ def main():
     # take in arguments from command line
     #study = str(sys.argv[1]) # study to work on as a string
     #pc_count = int(sys.argv[2]) # number of pcoa components to use
-    study = 'Jones'
-    pc_count = -2
+    study = 'Vangay'
+    pc_count = 3
 
     # read in metadata
     #meta_path = '/users/dfrybrum/fodor_lab/beta_diversity_testing/'+study+'/meta.txt'
-    meta_path = '/Users/dfrybrum/beta_diversity_testing/'+study+'/meta.txt'
+    meta_path = '/Users/dfrybrum/git/beta_diversity_testing/'+study+'/meta.txt'
     meta = pd.read_table(meta_path, index_col=0)
 
     # set blank dictionaries for performance metrics
@@ -23,7 +23,7 @@ def main():
 
     # use walk to initiate a look at all files in a study directory
     #study_path ='/users/dfrybrum/fodor_lab/beta_diversity_testing/'+study + '/'
-    study_path = '/Users/dfrybrum/beta_diversity_testing/'+study+'/'
+    study_path = '/Users/dfrybrum/git/beta_diversity_testing/'+study+'/'
     for root, dirs, files, in os.walk(study_path):
         # look at each individual file
         for file in files:
@@ -98,9 +98,9 @@ def main():
     #accuracy_df.to_csv('/users/dfrybrum/fodor_lab/beta_diversity_testing/'+study + '/accuracy_table_' + suffix + '.txt', sep='\t', index=False)
     #roc_df.to_csv('/users/dfrybrum/fodor_lab/beta_diversity_testing/'+study + '/roc_auc_table_' + suffix + '.txt', sep='\t', index=False)
     #r2_df.to_csv('/users/dfrybrum/fodor_lab/beta_diversity_testing/'+study + '/r2_table_' + suffix + '.txt', sep='\t', index=False)
-    accuracy_df.to_csv('/Users/dfrybrum/beta_diversity_testing/'+study + '/accuracy_table_' + suffix + '.txt', sep='\t', index=False)
-    roc_df.to_csv('/Users/dfrybrum/beta_diversity_testing/'+study + '/roc_auc_table_' + suffix + '.txt', sep='\t', index=False)
-    r2_df.to_csv('/Users/dfrybrum/beta_diversity_testing/'+study + '/r2_table_' + suffix + '.txt', sep='\t', index=False)
+    accuracy_df.to_csv('/Users/dfrybrum/git/beta_diversity_testing/'+study + '/accuracy_table_' + suffix + '.txt', sep='\t', index=False)
+    roc_df.to_csv('/Users/dfrybrum/git/beta_diversity_testing/'+study + '/roc_auc_table_' + suffix + '.txt', sep='\t', index=False)
+    r2_df.to_csv('/Users/dfrybrum/git/beta_diversity_testing/'+study + '/r2_table_' + suffix + '.txt', sep='\t', index=False)
 
 
 ### RUN ML SCRIPTS FOR DESIRED PC COUNT ###
