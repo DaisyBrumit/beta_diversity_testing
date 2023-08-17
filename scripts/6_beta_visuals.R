@@ -23,7 +23,8 @@ plot_index <- 1 # will run through indices as we ad plots
 ### SET FUNCTIONS ###
 # import tsv, return as df
 df_import <- function(metric_string) {
-  df <- read_tsv(paste0(study,'/',metric_string,'_table.txt'))
+  #df <- read_tsv(paste0(study,'/',metric_string,'_table.txt'))
+  df <- read_tsv(paste0(study,'/',metric_string,'_table_3.txt'))
   return(df)
 }
 

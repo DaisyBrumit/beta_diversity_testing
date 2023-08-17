@@ -15,7 +15,8 @@ def main():
             # read in metadata
             meta_path = '/Users/dfrybrum/beta_diversity_testing/'+study+'/meta.txt'
             meta = pd.read_table(meta_path, index_col=0)
-            meta = meta.drop('host_subject_id', axis=1)
+            if 'host_subject_id' in meta.columns:
+                meta = meta.drop('host_subject_id', axis=1)
 
             # set blank dictionaries for performance metrics
             accuracy_df = pd.DataFrame()
