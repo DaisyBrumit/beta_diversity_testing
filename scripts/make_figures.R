@@ -1,46 +1,74 @@
 library(tidyverse)
+library(optparse)
 
-## SET GLOBAL VARS THAT WILL NEED TO BE LOOPED
-# set working dirctory from files tab as necessary to follow expected dir layout
-study.list <- c('Jones', 'Vangay', 'Zeller', 'Noguera-Julian')
-metric.list <- c('knn_accuracy')#, 'multinomial_accuracy')
+source('~/scripts/plotting_functions.R')
 
-## DEFINE CORE FUNCTIONS
+# define possible cml inputs/arguments as follows
+# -s: target study (default: all used in this project)
+# -b: beta transformation of interest (default: NULL)
+# -m: model of interest (default: rf)
+#     options: rf (random forest), knn, perm (permanova)
+# -pc: num of PC axes of interest (default: NULL == all)
+#      options: integer, 'meta' for comparisons    
 
-# df_filter: remove nonsense output from incoming tables
-df_filter <- function(df) {
-  df.nas <- df %>% mutate(across(everything(), ~ifelse(.x == 999, NA, .x))) # turn all 999 into na
-  df.filtered <- df.nas %>% dplyr::select_if(~ !any(is.na(.))) # remove whole column if all labels are na
+arg.options <- list(
+  make_option(
+    c('-s', '-study'), type = 'character', default = 'all',
+    help = 'specify study: assumes study name == study\'s directory name.'
+  ),
   
-  removed.cols <- df.nas %>% dplyr::select_if(~ any(is.na(.))) # get list of na cols
-  print(paste(ncol(removed.cols), 'features removed \n', colnames(removed.cols))) # print column names
+  make_option(
+    c('-b', '-beta'), type = 'character', default = NULL,
+    help = 'specify beta diversity method to highlight, if any.'
+  ),
   
-  return(df.filtered)
+  make_option(
+    c('-m', '-model'), type = 'character', default = 'rf',
+    help = 'select model: rf, knn, or perma'
+  ),
+  
+  make_option(
+    c('-pc'), type = 'character', default = NULL,
+    help = 'specify number of PCs used: default=NULL, \'all\' for all, \'meta\' for PC comparison.'
+  )
+)
+
+# take in the inputs as defined above from command line
+args <- parse_args2(OptionParser(usage = 'make_figures.R', option_list = arg.options))
+
+# store arguments 
+beta.input <- args$b
+model.input <- args$m
+
+study.input <- as.vector(args$s)
+if (study.input == 'all') # specify what "all" means
+  study.input <- c('Jones', 'Vangay', 'Zeller', 'Noguera-Julian', 'gemelli_ECAM')
+
+
+pc.input <- args$pc
+if (pc.input == 'meta') # specify all possible counts for comparisons
+  pc.input <- c('3', '4', '5', '6', '7', '8', '9', '10', 'all')
+
+
+# verify that cml inputs are valid
+valid.betas <- c('jaccard', 'bray_curtis', 'weighted_unifrac', 'unweighted_unifrac',
+                 'ctf', 'phylo_ctf', 'rpca', 'phylo_rpca')
+valid.models <- c('perm', 'knn', 'rf')
+valid.pc.counts <- c('3', '4', '5', '6', '7', '8', '9', '10', 'all', 'meta')
+
+# in case of invalid inputs, print error and quit
+# for beta
+if (!is.null(beta.input) && !beta.input %in% valid.betas) {
+  cat("ERROR: -b input must be one of the following \n", 
+      paste(valid.betas), '\nOR left blank')  
+  quit(status = 1)
 }
 
-# multi_feature_boxplot: create summary figure
-multi_feature_boxplot <- function(df, metric)
-{
-  plt <- ggplot(df, aes(x=transform, y=values)) +
-    geom_boxplot() +
-    labs(title = 'Average Performance Per Method', 
-         subtitle = paste(metric, 'values')) +
-    theme(axis.text.x = element_text(angle=45, hjust=0.5, vjust=0.5), 
-          plot.title = element_text(size=10, face = 'bold'))
-  return(plt)
+# for model
+if (!is.null(model.input) && !model.input %in% valid.models) {
+  cat("ERROR: -m input must be one of the following \n", 
+      paste(valid.models))  
+  quit(status = 1)
 }
 
-## GENERATE FEATURE DATA FOR SUMMARY FIGS
-for (metric in metric.list) {
-  feature_avgs <- data_frame()
-  for (study in study.list) {
-    data.raw <- readr::read_tsv(paste0(study,'/',metric,'.txt')) # import data "as is"
-    data <- df_filter(data.raw) # filter out cols that didn't make ml requirements
-    feature_avgs.tmp <- data %>% group_by(transform) %>% summarise(across(everything(), mean, na.rm=TRUE)) %>%
-      pivot_longer(cols = !contains('transform'), names_to = "feature", values_to = "values")
-    feature_avgs <- feature_avgs %>% bind_rows(feature_avgs.tmp)
-  }
-  plt <- multi_feature_boxplot(feature_avgs, metric)
-  print(plt)
-} 
-
+# for

@@ -1,6 +1,27 @@
 # LIBRARY OF PLOTTING FUNCTIONS FOR BETA DIVERSITY STUDIES 
 # AUTHORED BY DAISY FRY BRUMIT
 
+### FILTERING FUNCTIONS ###
+
+# remove columns populated by all NA values 
+# columns are model output values (accuracy, p-value)
+# rows are classes (# of PCs, beta transformation labels)
+
+filter.na.cols <- function(df) {
+  df.nas <- df %>% mutate(across(everything(), ~ifelse(.x == 999, NA, .x))) # turn all 999 into na
+  df.filtered <- df.nas %>% dplyr::select_if(~ !all(is.na(.))) # remove whole column if all labels are na
+  
+  removed.cols <- df.nas %>% dplyr::select_if(~ all(is.na(.))) # get list of na cols
+  
+  # print removed column names
+  print(paste(ncol(removed.cols), 'features removed:')) 
+  print(colnames(removed.cols))
+  
+  return(df.filtered)
+}
+
+### PLOTS ###
+
 make.boxplot <- function(df, x, y, title=NULL, subtitle=NULL)
 { 
   # boxplot figure where
