@@ -7,7 +7,8 @@ from skbio.stats.ordination import pcoa
 import sys
 
 def main():
-    studyList = ['Zeller', 'Jones', 'Vangay', 'Noguera-Julian', 'gemelli_ECAM']
+    #studyList = ['Zeller', 'Jones', 'Vangay', 'Noguera-Julian', 'gemelli_ECAM']
+    studyList = ['gemelli_ECAM']
     pc_countList = [-2,-1,3,4,5,6,7,8,9,10]
 
     for study in studyList:
@@ -17,6 +18,8 @@ def main():
             meta = pd.read_table(meta_path, index_col=0)
             if 'host_subject_id' in meta.columns:
                 meta = meta.drop('host_subject_id', axis=1)
+            if study == 'gemelli_ECAM':
+                meta = meta['delivery'].to_frame()
 
             # set blank dictionaries for performance metrics
             accuracy_df = pd.DataFrame()

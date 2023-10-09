@@ -51,7 +51,7 @@ make.linegraph <- function(df, x, y, group=NULL, scale=NULL, title=NULL, subtitl
     geom_smooth(na.rm=TRUE, se=FALSE) +
     scale_y_continuous(limits=scale) +
     labs(title=title, subtitle=subtitle) +
-    theme(axis.text.x = element_text(angle=45, hjust=0.5, vjust=0.5), 
+    theme(axis.text.x = element_text(angle=70, hjust=0.5, vjust=0.5), 
           plot.title = element_text(size=10, face = 'bold'))
   
   return(plt)
