@@ -117,8 +117,16 @@ def quantitativeKNN(metadata, dat):
             for i in range(0, 100):
                 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.40, train_size=0.60)
 
+                # set the number of neighbors default as 10
+                if x_test.shape[0] >= 10:
+                    neighbors = 10
+
+                # or lower if needed
+                else:
+                    neighbors = x_test.shape[0]
+
                 # train the classifier and predict y values
-                knn = KNeighborsRegressor(n_neighbors=10)
+                knn = KNeighborsRegressor(n_neighbors=neighbors)
                 knn.fit(x_train, y_train)
                 y_predict = knn.predict(x_test) # predicts classes, good for R2 and interpretation
 
