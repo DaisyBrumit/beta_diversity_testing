@@ -7,8 +7,8 @@ from skbio.stats.ordination import pcoa
 import sys
 
 def main():
-    #studyList = ['Zeller', 'Jones', 'Vangay', 'Noguera-Julian', 'gemelli_ECAM']
-    studyList = ['gemelli_ECAM']
+    studyList = ['Zeller', 'Jones', 'Vangay', 'Noguera-Julian', 'gemelli_ECAM']
+    mlm = 'random_forest'
     pc_countList = [-2,-1,3,4,5,6,7,8,9,10]
 
     for study in studyList:
@@ -49,25 +49,27 @@ def main():
                         ord, meta = metaFilter(ord, meta)
 
                         print('STUDY: ', study, '\nMETHOD: ', beta_method)
-                        #catRF = rf.qualitativeRF(meta, ord)
-                        #quantRF = rf.quantitativeRF(meta, ord)
-                        catKNN = knn.qualitativeKNN(meta, ord)
+                        catRF = rf.qualitativeRF(meta, ord)
+                        quantRF = rf.quantitativeRF(meta, ord)
+                        #catKNN = knn.qualitativeKNN(meta, ord)
+                        #quantKNN = knn.quantitativeKNN(meta, ord)
 
                         # expand performance metrics from RF script output
-                        #acc_tmp = pd.DataFrame(catRF[0])
-                        #roc_tmp = pd.DataFrame(catRF[1])
-                        #r2_tmp = pd.DataFrame(quantRF)
-                        acc_tmp = pd.DataFrame(catKNN[0])
-                        roc_tmp = pd.DataFrame(catKNN[1])
+                        acc_tmp = pd.DataFrame(catRF[0])
+                        roc_tmp = pd.DataFrame(catRF[1])
+                        r2_tmp = pd.DataFrame(quantRF)
+                        #acc_tmp = pd.DataFrame(catKNN[0])
+                        #roc_tmp = pd.DataFrame(catKNN[1])
+                        #r2_tmp = pd.DataFrame(quantKNN)
 
                         # add a column to track the beta metric currently used
-                        #acc_tmp, roc_tmp, r2_tmp = acc_tmp.assign(method=beta_method), roc_tmp.assign(method=beta_method), r2_tmp.assign(method=beta_method)
-                        acc_tmp, roc_tmp = acc_tmp.assign(method=beta_method), roc_tmp.assign(method=beta_method)
+                        acc_tmp, roc_tmp, r2_tmp = acc_tmp.assign(method=beta_method), roc_tmp.assign(method=beta_method), r2_tmp.assign(method=beta_method)
+                        #acc_tmp, roc_tmp = acc_tmp.assign(method=beta_method), roc_tmp.assign(method=beta_method)
 
                         # concatenate merged table to main table with all methods
                         accuracy_df = pd.concat([accuracy_df, acc_tmp], ignore_index=True)
                         roc_df = pd.concat([roc_df, roc_tmp], ignore_index=True)
-                        #r2_df = pd.concat([r2_df, r2_tmp], ignore_index=True)
+                        r2_df = pd.concat([r2_df, r2_tmp], ignore_index=True)
 
                     # if the file is an unprocessed DADA2 file
                     elif file.endswith('DADA2.txt'):
@@ -80,25 +82,26 @@ def main():
                         ord, meta = metaFilter(ord, meta)
 
                         print('STUDY: ', study, '\nMETHOD: ', beta_method)
-                        #catRF = rf.qualitativeRF(meta, ord)
-                        #quantRF = rf.quantitativeRF(meta, ord)
-                        catKNN = knn.qualitativeKNN(meta, ord)
+                        catRF = rf.qualitativeRF(meta, ord)
+                        quantRF = rf.quantitativeRF(meta, ord)
+                        #catKNN = knn.qualitativeKNN(meta, ord)
+                        #quantKNN = knn.quantitativeKNN(meta, ord)
 
                         # expand performance metrics from RF script output
-                        #acc_tmp = pd.DataFrame(catRF[0])
-                        #roc_tmp = pd.DataFrame(catRF[1])
-                        #r2_tmp = pd.DataFrame(quantRF)
-                        acc_tmp = pd.DataFrame(catKNN[0])
-                        roc_tmp = pd.DataFrame(catKNN[1])
+                        acc_tmp = pd.DataFrame(catRF[0])
+                        roc_tmp = pd.DataFrame(catRF[1])
+                        r2_tmp = pd.DataFrame(quantRF)
+                        #acc_tmp = pd.DataFrame(catKNN[0])
+                        #roc_tmp = pd.DataFrame(catKNN[1])
+                        #r2_tmp = pd.DataFrame(quantKNN)
 
                         # add a column to track the beta metric currently used
-                        #acc_tmp, roc_tmp, r2_tmp = acc_tmp.assign(method=beta_method), roc_tmp.assign(method=beta_method), r2_tmp.assign(method=beta_method)
-                        acc_tmp, roc_tmp = acc_tmp.assign(method=beta_method), roc_tmp.assign(method=beta_method)
+                        acc_tmp, roc_tmp, r2_tmp = acc_tmp.assign(method=beta_method), roc_tmp.assign(method=beta_method), r2_tmp.assign(method=beta_method)
 
                         # concatenate merged table to main table with all methods
                         accuracy_df = pd.concat([accuracy_df, acc_tmp], ignore_index=True)
                         roc_df = pd.concat([roc_df, roc_tmp], ignore_index=True)
-                        #r2_df = pd.concat([r2_df, r2_tmp], ignore_index=True)
+                        r2_df = pd.concat([r2_df, r2_tmp], ignore_index=True)
             # set pathnames
             if pc_count == -1:
                 suffix = 'raw'
@@ -107,9 +110,9 @@ def main():
             else: suffix = str(pc_count)
 
             # print the collection of scores for every method associated with this study in the study's directory
-            accuracy_df.to_csv('/Users/dfrybrum/beta_diversity_testing/'+study + '/knn_accuracy_table_' + suffix + '.txt', sep='\t', index=False)
-            roc_df.to_csv('/Users/dfrybrum/beta_diversity_testing/'+study + '/knn_roc_auc_table_' + suffix + '.txt', sep='\t', index=False)
-            r2_df.to_csv('/Users/dfrybrum/beta_diversity_testing/'+study + '/knn_r2_table_' + suffix + '.txt', sep='\t', index=False)
+            accuracy_df.to_csv('/Users/dfrybrum/beta_diversity_testing/'+study + '/'+mlm+'/accuracy_table_' + suffix + '.txt', sep='\t', index=False)
+            roc_df.to_csv('/Users/dfrybrum/beta_diversity_testing/'+study + '/'+mlm+'/auc_table_' + suffix + '.txt', sep='\t', index=False)
+            r2_df.to_csv('/Users/dfrybrum/beta_diversity_testing/'+study + '/'+mlm+'/r2_table_' + suffix + '.txt', sep='\t', index=False)
 
 
 ### RUN ML SCRIPTS FOR DESIRED PC COUNT ###
