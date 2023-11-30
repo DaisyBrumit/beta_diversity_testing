@@ -5,103 +5,259 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="80898f6b-a812-4e27-962f-5480f93bfe31" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Jones/Jones_ForwardReads_DADA2.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Jones/PhyloProtocol.Rmd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Jones/PhyloProtocol.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Jones/accuracy_table.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.Rhistory" beforeDir="false" afterPath="$PROJECT_DIR$/.Rhistory" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/beta_diversity_testing.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/beta_diversity_testing.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jones/accuracy_table_10.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jones/accuracy_table_3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jones/accuracy_table_4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jones/accuracy_table_5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jones/accuracy_table_6.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jones/accuracy_table_7.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jones/accuracy_table_8.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jones/accuracy_table_9.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jones/accuracy_table_all.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Jones/bray_curtis_distance_matrix.tsv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Jones/bray_curtis_pcoa_results_ordination.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Jones/ctf_distance_matrix.tsv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Jones/gg-13-8-99-nb-classifier.qza" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jones/dada2_forward_reads.biom" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jones/dada2seqs.fasta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jones/discarded_table.qza" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jones/discarded_table.qzv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jones/filtered_table.qza" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jones/filtered_table.qzv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jones/freqTable.qza" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jones/freqTable.qzv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jones/insertionPlacements.qza" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jones/insertionTree.qza" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Jones/jaccard_distance_matrix.tsv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Jones/jaccard_pcoa_results_ordination.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Jones/jones_meta.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Jones/meta.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jones/meta.qzv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Jones/phylo_ctf_distance_matrix.tsv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Jones/phylo_distance_matrix.qza" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Jones/phylo_ordination.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Jones/phylo_state_feature_ordination.qza" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Jones/phylo_state_subject_ordination.qza" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Jones/r2_table.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Jones/roc_auc_table.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jones/r2_table_10.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jones/r2_table_3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jones/r2_table_4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jones/r2_table_5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jones/r2_table_6.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jones/r2_table_7.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jones/r2_table_8.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jones/r2_table_9.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jones/r2_table_all.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jones/roc_auc_table_10.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jones/roc_auc_table_3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jones/roc_auc_table_4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jones/roc_auc_table_5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jones/roc_auc_table_6.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jones/roc_auc_table_7.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jones/roc_auc_table_8.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jones/roc_auc_table_9.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jones/roc_auc_table_all.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jones/sepp-refs-gg-13-8.qza" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jones/seqTable.qza" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jones/seqTable.qzv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Jones/unweighted_unifrac_distance_matrix.tsv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Jones/unweighted_unifrac_pcoa_results_ordination.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Jones/weighted_unifrac_distance_matrix.tsv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Jones/weighted_unifrac_pcoa_results_ordination.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Noguera-Julian/Noguera-Julian_ForwardReads_DADA2.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Noguera-Julian/accuracy_table.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Noguera-Julian/accuracy_table_10.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Noguera-Julian/accuracy_table_3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Noguera-Julian/accuracy_table_4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Noguera-Julian/accuracy_table_5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Noguera-Julian/accuracy_table_6.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Noguera-Julian/accuracy_table_7.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Noguera-Julian/accuracy_table_8.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Noguera-Julian/accuracy_table_9.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Noguera-Julian/accuracy_table_all.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Noguera-Julian/bray_curtis_distance_matrix.tsv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Noguera-Julian/bray_curtis_pcoa_results_ordination.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Noguera-Julian/dada2_forward_reads.biom" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Noguera-Julian/dada2seqs.fasta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Noguera-Julian/discarded_table.qza" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Noguera-Julian/discarded_table.qzv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Noguera-Julian/filtered_table.qza" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Noguera-Julian/filtered_table.qzv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Noguera-Julian/freqTable.qza" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Noguera-Julian/freqTable.qzv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Noguera-Julian/insertionPlacements.qza" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Noguera-Julian/insertionTree.qza" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Noguera-Julian/jaccard_distance_matrix.tsv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Noguera-Julian/jaccard_pcoa_results_ordination.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Noguera-Julian/meta.qzv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Noguera-Julian/meta.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Noguera-Julian/phylo_ordination.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Noguera-Julian/phylo_rpca_distance_matrix.tsv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Noguera-Julian/r2_table.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Noguera-Julian/roc_auc_table.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Noguera-Julian/r2_table_10.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Noguera-Julian/r2_table_3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Noguera-Julian/r2_table_4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Noguera-Julian/r2_table_5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Noguera-Julian/r2_table_6.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Noguera-Julian/r2_table_7.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Noguera-Julian/r2_table_8.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Noguera-Julian/r2_table_9.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Noguera-Julian/r2_table_all.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Noguera-Julian/roc_auc_table_10.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Noguera-Julian/roc_auc_table_3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Noguera-Julian/roc_auc_table_4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Noguera-Julian/roc_auc_table_5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Noguera-Julian/roc_auc_table_6.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Noguera-Julian/roc_auc_table_7.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Noguera-Julian/roc_auc_table_8.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Noguera-Julian/roc_auc_table_9.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Noguera-Julian/roc_auc_table_all.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Noguera-Julian/rpca_distance_matrix.tsv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Noguera-Julian/rpca_ordination.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Noguera-Julian/sepp-refs-gg-13-8.qza" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Noguera-Julian/seqTable.qza" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Noguera-Julian/seqTable.qzv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Noguera-Julian/unweighted_unifrac_distance_matrix.tsv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Noguera-Julian/unweighted_unifrac_pcoa_results_ordination.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Noguera-Julian/weighted_unifrac_distance_matrix.tsv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Noguera-Julian/weighted_unifrac_pcoa_results_ordination.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Vangay/Vangay_ForwardReads_DADA2.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Vangay/accuracy_table.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vangay/accuracy_table_10.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vangay/accuracy_table_3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vangay/accuracy_table_4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vangay/accuracy_table_5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vangay/accuracy_table_6.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vangay/accuracy_table_7.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vangay/accuracy_table_8.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vangay/accuracy_table_9.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vangay/accuracy_table_all.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Vangay/bray_curtis_distance_matrix.tsv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Vangay/bray_curtis_pcoa_results_ordination.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vangay/dada2_forward_reads.biom" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vangay/dada2seqs.fasta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vangay/discarded_table.qza" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Vangay/discarded_table.qzv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vangay/filtered_table.qza" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Vangay/filtered_table.qzv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vangay/freqTable.qza" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Vangay/freqTable.qzv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vangay/insertionPlacements.qza" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vangay/insertionTree.qza" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Vangay/jaccard_distance_matrix.tsv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Vangay/jaccard_pcoa_results_ordination.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Vangay/meta.qzv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Vangay/meta.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Vangay/phylo_rpca_distance_matrix.tsv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Vangay/phylo_rpca_ordination.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Vangay/r2_table.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Vangay/rarefied_table.qza" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Vangay/rarefied_table.qzv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Vangay/roc_auc_table.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vangay/r2_table_10.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vangay/r2_table_3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vangay/r2_table_4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vangay/r2_table_5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vangay/r2_table_6.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vangay/r2_table_7.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vangay/r2_table_8.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vangay/r2_table_9.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vangay/r2_table_all.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vangay/roc_auc_table_10.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vangay/roc_auc_table_3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vangay/roc_auc_table_4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vangay/roc_auc_table_5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vangay/roc_auc_table_6.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vangay/roc_auc_table_7.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vangay/roc_auc_table_8.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vangay/roc_auc_table_9.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vangay/roc_auc_table_all.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Vangay/rpca_distance_matrix.tsv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Vangay/rpca_ordination.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vangay/sepp-refs-gg-13-8.qza" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vangay/seqTable.qza" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Vangay/seqTable.qzv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Vangay/unweighted_unifrac_distance_matrix.tsv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Vangay/unweighted_unifrac_pcoa_results_ordination.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Vangay/weighted_unifrac_distance_matrix.tsv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Vangay/weighted_unifrac_pcoa_results_ordination.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Zeller/Zeller_ForwardReads_DADA2.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Zeller/accuracy_table.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zeller/accuracy_table_10.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zeller/accuracy_table_3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zeller/accuracy_table_4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zeller/accuracy_table_5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zeller/accuracy_table_6.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zeller/accuracy_table_7.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zeller/accuracy_table_8.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zeller/accuracy_table_9.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zeller/accuracy_table_all.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Zeller/bray_curtis_distance_matrix.tsv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Zeller/bray_curtis_pcoa_results_ordination.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zeller/dada2_forward_reads.biom" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zeller/dada2seqs.fasta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zeller/discarded_table.qza" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Zeller/discarded_table.qzv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zeller/filtered_table.qza" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Zeller/filtered_table.qzv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zeller/freqTable.qza" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Zeller/freqTable.qzv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zeller/insertionPlacements.qza" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zeller/insertionTree.qza" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Zeller/jaccard_distance_matrix.tsv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Zeller/jaccard_pcoa_results_ordination.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Zeller/meta.qzv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Zeller/meta.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Zeller/phylo_ordination.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Zeller/phylo_rpca_distance_matrix.tsv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Zeller/r2_table.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Zeller/rarefied_table.qza" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Zeller/rarefied_table.qzv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Zeller/roc_auc_table.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zeller/r2_table_10.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zeller/r2_table_3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zeller/r2_table_4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zeller/r2_table_5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zeller/r2_table_6.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zeller/r2_table_7.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zeller/r2_table_8.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zeller/r2_table_9.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zeller/r2_table_all.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zeller/roc_auc_table_10.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zeller/roc_auc_table_3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zeller/roc_auc_table_4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zeller/roc_auc_table_5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zeller/roc_auc_table_6.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zeller/roc_auc_table_7.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zeller/roc_auc_table_8.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zeller/roc_auc_table_9.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zeller/roc_auc_table_all.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Zeller/rpca_distance_matrix.tsv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Zeller/rpca_ordination.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zeller/sepp-refs-gg-13-8.qza" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zeller/seqTable.qza" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Zeller/seqTable.qzv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Zeller/unweighted_unifrac_distance_matrix.tsv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Zeller/unweighted_unifrac_pcoa_results_ordination.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Zeller/weighted_unifrac_distance_matrix.tsv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Zeller/weighted_unifrac_pcoa_results_ordination.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/beta_div_comp_plots.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/beta_div_PC_plots.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/beta_div_PC_roc_plots.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gemelli_ECAM/bray_curtis_distance_matrix.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gemelli_ECAM/ctf_distance_matrix.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gemelli_ECAM/discarded_table.qza" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gemelli_ECAM/discarded_table.qzv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gemelli_ECAM/filtered_table.qza" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gemelli_ECAM/filtered_table.qzv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gemelli_ECAM/freqTable.qza" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gemelli_ECAM/freqTable.qzv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gemelli_ECAM/insertion-tree.qza" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gemelli_ECAM/insertionTree.qza" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gemelli_ECAM/jaccard_distance_matrix.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gemelli_ECAM/meta.qzv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gemelli_ECAM/meta.txt" beforeDir="false" afterPath="$PROJECT_DIR$/gemelli_ECAM/meta.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gemelli_ECAM/metadata-matched.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gemelli_ECAM/metadata-matched.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gemelli_ECAM/phylo_ctf_distance_matrix.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gemelli_ECAM/table.biom" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gemelli_ECAM/table.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gemelli_ECAM/taxonomy.qza" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gemelli_ECAM/unweighted_unifrac_distance_matrix.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gemelli_ECAM/weighted_unifrac_distance_matrix.tsv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pc_accuracy.R" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/beta_div_PC_plots.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/beta_div_PC_roc_plots.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/pc_accuracy.R" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/.randForest.py.swp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/0_ref_to_Q2.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/1_myData_to_Q2.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/2_insertionTree_Q2.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/3_coreBetaValues_Q2.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/4_gemelliBetaValues_Q2.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/5_beta_ml.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/6_beta_visuals.R" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/DADA_to_fasta.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/dada_to_biom.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/knn.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/make_figures.R" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/make_figures_archivable.R" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/make_meta_table.R" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/packageComps.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/permanova.R" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/plotting_functions.R" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/randForest.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/resolve_SRA_metadata.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/run_DADA_to_fasta.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/scratch.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -114,28 +270,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main"
-  }
-}]]></component>
-  <component name="RunManager" selected="Python.scratch">
-    <configuration name="comparisonHandling" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+  <component name="RunManager">
+    <configuration name="3.0_pcoa" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="beta_diversity_testing" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="$PROJECT_DIR$/../anaconda3/bin/python" />
-      <option name="SDK_NAME" value="$PROJECT_DIR$/../anaconda3" />
+      <option name="SDK_HOME" value="$PROJECT_DIR$/../anaconda3/envs/python3.9/bin/python" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/scripts" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/scripts/comparisonHandling.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/scripts/3.0_pcoa.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -144,32 +292,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="scratch" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
-      <module name="beta_diversity_testing" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="$PROJECT_DIR$/../anaconda3/bin/python" />
-      <option name="SDK_NAME" value="$PROJECT_DIR$/../anaconda3" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/scripts" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/scripts/scratch.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <list>
-      <item itemvalue="Python.comparisonHandling" />
-      <item itemvalue="Python.scratch" />
-    </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -182,15 +304,46 @@
     </task>
     <servers />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/scripts/scratch.py</url>
-          <line>12</line>
-          <option name="timeStamp" value="44" />
+          <url>file://$PROJECT_DIR$/scripts/high_abundance/2.2_remove_lowAbundance.py</url>
+          <line>24</line>
+          <option name="timeStamp" value="106" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/scripts/functions/post_tree_dataClean.py</url>
+          <line>34</line>
+          <option name="timeStamp" value="111" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/scripts/functions/post_tree_dataClean.py</url>
+          <line>21</line>
+          <option name="timeStamp" value="112" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/scripts/3.0_pcoa.py</url>
+          <line>36</line>
+          <option name="timeStamp" value="131" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="PythonConfigurationType">
+        <watch expression="plot = pcoa_obj.plot(meta, column=0, axes=(0, 1, 2), title=str(study+&quot; &quot;+beta_method))" language="Python" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

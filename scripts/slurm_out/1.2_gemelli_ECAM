@@ -1,0 +1,11 @@
+Changing study to ~/beta_diversity_testing/gemelli_ECAM/qiime
+performing export from .qza to biom on gemelli_ECAM filtered table
+Exported table.qza as BIOMV210DirFmt to directory ../
+converting biom to tsv
+exporting insertion tree to newick format
+Exported insertionTree.qza as NewickDirectoryFormat to directory ../insertionTree.nwk
+Start Time: 2023-11-27 14:42:12
+End Time: 2023-11-27 14:42:25
+Total Runtime: 
+JobID         MaxVMSize     AveCPU   NTasks 
+------------ ---------- ---------- -------- 

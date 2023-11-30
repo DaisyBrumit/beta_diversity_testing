@@ -1,0 +1,21 @@
+Changing study to ~/beta_diversity_testing/Jones
+
+Beginning imports...
+Imported dada_table.biom as BIOMV210DirFmt to qiime/freqTable.qza
+Count data imported
+Imported dada_seqs.fa as DNASequencesDirectoryFormat to qiime/seqTable.qza
+Sequences imported
+
+Making visual artifacts...
+Saved Visualization to: qiime/meta.qzv
+metadata visual created
+Saved Visualization to: qiime/freqTable.qzv
+frequency visual created
+Saved Visualization to: qiime/seqTable.qzv
+sequence visual created
+
+Start Time: 2023-11-26 15:37:31
+End Time: 2023-11-26 15:38:09
+Total Runtime: 
+Memory Usage: JobID         MaxVMSize     AveCPU   NTasks 
+------------ ---------- ---------- -------- 

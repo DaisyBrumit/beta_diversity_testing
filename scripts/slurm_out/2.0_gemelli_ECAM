@@ -1,0 +1,13 @@
+Traceback (most recent call last):
+  File "functions/post_tree_dataClean.py", line 54, in <module>
+    main()
+  File "functions/post_tree_dataClean.py", line 48, in main
+    metaOut, tableOut = sample_filter(meta, table)
+  File "functions/post_tree_dataClean.py", line 11, in sample_filter
+    shared_ids = set(table.columns) & set(meta.index)
+AttributeError: 'NoneType' object has no attribute 'index'
+Start Time: 2023-11-28 15:08:47
+End Time: 2023-11-28 15:08:48
+Total Runtime: 
+Memory Usage: JobID         MaxVMSize     AveCPU   NTasks 
+------------ ---------- ---------- -------- 

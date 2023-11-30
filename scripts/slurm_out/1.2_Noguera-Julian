@@ -1,0 +1,11 @@
+Changing study to ~/beta_diversity_testing/Noguera-Julian/qiime
+performing export from .qza to biom on Noguera-Julian filtered table
+Exported filtered_table.qza as BIOMV210DirFmt to directory ../
+converting biom to tsv
+exporting insertion tree to newick format
+Exported insertionTree.qza as NewickDirectoryFormat to directory ../insertionTree.nwk
+Start Time: 2023-11-27 14:22:38
+End Time: 2023-11-27 14:22:52
+Total Runtime: 
+JobID         MaxVMSize     AveCPU   NTasks 
+------------ ---------- ---------- -------- 

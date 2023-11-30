@@ -1,0 +1,41 @@
+RECEIVED ARGUMENTS
+STUDY = Jones
+GEMELLI METHOD = ctf
+Loading module and changing to directory ~/beta_diversity_testing/Jones
+
+Beginning imports to qiime...
+Imported refiltered_table.biom as BIOMV210DirFmt to qiime/refiltered_table.qza
+count data imported
+Creating visual of refiltered table...
+Saved Visualization to: refiltered_table.qzv
+Count data visualization created as refiltered_table.qzv
+
+Changing directory to ~/beta_diversity_testing/Jones/qiime
+Beginning ctf procedures...
+
+
+Running gemelli plugin with method = ctf
+Individual ID = repeat_ID \n State column = Genotype
+RUNNING CTF
+Saved PCoAResults % Properties('biplot') to: ctf_out/subject_biplot.qza
+Saved PCoAResults % Properties('biplot') to: ctf_out/state_biplot.qza
+Saved DistanceMatrix to: ctf_out/distance_matrix.qza
+Saved SampleData[SampleTrajectory] to: ctf_out/state_subject_ordination.qza
+Saved FeatureData[FeatureTrajectory] to: ctf_out/state_feature_ordination.qza
+RUNNING PHYLO-CTF
+Saved PCoAResults % Properties('biplot') to: phylo_ctf_out/subject_biplot.qza
+Saved PCoAResults % Properties('biplot') to: phylo_ctf_out/state_biplot.qza
+Saved DistanceMatrix to: phylo_ctf_out/distance_matrix.qza
+Saved SampleData[SampleTrajectory] to: phylo_ctf_out/state_subject_ordination.qza
+Saved FeatureData[FeatureTrajectory] to: phylo_ctf_out/state_feature_ordination.qza
+Saved Phylogeny[Rooted] to: phylo_ctf_out/counts_by_node_tree.qza
+Saved FeatureTable[Frequency] to: phylo_ctf_out/counts_by_node.qza
+Saved FeatureTable[Frequency] to: phylo_ctf_out/subject_table.qza
+Converting phyo/nonphylo ctf artifacts to txt
+Exported ctf_out/distance_matrix.qza as DistanceMatrixDirectoryFormat to directory outdir
+Exported phylo_ctf_out/distance_matrix.qza as DistanceMatrixDirectoryFormat to directory outdir
+Start Time: 2023-11-30 11:58:05
+End Time: 2023-11-30 12:01:28
+Total Runtime: 
+Memory Usage: JobID         MaxVMSize     AveCPU   NTasks 
+------------ ---------- ---------- -------- 
