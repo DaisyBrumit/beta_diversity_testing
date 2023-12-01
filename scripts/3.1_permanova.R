@@ -19,11 +19,11 @@ for (study in studyList) {
   
   ### METADATA HANDLING: ONLY ONCE PER STUDY
   # read in metadata
-  meta <- read.table(paste0('~/beta_diversity_testing/',study,'/refiltered_meta.txt'), header = TRUE, sep = '\t') 
+  meta_init <- read.table(paste0('~/beta_diversity_testing/',study,'/refiltered_meta.txt'), header = TRUE, sep = '\t') 
   
   # I only use the delivery variable from ECAM data
   if(study=='gemelli_ECAM'){
-    meta <- meta %>% dplyr::select(., c('sampleid', 'delivery'))
+    meta_init <- meta_init %>% dplyr::select(., c('sampleid', 'delivery'))
   }
   
   # find all dist output files for this study
@@ -37,6 +37,7 @@ for (study in studyList) {
     print(paste("Beta Method for", study, "=", beta_method, ntaxa)) #sanity check
     
     data <- read.table(file, header=TRUE, sep='\t', row.names = 1)
+    meta <- meta_init %>% filter(meta_init$sampleid %in% rownames(data))
 
     for (i in 2:length(colnames(meta))){
       test.obj <- vegan::adonis2(data ~ meta[[i]], meta, permutations = 999, 
@@ -46,6 +47,8 @@ for (study in studyList) {
       
       }
     }
-    write_delim(scores, '~/beta_diversity_testing/multi_study/permanova_results.tsv', col_names=TRUE, delim='\t')
-  }
+    write_delim(scores, paste0('~/beta_diversity_testing/',study,'/permanova/permanova_results.tsv'), col_names=TRUE, delim='\t')
+}
+write_delim(scores, '~/beta_diversity_testing/multi_study/permanova_results.tsv', col_names=TRUE, delim='\t')
+
   
