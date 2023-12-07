@@ -25,6 +25,7 @@ module load qiime2/2021.2
 echo "Changing study to ~/beta_diversity_testing/${study}/qiime"
 cd ~/beta_diversity_testing/${study}/qiime 
 
+echo ""
 echo "performing export from .qza to biom on ${study} filtered table"
 if [ ${study} == "gemelli_ECAM" ]
 then
@@ -40,13 +41,22 @@ fi
 # rename feature-table.biom to filtered_table.biom for continuity
 mv ../feature-table.biom ../filtered_table.biom
 
-echo "converting biom to tsv"
+echo ""
+echo "converting filtered_table.biom to tsv"
 biom convert -i ../filtered_table.biom -o ../filtered_table.txt --to-tsv
 
+echo ""
 echo "exporting insertion tree to newick format"
 qiime tools export \
 	--input-path insertionTree.qza \
-	--output-path ../insertionTree.nwk
+	--output-path ../insertionTreeDir
+
+# get tree file from qiime's exported tree directory
+mv ../insertionTreeDir/tree.nwk ../insertion_tree.nwk
+rm -r ../insertionTreeDir/
+
+
+echo "SCRIPT COMPLETE"
 
 ### REPORT JOB METRICS ###
 # record end time
@@ -61,8 +71,9 @@ total_seconds=$((end_seconds - start_seconds))
 total_runtime=$(date -u -d @$total_seconds +"%T")
 
 # Print metrics
+echo ""
 echo "Start Time: $start_time"
 echo "End Time: $end_time"
-echo "Total Runtime: $tddotal_runtime"
-
-sstat -j $SLURM_JOBID --format=JobID,MaxVMSize,AveCPU,NTasks
+echo "Total Runtime: $total_runtime"
+echo "Memory Usage as per sstat:"
+sstat -j $SLURM_JOBID --all

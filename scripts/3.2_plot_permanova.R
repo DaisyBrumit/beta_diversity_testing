@@ -18,7 +18,7 @@ for (study in studyList) {
   setwd(paste0('~/beta_diversity_testing/',study))
   getwd() # sanity check
   
-  study.table <- read.table(paste0('permanova/permanova_results.tsv'), header = TRUE)
+  study.table <- read.table(paste0('./permanova/permanova_results.tsv'), header = TRUE)
   study.table$study <- study
     
   # make ntaxa reflect gemelli

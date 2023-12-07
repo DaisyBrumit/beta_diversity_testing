@@ -1,14 +1,14 @@
 #!/bin/bash
 #SBATCH --partition=Orion
-#SBATCH --mem=12GB
-#SBATCH --time=01:00:00
-#SBATCH --job-name=preBFilter
+#SBATCH --mem=24GB
+#SBATCH --time=12:00:00
+#SBATCH --job-name=perma
 #SBATCH --nodes=1
 
 ############# TO RUN THIS SCRIPT #######################################
 # navigate to ~/beta_diversity_testing/scripts/                        #
 # enter command:                                                       # 
-# sbatch --output=slurm_out/desired_filename 2.0_filename.sh $1        #
+# sbatch --output=slurm_out/desired_filename 3.1_filename.sh           #
 ########################################################################
 
 
@@ -16,11 +16,10 @@
 # Record start time
 start_time=$(date +"%Y-%m-%d %H:%M:%S")
 
-# cml inputs
-study=$1
-
-### EXECUTE CODE: CLEAN UP DATA FOR BETA TRANSFORMS ###
-python3 functions/post_tree_dataClean.py ${study}
+### EXECUTE CODE: CONVERT COUNT DATA TO BIOM TABLE ###
+module load anaconda3
+conda activate lvc
+Rscript --vanilla 3.1_permanova.R
 
 echo "SCRIPT COMPLETE"
 

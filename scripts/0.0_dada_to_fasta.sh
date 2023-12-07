@@ -34,6 +34,7 @@ python dada_to_fasta.py $input $outPath
 
 echo ""
 echo "FASTA FILE GENERATED"
+echo "SCRIPT COMPLETE"
 
 ### REPORT JOB METRICS ###
 # record end time
@@ -47,11 +48,10 @@ total_seconds=$((end_seconds - start_seconds))
 # Convert total_seconds to HH:MM:SS format
 total_runtime=$(date -u -d @$total_seconds +"%T")
 
-# Record memory usage
-memory_usage=$(sstat -j $SLURM_JOBID --format=JobID,MaxVMSize,AveCPU,NTasks)
-
 # Print metrics
+echo ""
 echo "Start Time: $start_time"
 echo "End Time: $end_time"
-echo "Total Runtime: $tddotal_runtime"
-echo "Memory Usage: $memory_usage"
+echo "Total Runtime: $total_runtime"
+echo "Memory Usage as per sstat:"
+sstat -j $SLURM_JOBID --all

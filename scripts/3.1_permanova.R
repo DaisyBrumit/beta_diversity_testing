@@ -7,7 +7,8 @@ library(tidyverse)
 # meta_from_files: isolates metadata from filenames
 source('~/beta_diversity_testing/scripts/functions/meta_from_files.R')
 
-studyList <- c('Zeller', 'Jones', 'Vangay', 'Noguera-Julian', 'gemelli_ECAM')
+#studyList <- c('Zeller', 'Jones', 'Vangay', 'Noguera-Julian', 'gemelli_ECAM')
+studyList <- c('gemelli_ECAM')
 qiimeList <- c('phylo_rpca', 'phylo_ctf', 'rpca', 'ctf')
 
 for (study in studyList) {
@@ -19,10 +20,12 @@ for (study in studyList) {
   
   ### METADATA HANDLING: ONLY ONCE PER STUDY
   # read in metadata
-  meta_init <- read.table(paste0('~/beta_diversity_testing/',study,'/refiltered_meta.txt'), header = TRUE, sep = '\t') 
+  meta_init <- read.csv('../refiltered_meta.txt', sep='\t', header = TRUE, 
+                                check.names = FALSE) 
   
   # I only use the delivery variable from ECAM data
   if(study=='gemelli_ECAM'){
+    meta_init$sampleid <- meta_init$`#SampleID`
     meta_init <- meta_init %>% dplyr::select(., c('sampleid', 'delivery'))
   }
   
@@ -37,6 +40,11 @@ for (study in studyList) {
     print(paste("Beta Method for", study, "=", beta_method, ntaxa)) #sanity check
     
     data <- read.table(file, header=TRUE, sep='\t', row.names = 1)
+    
+    # In certain circumstances, unweighted unifrac returns NaN values. Remove problem samples.
+    nan_indices <- colnames(data)[colSums(is.na(data)) > 0]
+    data <- data[setdiff(row.names(data), nan_indices), setdiff(colnames(data), nan_indices)]
+    
     meta <- meta_init %>% filter(meta_init$sampleid %in% rownames(data))
 
     for (i in 2:length(colnames(meta))){
@@ -49,6 +57,6 @@ for (study in studyList) {
     }
     write_delim(scores, paste0('~/beta_diversity_testing/',study,'/permanova/permanova_results.tsv'), col_names=TRUE, delim='\t')
 }
-write_delim(scores, '~/beta_diversity_testing/multi_study/permanova_results.tsv', col_names=TRUE, delim='\t')
+
 
   

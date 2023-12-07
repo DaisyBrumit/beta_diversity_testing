@@ -47,7 +47,7 @@ echo "Filtering features using phylogeny"
 	--i-tree insertionTree.qza \
 	--o-filtered-table filtered_table.qza \
 	--o-removed-table discarded_table.qza
-echo "Retained and discarded feature tables completed"
+echo "Filtered and discarded feature tables completed"
 
 echo ""
 echo "Generating visuals"
@@ -64,7 +64,7 @@ qiime feature-table summarize \
 	--o-visualization discarded_table.qzv
 echo "Visualizations generated"
 
-echo "End of script"
+echo "SCRIPT COMPLETE"
 
 ### REPORT JOB METRICS ###
 # record end time
@@ -78,11 +78,10 @@ total_seconds=$((end_seconds - start_seconds))
 # Convert total_seconds to HH:MM:SS format
 total_runtime=$(date -u -d @$total_seconds +"%T")
 
-# Record memory usage
-memory_usage=$(sstat -j $SLURM_JOBID --format=JobID,MaxVMSize,AveCPU,NTasks)
-
 # Print metrics
+echo ""
 echo "Start Time: $start_time"
 echo "End Time: $end_time"
-echo "Total Runtime: $tddotal_runtime"
-echo "Memory Usage: $memory_usage"
+echo "Total Runtime: $total_runtime"
+echo "Memory Usage as per sstat:"
+sstat -j $SLURM_JOBID --all

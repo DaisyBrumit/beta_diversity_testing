@@ -88,13 +88,10 @@ then
 
 		# rename file and move from new directory to existing directory
 		mv outdir/* ../distance_matrices/${prefix}_distance_matrix.tsv
-		# delete unused directory
-		rm -r outdir/
-		rm -r ${prefix}_out/
 	done
 
 ### rpca procedure
-elif [[ $method == *"rpca"* ]]
+elif [[ $method == "rpca" ]]
 then
 
 	echo "Running gemelli plugin with method = $method"
@@ -121,11 +118,10 @@ then
 		
 		# rename and relocate file
 		mv outdir/* ../distance_matrices/${prefix}_distance_matrix.tsv
-		# remove unused directory
-		rm -r outdir/
-		rm -r ${prefix}_out/
 	done
 fi
+
+echo "SCRIPT COMPLETE"
 
 ### REPORT JOB METRICS ###
 # record end time
@@ -139,11 +135,10 @@ total_seconds=$((end_seconds - start_seconds))
 # Convert total_seconds to HH:MM:SS format
 total_runtime=$(date -u -d @$total_seconds +"%T")
 
-# Record memory usage
-memory_usage=$(sstat -j $SLURM_JOBID --format=JobID,MaxVMSize,AveCPU,NTasks)
-
 # Print metrics
+echo ""
 echo "Start Time: $start_time"
 echo "End Time: $end_time"
-echo "Total Runtime: $tddotal_runtime"
-echo "Memory Usage: $memory_usage"
+echo "Total Runtime: $total_runtime"
+echo "Memory Usage as per sstat:"
+sstat -j $SLURM_JOBID --all
