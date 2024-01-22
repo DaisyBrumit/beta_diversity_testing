@@ -10,7 +10,7 @@ library(tidyverse)
 
 # input global vars
 rm(list=ls())
-study <- 'Zeller'
+study <- 'gemelli_ECAM'
 
 # read in tree
 setwd(paste0('~/beta_diversity_testing/',study,'/high_abundance/'))
@@ -43,8 +43,8 @@ for(n in c('2','3','4','5','10')) {
   w.uni <- phyloseq::UniFrac(ps_obj, weighted = TRUE) %>% as.matrix(.)
   
   # save tables
-  write.table(jaccard, paste0('../distance_matrices/jaccard_distance_matrix_',n,'.tsv'), sep='\t', row.names = FALSE)
-  write.table(bc, paste0('../distance_matrices/bray_curtis_distance_matrix_',n,'.tsv'), sep='\t', row.names = FALSE)
-  write.table(uni, paste0('../distance_matrices/unweighted_unifrac_distance_matrix_',n,'.tsv'), sep='\t', row.names = FALSE)
-  write.table(w.uni, paste0('../distance_matrices/weighted_unifrac_distance_matrix_',n,'.tsv'), sep='\t', row.names = FALSE)
+  write.table(jaccard, paste0('../distance_matrices/jaccard_distance_matrix_',n,'.tsv'), sep='\t', row.names = TRUE)
+  write.table(bc, paste0('../distance_matrices/bray_curtis_distance_matrix_',n,'.tsv'), sep='\t', row.names = TRUE)
+  write.table(uni, paste0('../distance_matrices/unweighted_unifrac_distance_matrix_',n,'.tsv'), sep='\t', row.names = TRUE)
+  write.table(w.uni, paste0('../distance_matrices/weighted_unifrac_distance_matrix_',n,'.tsv'), sep='\t', row.names = TRUE)
 }
