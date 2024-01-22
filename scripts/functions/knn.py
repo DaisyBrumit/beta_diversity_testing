@@ -6,7 +6,7 @@
 import os
 import pandas as pd
 import numpy as np
-import randForest as rf
+import randForest as rf # uses same prefilter as rf
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelBinarizer
 from sklearn.neighbors import KNeighborsClassifier, KNeighborsRegressor
@@ -132,8 +132,6 @@ def quantitativeKNN(metadata, dat, test, train):
 
                 # generate performance metrics and save
                 R2 = r2_score(y_test, y_predict)
-                if (R2 > 1):
-                    print("INVALID R2 IN COLUMN ", column)
                 r2List.append(R2)
 
                 # package performance metrics in a list for output

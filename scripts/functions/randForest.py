@@ -6,7 +6,6 @@
 import os
 import pandas as pd
 import numpy as np
-#from skbio.stats import composition
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelBinarizer
 from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor
@@ -61,19 +60,19 @@ def qualitativeRF(metadata,dat, test, train):
                 # generate performance metrics and save
                 accuracy = accuracy_score(y_test, y_predict)
 
-                try:
-                    # use label binarizer to enable multiclass application of roc_auc score calculation
-                    lb = LabelBinarizer() # call a binarizer object
-                    lb.fit(y_test) # train the binarizer using actual test-set class labels
-                    y_test = lb.transform(y_test) # convert true class labels to binarized set
-                    #if time == 1: print(y_test.shape)
-                    y_predict = lb.transform(y_predict) # convert predicted class labels to binarized set
+                #try:
+                # use label binarizer to enable multiclass application of roc_auc score calculation
+                lb = LabelBinarizer() # call a binarizer object
+                lb.fit(y_test) # train the binarizer using actual test-set class labels
+                y_test = lb.transform(y_test) # convert true class labels to binarized set
+                #if time == 1: print(y_test.shape)
+                y_predict = lb.transform(y_predict) # convert predicted class labels to binarized set
 
-                    # calculate (unweighted) averaged roc_auc value using one-versus-rest approach
-                    roc_auc = roc_auc_score(y_test, y_predict, multi_class='ovr', average='macro')
+                # calculate (unweighted) averaged roc_auc value using one-versus-rest approach
+                roc_auc = roc_auc_score(y_test, y_predict, multi_class='ovr', average='macro')
 
-                except Exception as e:
-                    roc_auc = 'NA'
+                #except Exception as e:
+                    #roc_auc = 'NA'
 
                 # append performance metrics to list
                 accuracyList.append(accuracy)
