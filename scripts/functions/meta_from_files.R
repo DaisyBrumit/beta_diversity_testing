@@ -1,6 +1,8 @@
+# RETURN THE BETA DIVERSITY METHOD EMPLOYED IN THE DATASET
 get_beta <- function(file) {
   # make a list of all keywords that need to be removed
-  bad.words <- c('distance', 'matrix', 'ordinations', 'permanova', 'results')
+  bad.words <- c('distance', 'matrix', 'ordinations', 'permanova', 'results',
+                 'ords', 'with', 'meta', 'fromBiplot')
   beta.list <- c() # init empty list to contain multi-word metrics
   
   # break up file name into a string
@@ -19,6 +21,7 @@ get_beta <- function(file) {
   return(beta.str)
 }
 
+# RETURN HOW MANY TAXA ARE PRESENT IN THE DATASET
 get_n_taxa <- function(file) {
   n.taxa <- "all"
   
@@ -37,4 +40,15 @@ get_n_taxa <- function(file) {
   }
   
   return(n.taxa)
+}
+
+# RETURN THE PERFORMANCE METRIC USED IN AN ML OUTPUT DATASET
+get_ML_metric <- function(file) {
+  
+  # break up file name into a string
+  file.str <- sub('.tsv','',file) # remove suffix
+  file.list <- as.list(strsplit(file.str,"_")[[1]]) # break up the file string into parts
+  
+  metric <- file.list[[1]] # metric is first in the resulting list
+  return(metric)
 }

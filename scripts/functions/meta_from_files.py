@@ -4,8 +4,10 @@ def get_beta(file:str):
     # isolate the beta diversity method by slicing the filename
     string_elements = file.split('_')
 
-    if file.endswith('distance_matrix.tsv'):
-        string_elements = string_elements[:-2]  # remove "distance" and "matrix.tsv"
+    if file.endswith('distance_matrix.tsv') or file.endswith('fromBiplot.tsv'):
+        string_elements = string_elements[:-2]  # remove last two items
+    elif file.endswith('ordinations.tsv'):
+        string_elements = string_elements[:-1] # remove "ordinations.tsv"
     else:
         string_elements = string_elements[:-3]  # remove "distance", "matrix", and "#.tsv"
 

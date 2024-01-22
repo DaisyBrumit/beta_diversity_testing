@@ -30,8 +30,7 @@ def main():
     import sys
 
     # take args from bash script
-    #study = sys.argv[1]
-    study='gemelli_ECAM'
+    study = sys.argv[1]
     t_in_path = "~/beta_diversity_testing/" + study + "/filtered_table.txt"
     m_in_path = "~/beta_diversity_testing/" + study + "/meta.txt"
 
