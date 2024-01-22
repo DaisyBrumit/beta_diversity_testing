@@ -24,14 +24,19 @@ for study in studyList:
     study_path = home_path + study
 
     # read in metadata
-    meta_path = study_path + '/refiltered_meta.txt'
+    meta_path = study_path + '/meta.txt'
     meta = pd.read_table(meta_path, index_col=0)
 
     # specify path for file walk
     dist_matrix_path = study_path + '/distance_matrices/'
+
     for root, dirs, files in os.walk(dist_matrix_path):
         # look at each file
         for file in files:
+	    #skip hidden files & dirs
+            if file.startswith('.'):
+                continue
+
             ### Read in data ###
             data_path = os.path.join(root,file)
             data = pd.read_table(data_path, header=0, index_col=0)
