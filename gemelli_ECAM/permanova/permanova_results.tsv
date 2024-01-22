@@ -1,0 +1,5 @@
+beta	psuedoF	pval	ntaxa
+bray_curtis	12.891647477130961	0.001	all
+jaccard	8.413400884902046	0.001	all
+unweighted_unifrac	8.400116807009779	0.001	all
+weighted_unifrac	35.45709054552936	0.001	all
