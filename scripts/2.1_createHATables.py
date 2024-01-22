@@ -5,10 +5,10 @@ taxaCount = [2,3,4,5,6,7,8,9,10] # want tables with top N most abundant taxa ONL
 
 for study in studyList:
     for i in taxaCount:
-        fileIn = '~/beta_diversity_testing/'+study+'/refiltered_table.txt'
+        fileIn = '~/beta_diversity_testing/'+study+'/filtered_table.txt'
         fileOut = '~/beta_diversity_testing/'+study+'/high_abundance/top_'+str(i)+'_table.txt'
 
-        table = pd.read_table(fileIn, delimiter='\t', index_col=0).T
+        table = pd.read_table(fileIn, delimiter='\t', index_col=0, skiprows=[0]).T
 
         # Calculate column sums
         sum_table = table.sum()
