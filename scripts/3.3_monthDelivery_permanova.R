@@ -65,7 +65,7 @@ for (study in studyList) {
       
     }
   }
-  write_delim(scores, paste0('~/beta_diversity_testing/',study,'/permanova/TEST_HAIncluded_permanova_results.tsv'), col_names=TRUE, delim='\t')
+  write_delim(scores, paste0('~/beta_diversity_testing/',study,'/permanova/HA_permanova_results.tsv'), col_names=TRUE, delim='\t')
 }
 
 
