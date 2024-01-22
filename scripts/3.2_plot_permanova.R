@@ -6,7 +6,7 @@ library(tidyverse)
 studyList <- c('Zeller', 'Jones', 'Vangay', 'Noguera-Julian', 'gemelli_ECAM')
 qiimeList <- c('phylo_rpca', 'rpca', 'ctf', 'phylo_ctf')
 
-plot_file <- '~/beta_diversity_testing/plots/psuedoF_plots.pdf'
+plot_file <- '~/beta_diversity_testing/plots/TEST_psuedoF_plots.pdf'
 pdf(plot_file)
 
 # create a whole table for summary info
@@ -25,7 +25,7 @@ for (study in studyList) {
   study.table$ntaxa <- as.character(study.table$ntaxa)
   study.table <- study.table %>% mutate(ntaxa = ifelse(beta %in% qiimeList, 'gemelli', ntaxa))
   study.table$ntaxa <- factor(study.table$ntaxa, 
-                                levels=c('all', 'gemelli', '2','3','4','5','8','10'))
+                                levels=c('gemelli','all', '2','3','4','5','8','10'))
   
   # make a log transformed version of F stat
   study.table$log_psuedoF = log10(study.table$psuedoF + 1)
