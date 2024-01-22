@@ -7,8 +7,7 @@ library(tidyverse)
 # meta_from_files: isolates metadata from filenames
 source('~/beta_diversity_testing/scripts/functions/meta_from_files.R')
 
-#studyList <- c('Zeller', 'Jones', 'Vangay', 'Noguera-Julian', 'gemelli_ECAM')
-studyList <- c('gemelli_ECAM')
+studyList <- c('Zeller', 'Jones', 'Vangay', 'Noguera-Julian', 'gemelli_ECAM')
 qiimeList <- c('phylo_rpca', 'phylo_ctf', 'rpca', 'ctf')
 
 for (study in studyList) {
@@ -20,7 +19,7 @@ for (study in studyList) {
   
   ### METADATA HANDLING: ONLY ONCE PER STUDY
   # read in metadata
-  meta_init <- read.csv('../refiltered_meta.txt', sep='\t', header = TRUE, 
+  meta_init <- read.csv('../meta.txt', sep='\t', header = TRUE, 
                                 check.names = FALSE) 
   
   # I only use the delivery variable from ECAM data
@@ -39,7 +38,7 @@ for (study in studyList) {
       ntaxa <= 'gemelli'} else { ntaxa <- get_n_taxa(file)}
     print(paste("Beta Method for", study, "=", beta_method, ntaxa)) #sanity check
     
-    data <- read.table(file, header=TRUE, sep='\t', row.names = 1)
+    data <- read.table(file, header=TRUE, sep='\t', row.names = 1, check.names = FALSE)
     
     # In certain circumstances, unweighted unifrac returns NaN values. Remove problem samples.
     nan_indices <- colnames(data)[colSums(is.na(data)) > 0]
