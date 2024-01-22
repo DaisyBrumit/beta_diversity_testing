@@ -1,24 +1,32 @@
 # PERFORM CORE BETA-DIVERSITY TRANSFORMATIONS
 # INCLUDES: JACCARD, BRAY-CURTIS, (UN)WEIGHTED UNIFRAC
 
+rm(list=ls())
+
 # load in libraries
 library(vegan)
 library(phyloseq)
 library(tidyverse)
+source('~/beta_diversity_testing/scripts/functions/pcoa_dataHandling.R')
 
 # input global vars
-rm(list=ls())
 studyList <- c('gemelli_ECAM','Jones','Noguera-Julian','Vangay','Zeller')
 
 for (study in studyList) {
   # read in freq table, tree, metadata
   setwd(paste0('~/beta_diversity_testing/',study,'/'))
+  print(paste(study,'start'))
   
-  meta <- read.csv('refiltered_meta.txt', sep='\t', row.names=1, header = TRUE, 
+  meta <- read.csv('meta.txt', sep='\t', row.names=1, header = TRUE, 
                    check.names = FALSE)
   tree <- phyloseq::read_tree('tree.nwk')
-  data <- read.csv('refiltered_table.txt', sep='\t', row.names = 1, header=TRUE, 
-                   check.names = FALSE) %>% t(.) %>% as.data.frame(.)
+  data <- read.csv('filtered_table.txt', sep='\t', row.names = 1, header=TRUE, 
+                   check.names = FALSE, skip =1) %>% t(.) %>% as.data.frame(.)
+  
+  # keep only shared indices
+  shared.indices <- meta_match(meta, data)
+  meta <- meta %>% filter(rownames(meta) %in% shared.indices)
+  data <- data %>% filter(rownames(data) %in% shared.indices)
   
   # create phyloseq obj for unifrac transformation
   ps_obj <- phyloseq(otu_table(data, taxa_are_rows=FALSE), phy_tree(tree), sample_data(meta))
@@ -38,4 +46,6 @@ for (study in studyList) {
   write.table(bc, 'distance_matrices/bray_curtis_distance_matrix.tsv', sep='\t', row.names = FALSE)
   write.table(uni, 'distance_matrices/unweighted_unifrac_distance_matrix.tsv', sep='\t', row.names = FALSE)
   write.table(w.uni, 'distance_matrices/weighted_unifrac_distance_matrix.tsv', sep='\t', row.names = FALSE)
+  
+  print(paste(study,'completed'))
 }
