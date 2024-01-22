@@ -9,12 +9,8 @@ import numpy as np
 #from skbio.stats import composition
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelBinarizer
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.ensemble import RandomForestRegressor
-from sklearn.metrics import accuracy_score
-from sklearn.metrics import r2_score
-from sklearn.metrics import roc_auc_score
-from sklearn.metrics import roc_curve
+from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor
+from sklearn.metrics import accuracy_score, r2_score, roc_auc_score
 
 ###########################################
 # APPLY RANDOM FOREST TO CATEGORICAL AND
