@@ -142,13 +142,16 @@ def preML_filter(table, column, test, quant):
     test_size = test * len(rowFiltered_table) # anticipated test group size
     n_classes = rowFiltered_table[column].nunique() # number of categorical classes
 
+    # check that the table has more than 2 values (CATEGORICAL DATA ONLY)
+    if len(rowFiltered_table) <= 2:
+        print("Not enough post-filter rows in ", column, "to proceed. Skipping.")
+        return 0
     # check that the table has more classes than projected test size (
-    if (quant == 0) & (1 <= test_size <= n_classes):
+    elif (quant == 0) & (test_size <= n_classes):
         print("Anticipated test group size < number of classes for ", column, ". Skipping.")
         return 0
-    # check that the table has more than 2 values (CATEGORICAL DATA ONLY)
-    elif len(rowFiltered_table) <= 2:
-        print("Not enough post-filter data in ", column, "to proceed. Skipping.")
+    elif (quant == 0) & (n_classes <= 1):
+        print('Insufficient class count in', column, '. Skipping.')
         return 0
     else:
         return rowFiltered_table
