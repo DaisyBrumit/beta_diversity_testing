@@ -13,7 +13,8 @@ import knn
 
 # set major global parameters
 rootdir = '/Users/dfrybrum/beta_diversity_testing/'
-studyList = ['Zeller', 'Jones', 'Vangay', 'Noguera-Julian', 'gemelli_ECAM']
+#studyList = ['Zeller', 'Jones', 'Vangay', 'Noguera-Julian', 'gemelli_ECAM']
+studyList = ['gemelli_ECAM']
 ML_method = 'rf'
 #ML_method = 'knn'
 
