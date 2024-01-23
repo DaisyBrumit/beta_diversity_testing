@@ -12,6 +12,12 @@ from sklearn.preprocessing import LabelBinarizer
 from sklearn.neighbors import KNeighborsClassifier, KNeighborsRegressor
 from sklearn.metrics import accuracy_score, r2_score, roc_auc_score
 
+# sklearn.neighbors throws a FutureWarning abot keepdims, which is not a recognized parameter in the
+# associated predict() command. This FutureWarning is not a sign of a problem inherent in the code as written.
+# Therefore, suppress FutureWarning in this script to prevent hundreds of redline outputs. Comment out to view warnings.
+from warnings import simplefilter
+simplefilter(action='ignore', category=FutureWarning)
+
 ###########################################
 # APPLY RANDOM FOREST TO CATEGORICAL AND
 # QUANTITATIVE INPUT PER METADATA FEATURE
