@@ -4,7 +4,39 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="80898f6b-a812-4e27-962f-5480f93bfe31" name="Changes" comment="" />
+    <list default="true" id="80898f6b-a812-4e27-962f-5480f93bfe31" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jones/ML/accuracy_knn.tsv" beforeDir="false" afterPath="$PROJECT_DIR$/Jones/ML/accuracy_knn.tsv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jones/ML/accuracy_rf.tsv" beforeDir="false" afterPath="$PROJECT_DIR$/Jones/ML/accuracy_rf.tsv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jones/ML/r2_knn.tsv" beforeDir="false" afterPath="$PROJECT_DIR$/Jones/ML/r2_knn.tsv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jones/ML/r2_rf.tsv" beforeDir="false" afterPath="$PROJECT_DIR$/Jones/ML/r2_rf.tsv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jones/ML/roc_knn.tsv" beforeDir="false" afterPath="$PROJECT_DIR$/Jones/ML/roc_knn.tsv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jones/ML/roc_rf.tsv" beforeDir="false" afterPath="$PROJECT_DIR$/Jones/ML/roc_rf.tsv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Noguera-Julian/ML/accuracy_knn.tsv" beforeDir="false" afterPath="$PROJECT_DIR$/Noguera-Julian/ML/accuracy_knn.tsv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Noguera-Julian/ML/accuracy_rf.tsv" beforeDir="false" afterPath="$PROJECT_DIR$/Noguera-Julian/ML/accuracy_rf.tsv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Noguera-Julian/ML/r2_knn.tsv" beforeDir="false" afterPath="$PROJECT_DIR$/Noguera-Julian/ML/r2_knn.tsv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Noguera-Julian/ML/r2_rf.tsv" beforeDir="false" afterPath="$PROJECT_DIR$/Noguera-Julian/ML/r2_rf.tsv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Noguera-Julian/ML/roc_knn.tsv" beforeDir="false" afterPath="$PROJECT_DIR$/Noguera-Julian/ML/roc_knn.tsv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Noguera-Julian/ML/roc_rf.tsv" beforeDir="false" afterPath="$PROJECT_DIR$/Noguera-Julian/ML/roc_rf.tsv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vangay/ML/accuracy_knn.tsv" beforeDir="false" afterPath="$PROJECT_DIR$/Vangay/ML/accuracy_knn.tsv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vangay/ML/accuracy_rf.tsv" beforeDir="false" afterPath="$PROJECT_DIR$/Vangay/ML/accuracy_rf.tsv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vangay/ML/r2_knn.tsv" beforeDir="false" afterPath="$PROJECT_DIR$/Vangay/ML/r2_knn.tsv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vangay/ML/r2_rf.tsv" beforeDir="false" afterPath="$PROJECT_DIR$/Vangay/ML/r2_rf.tsv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vangay/ML/roc_knn.tsv" beforeDir="false" afterPath="$PROJECT_DIR$/Vangay/ML/roc_knn.tsv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vangay/ML/roc_rf.tsv" beforeDir="false" afterPath="$PROJECT_DIR$/Vangay/ML/roc_rf.tsv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zeller/ML/accuracy_knn.tsv" beforeDir="false" afterPath="$PROJECT_DIR$/Zeller/ML/accuracy_knn.tsv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zeller/ML/accuracy_rf.tsv" beforeDir="false" afterPath="$PROJECT_DIR$/Zeller/ML/accuracy_rf.tsv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zeller/ML/r2_knn.tsv" beforeDir="false" afterPath="$PROJECT_DIR$/Zeller/ML/r2_knn.tsv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zeller/ML/r2_rf.tsv" beforeDir="false" afterPath="$PROJECT_DIR$/Zeller/ML/r2_rf.tsv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zeller/ML/roc_knn.tsv" beforeDir="false" afterPath="$PROJECT_DIR$/Zeller/ML/roc_knn.tsv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zeller/ML/roc_rf.tsv" beforeDir="false" afterPath="$PROJECT_DIR$/Zeller/ML/roc_rf.tsv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gemelli_ECAM/ML/accuracy_rf.tsv" beforeDir="false" afterPath="$PROJECT_DIR$/gemelli_ECAM/ML/accuracy_rf.tsv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gemelli_ECAM/ML/r2_rf.tsv" beforeDir="false" afterPath="$PROJECT_DIR$/gemelli_ECAM/ML/r2_rf.tsv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gemelli_ECAM/ML/roc_rf.tsv" beforeDir="false" afterPath="$PROJECT_DIR$/gemelli_ECAM/ML/roc_rf.tsv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plots/pcoa_plots_ctf.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/plots/pcoa_plots_ctf.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/4.0_ML_handler.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/4.0_ML_handler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/functions/knn.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/functions/knn.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -29,19 +61,19 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="RunManager">
-    <configuration name="3.0_pcoa" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+    <configuration name="4.0_ML_handler" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="beta_diversity_testing" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="$PROJECT_DIR$/../anaconda3/envs/python3.9/bin/python" />
+      <option name="SDK_HOME" value="$PROJECT_DIR$/../anaconda3/envs/gemelli/bin/python" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/scripts" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/scripts/3.0_pcoa.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/scripts/4.0_ML_handler.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -93,8 +125,18 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/scripts/3.0_pcoa.py</url>
-          <line>36</line>
+          <line>35</line>
           <option name="timeStamp" value="131" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/scripts/functions/randForest.py</url>
+          <line>33</line>
+          <option name="timeStamp" value="136" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/scripts/functions/knn.py</url>
+          <line>63</line>
+          <option name="timeStamp" value="137" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
