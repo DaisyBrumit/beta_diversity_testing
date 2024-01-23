@@ -25,33 +25,11 @@ method=$2
 echo "RECEIVED ARGUMENTS"
 echo "STUDY = $study"
 echo "GEMELLI METHOD = $method"
-echo "Loading module and changing to directory ~/beta_diversity_testing/${study}"
+echo "Loading module and changing to directory ~/beta_diversity_testing/${study}/qiime"
 
 module load qiime2/2021.2
-cd ~/beta_diversity_testing/${study}
-echo ""
-
-### IMPORT UPDATED COUNT TABLE
-echo "Beginning imports to qiime..."
-qiime tools import \
-	--input-path refiltered_table.biom \
-	--output-path qiime/refiltered_table.qza \
-	--type 'FeatureTable[Frequency]'
-echo "count data imported"
-
-echo "Creating visual of refiltered table..."
-qiime feature-table summarize \
-	--i-table qiime/refiltered_table.qza \
-	--m-sample-metadata-file refiltered_meta.txt \
-	--o-visualization refiltered_table.qzv
-echo "Count data visualization created as refiltered_table.qzv"
-echo ""
-echo "Changing directory to ~/beta_diversity_testing/${study}/qiime"
 cd ~/beta_diversity_testing/${study}/qiime
-echo "Beginning ${method} procedures..."
 echo ""
-echo ""
-
 
 ### CTF PROCEDURE: requires 2 extra arguments in cml
 if [[ $method == "ctf" ]] 
@@ -62,17 +40,17 @@ then
 	echo "Individual ID = $id \n State column = $state"
 	echo "RUNNING CTF"
 	qiime gemelli ctf \
-		--i-table refiltered_table.qza \
-		--m-sample-metadata-file ../refiltered_meta.txt \
+		--i-table filtered_table.qza \
+		--m-sample-metadata-file ../meta.txt \
 		--p-individual-id-column $id \
 		--p-state-column $state \
 		--output-dir ctf_out
 	
 	echo "RUNNING PHYLO-CTF"
 	qiime gemelli phylogenetic-ctf-without-taxonomy \
-		--i-table refiltered_table.qza \
+		--i-table filtered_table.qza \
 		--i-phylogeny insertionTree.qza \
-		--m-sample-metadata-file ../refiltered_meta.txt \
+		--m-sample-metadata-file ../meta.txt \
 		--p-individual-id-column $id \
 		--p-state-column $state \
 		--output-dir phylo_ctf_out
@@ -97,12 +75,12 @@ then
 	echo "Running gemelli plugin with method = $method"
 	echo "RUNNING RPCA"
 	qiime gemelli rpca \
-		--i-table refiltered_table.qza \
+		--i-table filtered_table.qza \
        		--output-dir rpca_out	
 	
 	echo "RUNNING PHYLO RPCA"
 	qiime gemelli phylogenetic-rpca-without-taxonomy \
-		--i-table refiltered_table.qza \
+		--i-table filtered_table.qza \
 		--i-phylogeny insertionTree.qza \
 		--output-dir phylo_rpca_out
 	
