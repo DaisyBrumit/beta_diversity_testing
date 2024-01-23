@@ -1,5 +1,7 @@
 beta	psuedoF	pval	ntaxa
 bray_curtis	12.891647477130961	0.001	all
+ctf	1.4678456285819208	0.217	all
 jaccard	8.413400884902046	0.001	all
+phylo_ctf	1.2591966523365925	0.29	all
 unweighted_unifrac	8.400116807009779	0.001	all
 weighted_unifrac	35.45709054552936	0.001	all
