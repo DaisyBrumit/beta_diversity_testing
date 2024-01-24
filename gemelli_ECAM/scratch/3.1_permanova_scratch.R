@@ -11,7 +11,7 @@ studyList <- c('gemelli_ECAM')
 qiimeList <- c('phylo_rpca', 'phylo_ctf', 'rpca', 'ctf')
 
 for (study in studyList) {
-  setwd(paste0('~/beta_diversity_testing/',study))
+  setwd(paste0('~/beta_diversity_testing/',study,'/scratch'))
   getwd() # sanity check
   
   # init psuedo-F
@@ -19,7 +19,7 @@ for (study in studyList) {
   
   ### METADATA HANDLING: ONLY ONCE PER STUDY
   # read in metadata
-  meta_init <- read.csv('meta.txt', sep='\t', header = TRUE, 
+  meta_init <- read.csv('../meta.txt', sep='\t', header = TRUE, 
                                 check.names = FALSE) 
   
   # I only use the delivery variable from ECAM data
