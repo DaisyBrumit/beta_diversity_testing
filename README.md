@@ -1,14 +1,14 @@
-### 0
-## 0.0_dada_to_fasta.sh 
+## 0
+### 0.0_dada_to_fasta.sh 
 - input: DADA 2 output ASV table (as .txt)
 - output: fasta file with asv's as sequences
 
-## 0.1_dada2biom.sh 
+### 0.1_dada2biom.sh 
 - input: DADA 2 output ASV table (as .txt)
 - output: DADA 2 output ASV table (as .biom)
 
-### 1
-## 1.0_qiimeImport.sh
+## 1
+### 1.0_qiimeImport.sh
 Basic imports of count, sequence, and metadata to qiime artifacts
 - input:
   - dada_table.biom
@@ -19,7 +19,7 @@ Basic imports of count, sequence, and metadata to qiime artifacts
   - seqTable.qza & v (sequence information)
   - meta.qzv (visual of attached metadata)
  
-## 1.1_insertionTree.sh
+### 1.1_insertionTree.sh
 Build a tree based on the greengenes tree as a reference (not de novo). Then filter out the counts table so it only includes mapped sequences.
 - input:
   - seqTable.qza
@@ -30,4 +30,20 @@ Build a tree based on the greengenes tree as a reference (not de novo). Then fil
   - filtered_table.qza
   - discarded_table.qza
  
-## 1.2_qiimeExport.sh
+### 1.2_qiimeExport.sh
+Export qiime artifacts
+- input:
+  - insertionTree.qza
+  - table.qza
+  - filtered_table.qza
+- output: same file names but with .txt or .nwk extensions. 
+
+## 2
+### 2.2_coreBeta_allTaxa.R
+Makes distances matrices for the "core" distance metrics jaccard, bray curtis, weight unifrac, and unweighted unifrac.
+- input:
+  - meta.txt, filtered_table.txt, tree.nwk for each study
+- output:
+  - *metric*_distance_matrix.tsv for each core metric
+ 
+
