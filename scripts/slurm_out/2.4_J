@@ -1,0 +1,29 @@
+RECEIVED ARGUMENTS
+STUDY = Jones
+GEMELLI METHOD = ctf
+Changing to directory ~/beta_diversity_testing_almost_final/Jones/qiime
+
+Beginning ctf procedures...
+
+
+Running gemelli plugin with method = ctf
+Individual ID = repeat_ID \n State column = Visit
+RUNNING CTF
+Saved PCoAResults % Properties('biplot') to: ctf_out/subject_biplot.qza
+Saved PCoAResults % Properties('biplot') to: ctf_out/state_biplot.qza
+Saved DistanceMatrix to: ctf_out/distance_matrix.qza
+Saved SampleData[SampleTrajectory] to: ctf_out/state_subject_ordination.qza
+Saved FeatureData[FeatureTrajectory] to: ctf_out/state_feature_ordination.qza
+RUNNING PHYLO-CTF
+Saved PCoAResults % Properties('biplot') to: phylo_ctf_out/subject_biplot.qza
+Saved PCoAResults % Properties('biplot') to: phylo_ctf_out/state_biplot.qza
+Saved DistanceMatrix to: phylo_ctf_out/distance_matrix.qza
+Saved SampleData[SampleTrajectory] to: phylo_ctf_out/state_subject_ordination.qza
+Saved FeatureData[FeatureTrajectory] to: phylo_ctf_out/state_feature_ordination.qza
+Saved Phylogeny[Rooted] to: phylo_ctf_out/counts_by_node_tree.qza
+Saved FeatureTable[Frequency] to: phylo_ctf_out/counts_by_node.qza
+Saved FeatureTable[Frequency] to: phylo_ctf_out/subject_table.qza
+Converting phyo/nonphylo ctf artifacts to txt
+Exported ctf_out/distance_matrix.qza as DistanceMatrixDirectoryFormat to directory outdir
+Exported phylo_ctf_out/distance_matrix.qza as DistanceMatrixDirectoryFormat to directory outdir
+SCRIPT COMPLETE

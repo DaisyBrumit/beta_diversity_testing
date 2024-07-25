@@ -1,0 +1,26 @@
+Changing study to ~/beta_diversity_testing/Zeller
+
+Beginning imports...
+Imported dada_table.biom as BIOMV210DirFmt to qiime/freqTable.qza
+Count data imported
+Imported dada_seqs.fa as DNASequencesDirectoryFormat to qiime/seqTable.qza
+Sequences imported
+
+Making visual artifacts...
+Saved Visualization to: qiime/meta.qzv
+metadata visual created
+Saved Visualization to: qiime/freqTable.qzv
+frequency visual created
+Saved Visualization to: qiime/seqTable.qzv
+sequence visual created
+
+SCRIPT COMPLETE
+
+Start Time: 2023-12-07 17:18:38
+End Time: 2023-12-07 17:19:06
+Total Runtime: 00:00:28
+Memory Usage as per sstat:
+JobID         MaxVMSize  MaxVMSizeNode  MaxVMSizeTask  AveVMSize     MaxRSS MaxRSSNode MaxRSSTask     AveRSS MaxPages MaxPagesNode   MaxPagesTask   AvePages     MinCPU MinCPUNode MinCPUTask     AveCPU   NTasks AveCPUFreq ReqCPUFreqMin ReqCPUFreqMax ReqCPUFreqGov ConsumedEnergy  MaxDiskRead MaxDiskReadNode MaxDiskReadTask  AveDiskRead MaxDiskWrite MaxDiskWriteNode MaxDiskWriteTask AveDiskWrite TRESUsageInAve TRESUsageInMax TRESUsageInMaxNode TRESUsageInMaxTask TRESUsageInMin TRESUsageInMinNode TRESUsageInMinTask TRESUsageInTot TRESUsageOutAve TRESUsageOutMax TRESUsageOutMaxNode TRESUsageOutMaxTask TRESUsageOutMin TRESUsageOutMinNode TRESUsageOutMinTask TRESUsageOutTot 
+------------ ---------- -------------- -------------- ---------- ---------- ---------- ---------- ---------- -------- ------------ -------------- ---------- ---------- ---------- ---------- ---------- -------- ---------- ------------- ------------- ------------- -------------- ------------ --------------- --------------- ------------ ------------ ---------------- ---------------- ------------ -------------- -------------- ------------------ ------------------ -------------- ------------------ ------------------ -------------- --------------- --------------- ------------------- ------------------- --------------- ------------------- ------------------- --------------- 
+6567565.ext+          0        str-c32              0          0          0    str-c32          0          0        0      str-c32              0          0   00:00:00    str-c32          0   00:00:00        1      3.70M             0             0             0              0         2276         str-c32               0         2276        1.00M          str-c32                0        1.00M cpu=00:00:00,+ cpu=00:00:00,+ cpu=str-c32,energ+ cpu=00:00:00,fs/d+ cpu=00:00:00,+ cpu=str-c32,energ+ cpu=00:00:00,fs/d+ cpu=00:00:00,+ energy=0,fs/di+ energy=0,fs/di+ energy=str-c32,fs/+           fs/disk=0 energy=0,fs/di+ energy=str-c32,fs/+           fs/disk=0 energy=0,fs/di+ 
+6567565.bat+     13204K        str-c32              0     13204K      1440K    str-c32          0      1440K        0      str-c32              0          0   00:00:26    str-c32          0   00:00:26        1      3.70M             0             0             0              0    429577731         str-c32               0    429577731     67509173          str-c32                0     67509173 cpu=00:00:26,+ cpu=00:00:26,+ cpu=str-c32,energ+ cpu=00:00:00,fs/d+ cpu=00:00:26,+ cpu=str-c32,energ+ cpu=00:00:00,fs/d+ cpu=00:00:26,+ energy=0,fs/di+ energy=0,fs/di+ energy=str-c32,fs/+           fs/disk=0 energy=0,fs/di+ energy=str-c32,fs/+           fs/disk=0 energy=0,fs/di+ 

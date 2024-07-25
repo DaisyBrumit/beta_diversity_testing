@@ -1,0 +1,53 @@
+RECEIVED ARGUMENTS
+STUDY = gemelli_ECAM
+GEMELLI METHOD = ctf
+Loading module and changing to directory ~/beta_diversity_testing/gemelli_ECAM/scratch
+
+Running gemelli plugin with method = ctf
+Individual ID = host_subject_id \n State column = month
+RUNNING CTF
+Saved PCoAResults % Properties('biplot') to: ctf_out/subject_biplot.qza
+Saved PCoAResults % Properties('biplot') to: ctf_out/state_biplot.qza
+Saved DistanceMatrix to: ctf_out/distance_matrix.qza
+Saved SampleData[SampleTrajectory] to: ctf_out/state_subject_ordination.qza
+Saved FeatureData[FeatureTrajectory] to: ctf_out/state_feature_ordination.qza
+RUNNING PHYLO-CTF
+Saved PCoAResults % Properties('biplot') to: phylo_ctf_out/subject_biplot.qza
+Saved PCoAResults % Properties('biplot') to: phylo_ctf_out/state_biplot.qza
+Saved DistanceMatrix to: phylo_ctf_out/distance_matrix.qza
+Saved SampleData[SampleTrajectory] to: phylo_ctf_out/state_subject_ordination.qza
+Saved FeatureData[FeatureTrajectory] to: phylo_ctf_out/state_feature_ordination.qza
+Saved Phylogeny[Rooted] to: phylo_ctf_out/counts_by_node_tree.qza
+Saved FeatureTable[Frequency] to: phylo_ctf_out/counts_by_node.qza
+Saved FeatureTable[Frequency] to: phylo_ctf_out/subject_table.qza
+Converting phyo/nonphylo ctf artifacts to txt
+Exported ctf_out/distance_matrix.qza as DistanceMatrixDirectoryFormat to directory outdir
+Exported phylo_ctf_out/distance_matrix.qza as DistanceMatrixDirectoryFormat to directory outdir
+Running same plugin with rarefaction to depth 11939
+Saved FeatureTable[Frequency] to: rarefied-table.qza
+Saved PCoAResults % Properties('biplot') to: rare_ctf_out/subject_biplot.qza
+Saved PCoAResults % Properties('biplot') to: rare_ctf_out/state_biplot.qza
+Saved DistanceMatrix to: rare_ctf_out/distance_matrix.qza
+Saved SampleData[SampleTrajectory] to: rare_ctf_out/state_subject_ordination.qza
+Saved FeatureData[FeatureTrajectory] to: rare_ctf_out/state_feature_ordination.qza
+Saved PCoAResults % Properties('biplot') to: rare_phylo_ctf_out/subject_biplot.qza
+Saved PCoAResults % Properties('biplot') to: rare_phylo_ctf_out/state_biplot.qza
+Saved DistanceMatrix to: rare_phylo_ctf_out/distance_matrix.qza
+Saved SampleData[SampleTrajectory] to: rare_phylo_ctf_out/state_subject_ordination.qza
+Saved FeatureData[FeatureTrajectory] to: rare_phylo_ctf_out/state_feature_ordination.qza
+Saved Phylogeny[Rooted] to: rare_phylo_ctf_out/counts_by_node_tree.qza
+Saved FeatureTable[Frequency] to: rare_phylo_ctf_out/counts_by_node.qza
+Saved FeatureTable[Frequency] to: rare_phylo_ctf_out/subject_table.qza
+Converting phyo/nonphylo ctf artifacts to txt
+Exported rare_ctf_out/distance_matrix.qza as DistanceMatrixDirectoryFormat to directory outdir
+Exported rare_phylo_ctf_out/distance_matrix.qza as DistanceMatrixDirectoryFormat to directory outdir
+SCRIPT COMPLETE
+
+Start Time: 2024-01-23 16:25:46
+End Time: 2024-01-23 16:32:21
+Total Runtime: 00:06:35
+Memory Usage as per sstat:
+JobID         MaxVMSize  MaxVMSizeNode  MaxVMSizeTask  AveVMSize     MaxRSS MaxRSSNode MaxRSSTask     AveRSS MaxPages MaxPagesNode   MaxPagesTask   AvePages     MinCPU MinCPUNode MinCPUTask     AveCPU   NTasks AveCPUFreq ReqCPUFreqMin ReqCPUFreqMax ReqCPUFreqGov ConsumedEnergy  MaxDiskRead MaxDiskReadNode MaxDiskReadTask  AveDiskRead MaxDiskWrite MaxDiskWriteNode MaxDiskWriteTask AveDiskWrite TRESUsageInAve TRESUsageInMax TRESUsageInMaxNode TRESUsageInMaxTask TRESUsageInMin TRESUsageInMinNode TRESUsageInMinTask TRESUsageInTot TRESUsageOutAve TRESUsageOutMax TRESUsageOutMaxNode TRESUsageOutMaxTask TRESUsageOutMin TRESUsageOutMinNode TRESUsageOutMinTask TRESUsageOutTot 
+------------ ---------- -------------- -------------- ---------- ---------- ---------- ---------- ---------- -------- ------------ -------------- ---------- ---------- ---------- ---------- ---------- -------- ---------- ------------- ------------- ------------- -------------- ------------ --------------- --------------- ------------ ------------ ---------------- ---------------- ------------ -------------- -------------- ------------------ ------------------ -------------- ------------------ ------------------ -------------- --------------- --------------- ------------------- ------------------- --------------- ------------------- ------------------- --------------- 
+6797599.ext+          0       str-c129              0          0          0   str-c129          0          0        0     str-c129              0          0   00:00:00   str-c129          0   00:00:00        1      3.40M             0             0             0              0         2276        str-c129               0         2276        1.00M         str-c129                0        1.00M cpu=00:00:00,+ cpu=00:00:00,+ cpu=str-c129,ener+ cpu=00:00:00,fs/d+ cpu=00:00:00,+ cpu=str-c129,ener+ cpu=00:00:00,fs/d+ cpu=00:00:00,+ energy=0,fs/di+ energy=0,fs/di+ energy=str-c129,fs+           fs/disk=0 energy=0,fs/di+ energy=str-c129,fs+           fs/disk=0 energy=0,fs/di+ 
+6797599.bat+    764068K       str-c129              0     57148K    718088K   str-c129          0      1384K        0     str-c129              0          0   00:06:18   str-c129          0   00:06:18        1      3.41M             0             0             0              0    754162992        str-c129               0    754162992    191038800         str-c129                0    191038800 cpu=00:06:18,+ cpu=00:06:18,+ cpu=str-c129,ener+ cpu=00:00:00,fs/d+ cpu=00:06:18,+ cpu=str-c129,ener+ cpu=00:00:00,fs/d+ cpu=00:06:18,+ energy=0,fs/di+ energy=0,fs/di+ energy=str-c129,fs+           fs/disk=0 energy=0,fs/di+ energy=str-c129,fs+           fs/disk=0 energy=0,fs/di+ 
