@@ -8,7 +8,7 @@
 ############# TO RUN THIS SCRIPT #######################################
 # navigate to ~/beta_diversity_testing/scripts/                        #
 # enter command:                                                       # 
-# sbatch --output=slurm_out/desired_filename 3.1_filename.sh           #
+# sbatch --output=slurm_out/3.1_studyname 3.1_permanova.sh             #
 ########################################################################
 
 
@@ -41,4 +41,3 @@ echo "Start Time: $start_time"
 echo "End Time: $end_time"
 echo "Total Runtime: $total_runtime"
 echo "Memory Usage as per sstat:"
-sstat -j $SLURM_JOBID --all

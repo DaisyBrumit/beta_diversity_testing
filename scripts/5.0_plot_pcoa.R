@@ -3,23 +3,23 @@
 rm(list = ls())
 library(vegan)
 library(tidyverse)
-source('~/beta_diversity_testing_almost_final/scripts/functions/meta_from_files.R')
-source('~/beta_diversity_testing_almost_final/scripts/functions/dec_to_percent.R')
-source('~/beta_diversity_testing_almost_final/scripts/functions/parse_fromBiplot.R')
+source('~/beta_diversity_testing/scripts/functions/meta_from_files.R')
+source('~/beta_diversity_testing/scripts/functions/dec_to_percent.R')
+source('~/beta_diversity_testing/scripts/functions/parse_fromBiplot.R')
 
 studyList <- c('Zeller', 'Jones', 'Vangay', 'Noguera-Julian', 'gemelli_ECAM')
 
 # prep this study's pcoa plot file
-plot_file <- '~/beta_diversity_testing_almost_final/plots/pcoa_plots.pdf'
+plot_file <- '~/beta_diversity_testing/plots/pcoa_plots.pdf'
 pdf(plot_file)
 
 for (study in studyList) {
-  setwd(paste0('~/beta_diversity_testing_almost_final/',study,'/ordinations/'))
+  setwd(paste0('~/beta_diversity_testing/',study,'/ordinations/'))
   getwd() # sanity check
   
   ### METADATA HANDLING: ONLY ONCE PER STUDY
   # read in metadata
-  meta <- read.csv(paste0('~/beta_diversity_testing_almost_final/',study,'/meta.txt'), 
+  meta <- read.csv(paste0('~/beta_diversity_testing/',study,'/meta.txt'), 
                      sep = '\t', row.names = 1, header = TRUE, check.names = FALSE)
   char_cols <- meta %>% select(where(is.factor) | where(is.character)) %>%
     select(where(function(x) n_distinct(x) <= 6))

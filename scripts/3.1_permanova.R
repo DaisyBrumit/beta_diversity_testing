@@ -5,13 +5,13 @@ library(vegan)
 library(tidyverse)
 
 # meta_from_files: isolates metadata from filenames
-source('~/beta_diversity_testing_almost_final/scripts/functions/meta_from_files.R')
+source('~/beta_diversity_testing/scripts/functions/meta_from_files.R')
 
 studyList <- c('ECAM', 'Jones', 'Vangay', 'Noguera-Julian', 'Zeller')
 qiimeList <- c('phylo_rpca', 'phylo_ctf', 'rpca', 'ctf')
 
 for (study in studyList) {
-  setwd(paste0('~/beta_diversity_testing_almost_final/',study,'/distance_matrices'))
+  setwd(paste0('~/beta_diversity_testing/',study,'/distance_matrices'))
   getwd() # sanity check
   
   # init psuedo-F
@@ -34,17 +34,15 @@ for (study in studyList) {
   for(file in files){
     # using filename, save actual beta method as a string
     beta_method <- get_beta(file)  # isolate beta metric from filename
-    #if (beta_method %in% qiimeList) {
-      #ntaxa <= 'gemelli'} else { ntaxa <- get_n_taxa(file)}
-    #print(paste("Beta Method for", study, "=", beta_method, ntaxa)) #sanity check
     print(paste("Beta Method for", study, "=", beta_method))
-    
+
+    # read in data
     data <- read.table(file, header=TRUE, sep='\t', row.names = 1, check.names = FALSE)
     
     # In certain circumstances, unweighted unifrac returns NaN values. Remove problem samples.
     nan_indices <- colnames(data)[colSums(is.na(data)) > 0]
+
     data <- data[setdiff(row.names(data), nan_indices), setdiff(colnames(data), nan_indices)]
-    
     meta <- meta_init %>% filter(meta_init$sampleid %in% rownames(data))
 
     for (i in 2:length(colnames(meta))){
@@ -55,7 +53,7 @@ for (study in studyList) {
       
       }
     }
-    write_delim(scores, paste0('~/beta_diversity_testing_almost_final/',study,'/permanova/permanova_results.tsv'), col_names=TRUE, delim='\t')
+    write_delim(scores, paste0('~/beta_diversity_testing/',study,'/permanova/permanova_results.tsv'), col_names=TRUE, delim='\t')
 }
 
 

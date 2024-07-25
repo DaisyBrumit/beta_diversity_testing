@@ -8,7 +8,7 @@
 rm(list=ls())
 library(tidyverse)
 library(naniar)
-source('~/beta_diversity_testing_almost_final/scripts/functions/meta_from_files.R')
+source('~/beta_diversity_testing/scripts/functions/meta_from_files.R')
 
 studyList <- c('Zeller', 'Jones', 'Vangay', 'Noguera-Julian', 'ECAM')
 ml_method <- 'knn'
@@ -64,7 +64,7 @@ make_full_plot <- function(table, ml_label, metric) {
 }
 
 # name file and initiate pdf
-plot_file <- paste0('~/beta_diversity_testing_almost_final/plots/ML_plots_',ml_method,'.pdf')
+plot_file <- paste0('~/beta_diversity_testing/plots/ML_plots_',ml_method,'.pdf')
 pdf(plot_file)
 
 all_studies_df <- tibble(study=character(), beta=character(), metric=character(),
@@ -72,7 +72,7 @@ all_studies_df <- tibble(study=character(), beta=character(), metric=character()
   
 for (study in studyList) {
   
-  setwd(paste0('~/beta_diversity_testing_almost_final/',study,'/ML')) # set working dir
+  setwd(paste0('~/beta_diversity_testing/',study,'/ML')) # set working dir
   getwd() # sanity check
   
   # get a list of all files in each study's ML directory for this ML method

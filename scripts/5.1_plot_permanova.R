@@ -6,7 +6,7 @@ library(tidyverse)
 studyList <- c('Zeller', 'Jones', 'Vangay', 'Noguera-Julian', 'ECAM')
 qiimeList <- c('phylo_rpca', 'rpca', 'ctf', 'phylo_ctf')
 
-plot_file <- '~/beta_diversity_testing_almost_final/plots/psuedoF_plots.pdf'
+plot_file <- '~/beta_diversity_testing/plots/psuedoF_plots.pdf'
 pdf(plot_file)
 
 # create a whole table for summary info
@@ -15,7 +15,7 @@ full.table <- tibble(beta = character(), psuedoF = numeric(), pval = numeric(),
 
 for (study in studyList) {
   
-  setwd(paste0('~/beta_diversity_testing_almost_final/',study))
+  setwd(paste0('~/beta_diversity_testing/',study))
   getwd() # sanity check
   
   study.table <- read.table(paste0('./permanova/permanova_results.tsv'), header = TRUE)

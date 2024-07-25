@@ -3,7 +3,7 @@ library(FSA)
 
 rm(list=ls())
 
-filepath <- '~/beta_diversity_testing_almost_final/plots/rf_metaMLTable.tsv'
+filepath <- '~/beta_diversity_testing/plots/rf_metaMLTable.tsv'
 df <- read_table(filepath)
 
 metric.list <- c('accuracy','roc','r2')

@@ -1,19 +1,17 @@
 #scratch for month and gemelli
 
-# PERFORM PERMANOVA ON ALL BETA DIVERSITY MATRICES
-
 rm(list=ls())
 library(vegan)
 library(tidyverse)
 
 # meta_from_files: isolates metadata from filenames
-source('~/beta_diversity_testing_almost_final/scripts/functions/meta_from_files.R')
+source('~/beta_diversity_testing/scripts/functions/meta_from_files.R')
 
 studyList <- c('ECAM')
 qiimeList <- c('phylo_rpca', 'phylo_ctf')
 
 for (study in studyList) {
-  setwd(paste0('~/beta_diversity_testing_almost_final/',study,'/distance_matrices'))
+  setwd(paste0('~/beta_diversity_testing/',study,'/distance_matrices'))
   getwd() # sanity check
   
   # init psuedo-F
@@ -62,7 +60,7 @@ for (study in studyList) {
       
     }
   }
-  write_delim(scores, paste0('~/beta_diversity_testing_almost_final/',study,'/permanova/ctfSpec_permanova_results.tsv'), col_names=TRUE, delim='\t')
+  write_delim(scores, paste0('~/beta_diversity_testing/',study,'/permanova/ctfSpec_permanova_results.tsv'), col_names=TRUE, delim='\t')
 }
 
 

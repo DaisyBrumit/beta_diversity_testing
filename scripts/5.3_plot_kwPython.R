@@ -1,5 +1,5 @@
 rm(list=ls())
-setwd('~/beta_diversity_testing_almost_final/plots')
+setwd('~/beta_diversity_testing/plots')
 library(tidyverse)
 library(reshape)
 

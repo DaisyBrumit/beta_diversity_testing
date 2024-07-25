@@ -10,7 +10,7 @@ method='rf'
 
 # Function to read data and combine into a single DataFrame
 def read_data(study, metric, method):
-    homedir = f'~/beta_diversity_testing_almost_final/{study}/ML/'
+    homedir = f'~/beta_diversity_testing/{study}/ML/'
     file_path = f'{homedir}{metric}_{method}.tsv'
     df = pd.read_csv(file_path, sep='\t')
     df['study'] = study
@@ -53,13 +53,13 @@ for metric in ['accuracy', 'r2', 'roc']:
     # run post-hoc comparisons (Dunn) if KW is significant
     if p_value < 0.05:
         post_hoc = sp.posthoc_dunn(metric_df, val_col='value', group_col='beta', p_adjust='fdr_bh')
-        post_hoc_file = f'~/beta_diversity_testing_almost_final/plots/{method}_post_hoc_{metric}.tsv'
+        post_hoc_file = f'~/beta_diversity_testing/plots/{method}_post_hoc_{metric}.tsv'
         post_hoc.to_csv(post_hoc_file, sep='\t')
         print(f"Post-hoc pairwise comparisons for {metric} saved to {post_hoc_file}.")
 
 # save output
 results_df = pd.DataFrame(resultsList)
-results_file = f'~/beta_diversity_testing_almost_final/plots/{method}_kruskal_wallis_results.tsv'
+results_file = f'~/beta_diversity_testing/plots/{method}_kruskal_wallis_results.tsv'
 results_df.to_csv(results_file, sep='\t', index=False)
 
 print(f"Kruskal-Wallis test results saved to {results_file}.")

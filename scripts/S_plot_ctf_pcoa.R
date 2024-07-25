@@ -1,8 +1,8 @@
 rm(list=ls())
-source('~/beta_diversity_testing_almost_final/scripts/functions/meta_from_files.R')
+source('~/beta_diversity_testing/scripts/functions/meta_from_files.R')
 library(rlang)
 
-rootdir <- "~/beta_diversity_testing_almost_final/"
+rootdir <- "~/beta_diversity_testing/"
 study <- "ECAM"
 feat <- "delivery"
 repeat.feat <- "month"

@@ -13,9 +13,9 @@ import parse_fromBiplot as parser
 import randForest as rf
 import knn
 
-# set major global parameters
-warnings.simplefilter(action='ignore', category=FutureWarning)
-rootdir = '/Users/dfrybrum/beta_diversity_testing_almost_final/'
+# set major global parameters ("toggle" rf and knn)
+warnings.simplefilter(action='ignore', category=FutureWarning) # only supress future warnings
+rootdir = '/Users/dfrybrum/beta_diversity_testing/'
 studyList = ['Zeller', 'Jones', 'Vangay', 'Noguera-Julian', 'ECAM']
 ML_method = 'rf'
 #ML_method = 'knn'
@@ -23,18 +23,19 @@ ML_method = 'rf'
 # function for actually running ml methods
 def run_ml(meta, ords, beta, ML_method):
     if ML_method == 'rf':
-        cat = rf.qualitativeRF(meta, ords, test=0.4, train=0.6)
-        quant = rf.quantitativeRF(meta, ords, test=0.4, train=0.6)
+        cat = rf.qualitativeRF(meta, ords, test=0.4, train=0.6) # classifier (categorical variables)
+        quant = rf.quantitativeRF(meta, ords, test=0.4, train=0.6) # regressor (quantitative variables)
     elif ML_method == 'knn':
-        cat = knn.qualitativeKNN(meta, ords, test=0.4, train=0.6)
-        quant = knn.quantitativeKNN(meta, ords, test=0.4, train=0.6)
+        cat = knn.qualitativeKNN(meta, ords, test=0.4, train=0.6) # classifier (categorical variables)
+        quant = knn.quantitativeKNN(meta, ords, test=0.4, train=0.6) # regressor (quantitative variables)
 
+    # each ml script outputs 3 tables of performance metrics
     acc_tmp = pd.DataFrame(cat[0])  # 0 == dictionary w/ accuracy scores to features
     roc_tmp = pd.DataFrame(cat[1])  # 1 == {roc_auc scores : features}
     r2_tmp = pd.DataFrame(quant)  # 0 == {r2 scores : features}
 
-    acc_tmp['beta'], roc_tmp['beta'], r2_tmp['beta'] = beta, beta, beta  # add beta method label
-
+    # add beta method label to each dataframe and output
+    acc_tmp['beta'], roc_tmp['beta'], r2_tmp['beta'] = beta, beta, beta
     return acc_tmp, roc_tmp, r2_tmp
 
 # run ML for each study
@@ -90,10 +91,10 @@ for study in studyList:
                 roc_df = pd.concat([roc_df, roc_tmp], ignore_index=True)
                 r2_df = pd.concat([r2_df, r2_tmp], ignore_index=True)
 
-        # Make dirs an empty list to prevent recursion
+        # make dirs an empty list to prevent recursion
         dirs[:] = []
 
-    # Process raw data from filtered_table.txt
+    # process raw data (no ordinations)
     raw_file_path = os.path.join(rootdir + study, 'filtered_table.txt')
     if os.path.exists(raw_file_path):
         rawDF = pd.read_table(raw_file_path, index_col=0, skiprows=1).T
@@ -108,12 +109,12 @@ for study in studyList:
         roc_df = pd.concat([roc_df, roc_tmp], ignore_index=True)
         r2_df = pd.concat([r2_df, r2_tmp], ignore_index=True)
 
-    # Coerce empty outputs to na values
+    # coerce empty outputs to na values (if they exist)
     accuracy_df.replace(np.nan, 'NA', inplace=True)
     roc_df.replace(np.nan, 'NA', inplace=True)
     r2_df.replace(np.nan, 'NA', inplace=True)
 
-    # print the collection of scores for every method associated with this study in the study's directory
+    # output dataframes for each performance metric
     accuracy_df.to_csv(rootdir + study + '/ML/accuracy_raw_' + ML_method + '.tsv', sep='\t', index=False)
     roc_df.to_csv(rootdir + study + '/ML/roc_raw_' + ML_method + '.tsv', sep='\t', index=False)
     r2_df.to_csv(rootdir + study + '/ML/r2_raw_' + ML_method + '.tsv', sep='\t', index=False)
