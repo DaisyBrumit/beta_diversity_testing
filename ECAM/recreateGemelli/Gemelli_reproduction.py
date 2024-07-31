@@ -1,6 +1,4 @@
-##########################################
-# 1
-##########################################
+### 0: IMPORTS
 import os
 import biom
 import qiime2 as q2
@@ -11,16 +9,14 @@ from qiime2 import Artifact
 from qiime2 import Metadata
 from qiime2.plugins.feature_table.methods import rarefy
 from qiime2.plugins.gemelli.actions import (ctf, phylogenetic_ctf_without_taxonomy)
-from qiime2.plugins.diversity.actions import (beta, beta_phylogenetic)
+from qiime2.plugins.diversity.actions import (beta, beta_phylogenetic, pcoa)
 
 from skbio import TreeNode
 from skbio.stats.distance import (DistanceMatrix, permanova)
 
-##########################################
-# 2
-##########################################
+### 1: READ IN DATA, PREP BIOM FILES
 
-meta_in = pd.read_table('./data/metadata-matched.tsv', index_col=0) # read in meta
+meta_in = pd.read_table('data/metadata-matched.tsv', index_col=0) # read in meta
 bt_in = biom.load_table('./data/table.biom') # read in biom
 df = pd.DataFrame(bt_in.to_dataframe()) # convert to df
 
@@ -45,20 +41,16 @@ bt = bt.filter(keep_ids)
 # reindex meta
 meta = meta.reindex(bt.ids())
 
-##########################################
-# 3
-##########################################
-# WRITE OUT FILTERED DATA AS A BIOM FILE, META AS TSV
-bt_out_path = './data/filtered_table.biom'
+### 2: MAKE FILES
+# Write filtered data as biom file & meta as .tsv
+bt_out_path = 'data/filtered_table.biom'
 with biom.util.biom_open(bt_out_path, 'w') as f:
     bt.to_hdf5(f, 'scotty')
 
 meta.index.name = '#SampleID'
 meta.to_csv('./data/filtered_meta.tsv', sep='\t', index=True)
 
-##########################################
-# 4
-##########################################
+### 3: RAREFY
 # bt == filtered (biom) version of original counts table
 # meta == original metadata filtered to only retained bt samples
 
@@ -74,17 +66,15 @@ rare_meta = meta.reindex(bt.ids()) # reindex metadata
 #tree = tree.shear(bt.ids('observation'))
 #tree.prune()
 
-##########################################
-# 5
-##########################################
+### 4: CHECKPOINT AND OUTPUT
 
-# CHECK DIMS
+# check dimensions
 rare_bt = rare_table.view(biom.Table)
 print('bt: ', bt.shape)
 print('rare_bt: ', rare_bt.shape)
 
-# WRITE OUT DATA
-bt_out_path = './data/post_rare_filtered_table.biom'
+# write out data
+bt_out_path = 'data/post_rare_filtered_table.biom'
 with biom.util.biom_open(bt_out_path, 'w') as f:
     bt.to_hdf5(f, 'scotty')
 
@@ -92,11 +82,9 @@ rare_meta.index.name = '#SampleID'
 meta.to_csv('./data/post_rare_filtered_meta.tsv', sep='\t', index=True)
 #tree.write('./data/pruned_tree.nwk')
 
-##########################################
-# 6
-##########################################
+### 5: BETA TRANSFORMS
 
-tree = Artifact.load('./data/insertion-tree.qza')
+tree = Artifact.load('data/insertion-tree.qza')
 # Gemelli methods
 #phylo_ctf_table = phylogenetic_ctf_without_taxonomy(table, Metadata(meta_q2), 'host_subject_id_str', 'month',
 #                                                    min_depth=100)
@@ -113,29 +101,38 @@ w_unifrac = beta_phylogenetic(rare_table, tree, 'weighted_unifrac')
 bray_curtis = beta(rare_table, 'braycurtis')
 jaccard = beta(rare_table, 'jaccard')
 
-##########################################
-# 7
-##########################################
-
 # Isolate matrices
-phylo_ctf_dm = Artifact.load('./data/phylo_ctf_out/distance_matrix.qza').view(DistanceMatrix)
-ctf_dm = Artifact.load('./data/ctf_out/distance_matrix.qza').view(DistanceMatrix)
+phylo_ctf_dm = Artifact.load('data/phylo_ctf_out/distance_matrix.qza').view(DistanceMatrix)
+ctf_dm = Artifact.load('data/ctf_out/distance_matrix.qza').view(DistanceMatrix)
 u_unifrac_dm = u_unifrac.distance_matrix.view(DistanceMatrix)
 w_unifrac_dm = w_unifrac.distance_matrix.view(DistanceMatrix)
 bray_curtis_dm = bray_curtis.distance_matrix.view(DistanceMatrix)
-jaccard_unifrac_dm = jaccard.distance_matrix.view(DistanceMatrix)
+jaccard_dm = jaccard.distance_matrix.view(DistanceMatrix)
 
+# dictionary of matrices
 dist_dict = {'Phylo-CTF:':phylo_ctf_dm,
             'CTF:':ctf_dm,
             'Unweighted-Unifrac:':u_unifrac_dm,
             'Weighted-Unifrac:':w_unifrac_dm,
             'Bray-Curtis:':bray_curtis_dm,
-            'Jaccard:':jaccard_unifrac_dm
+            'Jaccard:':jaccard_dm
             }
+### 6: PCOA
+phylo_ctf_ord =
+ctf_ord =
+u_unifrac_ord = pcoa(u_unifrac_dm)
+w_unifrac_ord = pcoa(w_unifrac_dm)
+bray_curtis_ord = pcoa(bray_curtis_dm)
+jaccard_ord = pcoa(jaccard_dm)
 
-##########################################
-# 6
-##########################################
+ords_dict = {'Phylo-CTF:':phylo_ctf_ord,
+            'CTF:':ctf_ord,
+            'Unweighted-Unifrac:':u_unifrac_ord,
+            'Weighted-Unifrac:':w_unifrac_ord,
+            'Bray-Curtis:':bray_curtis_ord,
+            'Jaccard:':jaccard_ord}
+
+### 7: RUN PERMANOVA
 
 import warnings
 
@@ -167,8 +164,7 @@ fstat_tmp_df = pd.DataFrame(fstat_tmp, ['score']).T.reset_index()
 fstat_tmp_df.columns = ['method', 'fold', 'evaluation', 'score']
 permanova_out[('delivery')] = fstat_tmp_df
 
-##########################################
-# 7
-##########################################
-
+### 8: OUTPUT
 fstat_tmp_df.to_csv('./data/permanova.tsv', sep='\t')
+
+### 9:
