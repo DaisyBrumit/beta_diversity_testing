@@ -54,30 +54,30 @@ for study in studyList:
 
             # read in data for core metrics
             if file.endswith('ordinations.tsv'):
-                if study == 'ECAM' and 'ctf' in beta: continue
-                elif study == 'Jones' and 'ctf' in beta: continue
-                else:
-                    # load in metadata
-                    meta = pd.read_table(rootdir + study + '/meta.txt', index_col=0)  # load metadata
-                    ords = pd.read_table(filepath, header=0, index_col=0) # load pcoa output
-                    ords = ords.drop(['PropExplained'], axis=0) # row 1 == prop explained. Don't need.
-                    ords = ords[['PC1', 'PC2', 'PC3']]
+                #if study == 'ECAM' and 'ctf' in beta: continue
+                #elif study == 'Jones' and 'ctf' in beta: continue
+                #else:
+                # load in metadata
+                meta = pd.read_table(rootdir + study + '/meta.txt', index_col=0)  # load metadata
+                ords = pd.read_table(filepath, header=0, index_col=0) # load pcoa output
+                ords = ords.drop(['PropExplained'], axis=0) # row 1 == prop explained. Don't need.
+                ords = ords[['PC1', 'PC2', 'PC3']]
 
             # read in data for gemelli metrics
-            elif file.endswith('fromBiplot.tsv'):
-                meta = pd.read_table(rootdir + study + '/meta.txt', index_col=0)  # load metadata
-                ords = parser.parse_ords(filepath) # use custom parser for gemelli metrics
+            #elif file.endswith('fromBiplot.tsv'):
+                #meta = pd.read_table(rootdir + study + '/meta.txt', index_col=0)  # load metadata
+                #ords = parser.parse_ords(filepath) # use custom parser for gemelli metrics
 
                 # index metadata by repeat id's for Jones and ECAM
-                if study == 'ECAM':
-                    keep_cols = ['delivery', 'host_subject_id'] # only need delivery and host_subject_id for ECAM
-                    meta = meta[keep_cols].drop_duplicates()
-                    meta.set_index('host_subject_id', inplace=True) # this will be your new index
+                #if study == 'ECAM':
+                    #keep_cols = ['delivery', 'host_subject_id'] # only need delivery and host_subject_id for ECAM
+                    #meta = meta[keep_cols].drop_duplicates()
+                    #meta.set_index('host_subject_id', inplace=True) # this will be your new index
 
-                elif study == 'Jones':
-                    keep_cols = ['Genotype', 'repeat_ID']
-                    meta = meta[keep_cols].drop_duplicates()
-                    meta.set_index('repeat_ID', inplace=True)  # this will be your new index
+                #elif study == 'Jones':
+                    #keep_cols = ['Genotype', 'repeat_ID']
+                    #meta = meta[keep_cols].drop_duplicates()
+                    #meta.set_index('repeat_ID', inplace=True)  # this will be your new index
 
                 #else: continue
             else: continue
@@ -95,19 +95,19 @@ for study in studyList:
         dirs[:] = []
 
     # process raw data (no ordinations)
-    raw_file_path = os.path.join(rootdir + study, 'filtered_table.txt')
-    if os.path.exists(raw_file_path):
-        rawDF = pd.read_table(raw_file_path, index_col=0, skiprows=1).T
-        meta = pd.read_table(rootdir + study + '/meta.txt', index_col=0)  # load metadata
+    #raw_file_path = os.path.join(rootdir + study, 'filtered_table.txt')
+    #if os.path.exists(raw_file_path):
+        #rawDF = pd.read_table(raw_file_path, index_col=0, skiprows=1).T
+        #meta = pd.read_table(rootdir + study + '/meta.txt', index_col=0)  # load metadata
 
-        print('STUDY: ', study, '\nMETHOD: ', 'raw')  # sanity check
+        #print('STUDY: ', study, '\nMETHOD: ', 'raw')  # sanity check
 
         # call ML function
-        acc_tmp, roc_tmp, r2_tmp = run_ml(meta, rawDF, 'raw', ML_method)
+        #acc_tmp, roc_tmp, r2_tmp = run_ml(meta, rawDF, 'raw', ML_method)
 
-        accuracy_df = pd.concat([accuracy_df, acc_tmp], ignore_index=True)
-        roc_df = pd.concat([roc_df, roc_tmp], ignore_index=True)
-        r2_df = pd.concat([r2_df, r2_tmp], ignore_index=True)
+        #accuracy_df = pd.concat([accuracy_df, acc_tmp], ignore_index=True)
+        #roc_df = pd.concat([roc_df, roc_tmp], ignore_index=True)
+        #r2_df = pd.concat([r2_df, r2_tmp], ignore_index=True)
 
     # coerce empty outputs to na values (if they exist)
     accuracy_df.replace(np.nan, 'NA', inplace=True)
@@ -115,8 +115,8 @@ for study in studyList:
     r2_df.replace(np.nan, 'NA', inplace=True)
 
     # output dataframes for each performance metric
-    accuracy_df.to_csv(rootdir + study + '/ML/accuracy_raw_' + ML_method + '.tsv', sep='\t', index=False)
-    roc_df.to_csv(rootdir + study + '/ML/roc_raw_' + ML_method + '.tsv', sep='\t', index=False)
-    r2_df.to_csv(rootdir + study + '/ML/r2_raw_' + ML_method + '.tsv', sep='\t', index=False)
+    accuracy_df.to_csv(rootdir + study + '/ML/accuracy_trajectory_' + ML_method + '.tsv', sep='\t', index=False)
+    roc_df.to_csv(rootdir + study + '/ML/roc_trajectory_' + ML_method + '.tsv', sep='\t', index=False)
+    r2_df.to_csv(rootdir + study + '/ML/r2_trajectory_' + ML_method + '.tsv', sep='\t', index=False)
 
 print("beam me up, scotty!")

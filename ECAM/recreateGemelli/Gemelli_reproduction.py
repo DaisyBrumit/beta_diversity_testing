@@ -117,9 +117,11 @@ dist_dict = {'Phylo-CTF:':phylo_ctf_dm,
             'Bray-Curtis:':bray_curtis_dm,
             'Jaccard:':jaccard_dm
             }
-### 6: PCOA
-phylo_ctf_ord =
-ctf_ord =
+### 6: PCOA AND MERGE
+phylo_ctf_ord = [Artifact.load('data/phylo_ctf_out/state_subject_ordination.qza').view(pd.DataFrame),
+                 Artifact.load('data/phylo_ctf_out/subject_biplot.qza').view(OrdinationResults)]
+ctf_ord = [Artifact.load('data/ctf_out/state_subject_ordination.qza').view(pd.DataFrame),
+                 Artifact.load('data/ctf_out/subject_biplot.qza').view(OrdinationResults)]
 u_unifrac_ord = pcoa(u_unifrac_dm)
 w_unifrac_ord = pcoa(w_unifrac_dm)
 bray_curtis_ord = pcoa(bray_curtis_dm)
@@ -132,6 +134,8 @@ ords_dict = {'Phylo-CTF:':phylo_ctf_ord,
             'Bray-Curtis:':bray_curtis_ord,
             'Jaccard:':jaccard_ord}
 
+simulation_metrics = {}
+simulation_metrics[sim_char] = [dist_dict, ords_dict]
 ### 7: RUN PERMANOVA
 
 import warnings
