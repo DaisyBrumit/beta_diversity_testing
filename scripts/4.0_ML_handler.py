@@ -54,6 +54,7 @@ for study in studyList:
 
             # read in data for core metrics
             if file.endswith('ordinations.tsv'):
+                # THIS BLOCK IS FOR BIPLOT ORDS
                 #if study == 'ECAM' and 'ctf' in beta: continue
                 #elif study == 'Jones' and 'ctf' in beta: continue
                 #else:
@@ -63,6 +64,7 @@ for study in studyList:
                 ords = ords.drop(['PropExplained'], axis=0) # row 1 == prop explained. Don't need.
                 ords = ords[['PC1', 'PC2', 'PC3']]
 
+            # THIS BLOCK IS FOR CTF'S BIPLOT ORDS
             # read in data for gemelli metrics
             #elif file.endswith('fromBiplot.tsv'):
                 #meta = pd.read_table(rootdir + study + '/meta.txt', index_col=0)  # load metadata
@@ -95,19 +97,19 @@ for study in studyList:
         dirs[:] = []
 
     # process raw data (no ordinations)
-    #raw_file_path = os.path.join(rootdir + study, 'filtered_table.txt')
-    #if os.path.exists(raw_file_path):
-        #rawDF = pd.read_table(raw_file_path, index_col=0, skiprows=1).T
-        #meta = pd.read_table(rootdir + study + '/meta.txt', index_col=0)  # load metadata
+    raw_file_path = os.path.join(rootdir + study, 'filtered_table.txt')
+    if os.path.exists(raw_file_path):
+        rawDF = pd.read_table(raw_file_path, index_col=0, skiprows=1).T
+        meta = pd.read_table(rootdir + study + '/meta.txt', index_col=0)  # load metadata
 
-        #print('STUDY: ', study, '\nMETHOD: ', 'raw')  # sanity check
+        print('STUDY: ', study, '\nMETHOD: ', 'raw')  # sanity check
 
         # call ML function
-        #acc_tmp, roc_tmp, r2_tmp = run_ml(meta, rawDF, 'raw', ML_method)
+        acc_tmp, roc_tmp, r2_tmp = run_ml(meta, rawDF, 'raw', ML_method)
 
-        #accuracy_df = pd.concat([accuracy_df, acc_tmp], ignore_index=True)
-        #roc_df = pd.concat([roc_df, roc_tmp], ignore_index=True)
-        #r2_df = pd.concat([r2_df, r2_tmp], ignore_index=True)
+        accuracy_df = pd.concat([accuracy_df, acc_tmp], ignore_index=True)
+        roc_df = pd.concat([roc_df, roc_tmp], ignore_index=True)
+        r2_df = pd.concat([r2_df, r2_tmp], ignore_index=True)
 
     # coerce empty outputs to na values (if they exist)
     accuracy_df.replace(np.nan, 'NA', inplace=True)
@@ -115,8 +117,8 @@ for study in studyList:
     r2_df.replace(np.nan, 'NA', inplace=True)
 
     # output dataframes for each performance metric
-    accuracy_df.to_csv(rootdir + study + '/ML/accuracy_trajectory_' + ML_method + '.tsv', sep='\t', index=False)
-    roc_df.to_csv(rootdir + study + '/ML/roc_trajectory_' + ML_method + '.tsv', sep='\t', index=False)
-    r2_df.to_csv(rootdir + study + '/ML/r2_trajectory_' + ML_method + '.tsv', sep='\t', index=False)
+    accuracy_df.to_csv(rootdir + study + '/ML/accuracy_trajectory_raw_' + ML_method + '.tsv', sep='\t', index=False)
+    roc_df.to_csv(rootdir + study + '/ML/roc_trajectory_raw_' + ML_method + '.tsv', sep='\t', index=False)
+    r2_df.to_csv(rootdir + study + '/ML/r2_trajectory_raw_' + ML_method + '.tsv', sep='\t', index=False)
 
 print("beam me up, scotty!")

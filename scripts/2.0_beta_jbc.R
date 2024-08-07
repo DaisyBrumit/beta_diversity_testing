@@ -12,7 +12,7 @@ library(phyloseq)
 library(tidyverse)
 
 # input global vars
-studyList <- c('gemelli_ECAM','Jones','Noguera-Julian','Vangay','Zeller')
+studyList <- c('ECAM','Jones','Noguera-Julian','Vangay','Zeller')
 
 for (study in studyList) {
   # read in freq table, tree, metadata
