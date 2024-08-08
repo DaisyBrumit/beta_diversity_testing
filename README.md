@@ -39,8 +39,13 @@ Build a tree based on the greengenes tree as a reference (not de novo). Then fil
   - insertionTree.qza
   - filtered_table.qza
   - discarded_table.qza
- 
-### 1.2_qiimeExport.sh
+
+### 1.2_rarefaction.sh
+rarefy feature table for beta transformations downstream.
+- input:
+   - 
+
+### 1.3_qiimeExport.sh
 Export qiime artifacts
 - input:
   - insertionTree.qza

@@ -21,7 +21,7 @@ for (study in studyList) {
   
   meta <- read.csv('meta.txt', sep='\t', row.names=1, header = TRUE, 
                    check.names = FALSE)
-  data <- read.csv('filtered_table.txt', sep='\t', row.names = 1, header=TRUE, 
+  data <- read.csv('rare_filtered_table.txt', sep='\t', row.names = 1, header=TRUE, 
                    check.names = FALSE, skip =1) %>% t(.) %>% as.data.frame(.)
   
   # keep only shared indices

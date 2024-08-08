@@ -53,7 +53,7 @@ for study in studyList:
             beta = mff.get_beta(file)
 
             # read in data for core metrics
-            if file.endswith('ordinations.tsv'):
+            if file.endswith('ordinations.tsv') and ('ctf' in beta or 'rpca' in beta):
                 # THIS BLOCK IS FOR BIPLOT ORDS
                 #if study == 'ECAM' and 'ctf' in beta: continue
                 #elif study == 'Jones' and 'ctf' in beta: continue
@@ -63,6 +63,12 @@ for study in studyList:
                 ords = pd.read_table(filepath, header=0, index_col=0) # load pcoa output
                 ords = ords.drop(['PropExplained'], axis=0) # row 1 == prop explained. Don't need.
                 ords = ords[['PC1', 'PC2', 'PC3']]
+
+            elif file.endswith('ordinations.tsv'):
+                meta = pd.read_table(rootdir + study + '/meta.txt', index_col=0)  # load metadata
+                ords = pd.read_table(filepath, header=0, index_col=0)  # load pcoa output
+                ords = ords.drop(['PropExplained'], axis=0)  # row 1 == prop explained. Don't need.
+                ords.iloc[:, 0:20]
 
             # THIS BLOCK IS FOR CTF'S BIPLOT ORDS
             # read in data for gemelli metrics
@@ -117,8 +123,8 @@ for study in studyList:
     r2_df.replace(np.nan, 'NA', inplace=True)
 
     # output dataframes for each performance metric
-    accuracy_df.to_csv(rootdir + study + '/ML/accuracy_trajectory_raw_' + ML_method + '.tsv', sep='\t', index=False)
-    roc_df.to_csv(rootdir + study + '/ML/roc_trajectory_raw_' + ML_method + '.tsv', sep='\t', index=False)
-    r2_df.to_csv(rootdir + study + '/ML/r2_trajectory_raw_' + ML_method + '.tsv', sep='\t', index=False)
+    accuracy_df.to_csv(rootdir + study + '/ML/accuracy_trajectory_20PCs_' + ML_method + '.tsv', sep='\t', index=False)
+    roc_df.to_csv(rootdir + study + '/ML/roc_trajectory_20PCs_' + ML_method + '.tsv', sep='\t', index=False)
+    r2_df.to_csv(rootdir + study + '/ML/r2_trajectory_20PCs_' + ML_method + '.tsv', sep='\t', index=False)
 
 print("beam me up, scotty!")
