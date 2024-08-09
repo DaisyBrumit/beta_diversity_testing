@@ -77,4 +77,5 @@ then
 	echo "Converting phyo/nonphylo rpca artifacts to txt"
 	out_list=("rpca" "phylo_rpca") # run for phylo and no phylo
 
+fi
 echo "SCRIPT COMPLETE"

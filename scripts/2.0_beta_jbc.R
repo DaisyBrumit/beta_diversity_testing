@@ -11,6 +11,15 @@ library(vegan)
 library(phyloseq)
 library(tidyverse)
 
+# Dr. Fodor's lognorm
+lognorm <- function(table)
+{
+  avg <- sum(rowSums(table))/nrow(table)
+  table <- sweep(table,1,rowSums(table),"/")
+  table <- log10(table*avg + 1)
+  return(table)
+}
+
 # input global vars
 studyList <- c('ECAM','Jones','Noguera-Julian','Vangay','Zeller')
 
@@ -21,13 +30,16 @@ for (study in studyList) {
   
   meta <- read.csv('meta.txt', sep='\t', row.names=1, header = TRUE, 
                    check.names = FALSE)
-  data <- read.csv('rare_filtered_table.txt', sep='\t', row.names = 1, header=TRUE, 
+  data <- read.csv('filtered_table.txt', sep='\t', row.names = 1, header=TRUE, 
                    check.names = FALSE, skip =1) %>% t(.) %>% as.data.frame(.)
   
   # keep only shared indices
   shared.indices <- intersect(rownames(meta), rownames(data))
   meta <- meta %>% filter(rownames(meta) %in% shared.indices)
   data <- data %>% filter(rownames(data) %in% shared.indices)
+  
+  # normalize
+  data <- lognorm(data)
   
   # generate distance matrices
   jaccard <- vegan::vegdist(data, method='jaccard') %>% as.matrix(.) %>%

@@ -3,11 +3,12 @@
 rm(list=ls())
 library(tidyverse)
 
-studyList <- c('Zeller', 'Jones', 'Vangay', 'Noguera-Julian', 'ECAM')
+#studyList <- c('Zeller', 'Vangay', 'Noguera-Julian')
+studyList <- c('Jones', 'ECAM')
 qiimeList <- c('phylo_rpca', 'rpca', 'ctf', 'phylo_ctf')
 
-plot_file <- '~/beta_diversity_testing/plots/psuedoF_plots.pdf'
-pdf(plot_file)
+#plot_file <- '~/beta_diversity_testing/plots/psuedoF_plots.pdf'
+#pdf(plot_file)
 
 # create a whole table for summary info
 full.table <- tibble(beta = character(), psuedoF = numeric(), pval = numeric(), 
@@ -80,5 +81,5 @@ print(fullplot)
 #print(log.fullplot)
 
 
-dev.off()
+#dev.off()
 
