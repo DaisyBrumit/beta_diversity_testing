@@ -24,3 +24,5 @@ npm-debug.log*
 # Ignore large table outputs
 */ML/*
 
+# Ignore output files
+scripts/slurm_out/
