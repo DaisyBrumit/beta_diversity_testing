@@ -1,0 +1,26 @@
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore logs
+logs/
+*.log
+npm-debug.log*
+
+# Ignore OS-generated files
+*.DS_Store
+*.log
+*.swp
+*.swo
+*.swn
+*.bak
+*.tmp
+
+# Ignore IDE-specific files
+.vscode/
+.idea/
+*.iml
+
+# Ignore large table outputs
+*/ML/*
+
