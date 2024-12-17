@@ -20,9 +20,16 @@ npm-debug.log*
 .vscode/
 .idea/
 *.iml
+*.RData
+*.Rhistory
+
+# Ignore Python virtual environments
+venv/
+*__pycache__/
 
 # Ignore large table outputs
 */ML/*
+Ruiz-Calderon/preprocessing/
 
 # Ignore output files
 scripts/slurm_out/
