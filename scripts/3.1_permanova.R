@@ -7,8 +7,9 @@ library(tidyverse)
 # meta_from_files: isolates metadata from filenames
 source('~/beta_diversity_testing/scripts/functions/meta_from_files.R')
 
-studyList <- c('ECAM', 'Jones', 'Vangay', 'Noguera-Julian', 'Zeller')
-qiimeList <- c('phylo_rpca', 'phylo_ctf', 'rpca', 'ctf')
+#studyList <- c('Jones', 'Vangay', 'Ruiz-Calderon' ,'Noguera-Julian', 'Zeller')
+studyList <- 'Ruiz-Calderon'
+qiimeList <- c('phylo_rpca', 'rpca')
 
 for (study in studyList) {
   setwd(paste0('~/beta_diversity_testing/',study,'/distance_matrices'))
@@ -21,12 +22,6 @@ for (study in studyList) {
   # read in metadata
   meta_init <- read.csv('../meta.txt', sep='\t', header = TRUE, 
                                 check.names = FALSE) 
-  
-  # I only use the delivery variable from ECAM data
-  if(study=='ECAM'){
-    meta_init$sampleid <- meta_init$`#SampleID`
-    meta_init <- meta_init %>% dplyr::select(., c('sampleid', 'delivery'))
-  }
   
   # find all dist output files for this study
   files <- list.files(pattern = 'distance_matrix', recursive = FALSE)
