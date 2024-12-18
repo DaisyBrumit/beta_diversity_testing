@@ -48,6 +48,8 @@ for (study in studyList) {
     as.data.frame(.) %>% rownames_to_column(var = " ")
   
   # save tables
+  #write.table(data, 'lognorm_filtered_table.txt', sep='\t', row.names = TRUE)
+  write.table(data, 'lognorm_filtered_table.txt', sep='\t', row.names = TRUE, col.names = NA, quote = FALSE)
   write.table(jaccard, 'distance_matrices/jaccard_distance_matrix.tsv', sep='\t', row.names = FALSE)
   write.table(bc, 'distance_matrices/bray_curtis_distance_matrix.tsv', sep='\t', row.names = FALSE)
   
