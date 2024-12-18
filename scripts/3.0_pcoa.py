@@ -14,8 +14,8 @@ import meta_from_files as mff # access functions
 
 # set home path & sudy lists
 home_path = os.path.expanduser('~/beta_diversity_testing/')
-studyList = ['ECAM','Jones','Vangay','Noguera-Julian','Zeller']
-qiimeList = ['phylo_rpca','phylo_ctf','ctf','rpca']
+studyList = ['Jones','Vangay','Ruiz-Calderon','Noguera-Julian','Zeller']
+qiimeList = ['phylo_rpca','rpca']
 
 for study in studyList:
     study_path = home_path + study
