@@ -9,8 +9,8 @@ study=$1
 method=$2
 
 ### EXECUTE CODE: EXPORT QIIME ARTIFACTS ###
-echo "Changing study to ~/beta_diversity_testing_almost_final/${study}/qiime"
-cd ~/beta_diversity_testing_almost_final/${study}/qiime
+echo "Changing study to ~/beta_diversity_testing/${study}/qiime"
+cd ~/beta_diversity_testing/${study}/qiime
 
 echo ""
 if [ ${method} == "ctf" ]
