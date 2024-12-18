@@ -7,8 +7,7 @@ library(tidyverse)
 # meta_from_files: isolates metadata from filenames
 source('~/beta_diversity_testing/scripts/functions/meta_from_files.R')
 
-#studyList <- c('Jones', 'Vangay', 'Ruiz-Calderon' ,'Noguera-Julian', 'Zeller')
-studyList <- 'Ruiz-Calderon'
+studyList <- c('Jones', 'Vangay', 'Ruiz-Calderon' ,'Noguera-Julian', 'Zeller')
 qiimeList <- c('phylo_rpca', 'rpca')
 
 for (study in studyList) {
@@ -41,11 +40,14 @@ for (study in studyList) {
     meta <- meta_init %>% filter(meta_init$sampleid %in% rownames(data))
 
     for (i in 2:length(colnames(meta))){
-      test.obj <- vegan::adonis2(data ~ meta[[i]], meta, permutations = 999, 
-                                 na.action = na.omit)
-      scores <- scores %>% add_row(., 
-                  beta = beta_method, psuedoF = test.obj$F[1], pval = test.obj$`Pr(>F)`[1])
-      
+      if (length(unique(meta[[i]])) <= 1){
+        next
+      } else {
+        test.obj <- vegan::adonis2(data ~ meta[[i]], meta, permutations = 999, 
+                                   na.action = na.omit)
+        scores <- scores %>% add_row(., 
+                                     beta = beta_method, psuedoF = test.obj$F[1], pval = test.obj$`Pr(>F)`[1]) 
+        }
       }
     }
     write_delim(scores, paste0('~/beta_diversity_testing/',study,'/permanova/permanova_results.tsv'), col_names=TRUE, delim='\t')
