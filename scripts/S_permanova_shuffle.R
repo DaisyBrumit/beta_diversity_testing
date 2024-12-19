@@ -8,8 +8,7 @@ set.seed(89)
 # meta_from_files: isolates metadata from filenames
 source('~/beta_diversity_testing/scripts/functions/meta_from_files.R')
 
-#studyList <- c('Ruiz-Calderon', 'Jones', 'Vangay', 'Noguera-Julian', 'Zeller')
-studyList <- 'Ruiz-Calderon'
+studyList <- c('Ruiz-Calderon', 'Jones', 'Vangay', 'Noguera-Julian', 'Zeller')
 qiimeList <- c('phylo_rpca', 'rpca')
 
 for (study in studyList) {
