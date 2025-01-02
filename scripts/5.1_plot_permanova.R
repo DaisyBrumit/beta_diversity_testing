@@ -46,10 +46,10 @@ for (study in studyList) {
   full.table <- full.table %>% bind_rows(., study.table)
 
   # make table for shuffled results
-  #study.shuffle <- read.study.permanova(path = paste0('./permanova/permanova_results_shuffled.tsv'))
-  #study.shuffle$beta <- str_replace(study.shuffle$beta, "_", " ")
+  study.shuffle <- read.study.permanova(path = paste0('./permanova/permanova_results_shuffled.tsv'))
+  study.shuffle$beta <- str_replace(study.shuffle$beta, "_", " ")
   
-  #full.shuffle <- full.shuffle %>% bind_rows(., study.shuffle)
+  full.shuffle <- full.shuffle %>% bind_rows(., study.shuffle)
 }
 # set orders
 
@@ -66,21 +66,22 @@ dev.off()
 # shuffled permanova plots
 
 shuffle_plot_file <- '~/beta_diversity_testing/plots/psuedoF_plots_shuffled.pdf'
-#pdf(shuffle_plot_file)
+pdf(shuffle_plot_file)
 
 full.shuffle$log_pval <- log10(full.shuffle$pval + 0.000001)
-plt <- ggplot(full.shuffle, aes(x=beta, y=psuedoF)) +
+plt <- ggplot(full.shuffle, aes(x=beta, y=pval)) +
   geom_boxplot() +
-  geom_point(aes(color=study)) +
+  geom_point(aes(color=study), alpha = 0.6, size = 0.5,
+             position = position_jitter(width = 0.15, height = 0)) +
   scale_color_brewer(palette="Set1") +
   theme_minimal() +
   theme(axis.text = element_text(size=12),
         axis.title = element_text(size=12, face = 'bold'),
         axis.text.x = element_text(angle = 90, vjust = 0.7),
-        legend.title=element_blank(),
-        legend.text = element_blank()) +
-        #legend.text = element_text(size=12),
-        #legend.title = element_text(size=12, face = 'bold')) +
+        #legend.title=element_blank(),
+        #legend.text = element_blank()) +
+        legend.text = element_text(size=12),
+        legend.title = element_text(size=12, face = 'bold')) +
   labs(x='Beta', y='Pseudo-F Value', color="Study")
 print(plt)
 
@@ -97,5 +98,5 @@ for (beta_value in beta_values) {
   print(plt)
 }
 
-#dev.off()
+dev.off()
 
