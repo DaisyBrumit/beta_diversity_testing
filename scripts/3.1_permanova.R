@@ -15,7 +15,7 @@ for (study in studyList) {
   getwd() # sanity check
   
   # init psuedo-F
-  scores <- tibble(beta = character(), psuedoF = numeric(), pval = numeric())
+  scores <- tibble(beta = character(), psuedoF = numeric(), pval = numeric(), feature=character())
   
   ### METADATA HANDLING: ONLY ONCE PER STUDY
   # read in metadata
@@ -46,7 +46,8 @@ for (study in studyList) {
         test.obj <- vegan::adonis2(data ~ meta[[i]], meta, permutations = 999, 
                                    na.action = na.omit)
         scores <- scores %>% add_row(., 
-                                     beta = beta_method, psuedoF = test.obj$F[1], pval = test.obj$`Pr(>F)`[1]) 
+                                     beta = beta_method, psuedoF = test.obj$F[1], pval = test.obj$`Pr(>F)`[1],
+                                     feature = colnames(meta)[i]) 
         }
       }
     }
