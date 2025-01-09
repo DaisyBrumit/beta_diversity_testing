@@ -52,7 +52,7 @@ def qualitativeRF(metadata,dat, test, train):
             print('POST-FILTER Y VALUE COUNTS: ', dict(full_table[column].value_counts()))
             # set test and training groups
             x = full_table.loc[:, ~full_table.columns.isin(meta_cat.columns)]  # ~ is a negation operator. Isolate non-meta columns for x
-            y = full_table[column]  # Isolate desired metadata column for y
+            y = full_table[column].astype('category')  # Isolate desired metadata column for y
             #print(y.shape)
 
             # perform random forest 100 times with 0.25, 0.75 test train split
