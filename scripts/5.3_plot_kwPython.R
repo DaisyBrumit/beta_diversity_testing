@@ -14,8 +14,8 @@ rm_dups <- function(df) {
   return(df_cleaned)
 }
 
-#pdf('knn_posthoc.pdf')
-files <- list.files('.','knn_post_hoc')
+pdf('rf_posthoc.pdf')
+files <- list.files('.','rf_post_hoc')
 for (file in files){
   # isolate the performance metric name for title
   metric <- strsplit(file,'_')[[1]][4]
@@ -23,6 +23,7 @@ for (file in files){
   
   # read in matrix and mirror labels
   tmp.df <- read.table(file) %>% as.matrix()
+  colnames(tmp.df) <- str_replace(colnames(tmp.df), "_", " ")
   rownames(tmp.df) <- colnames(tmp.df)
   
   plot.df <- melt(tmp.df) # get long form version of the data
@@ -36,26 +37,33 @@ for (file in files){
                                   TRUE ~ ''))
   # get a clean, mirrored heatmap
   plot.df$X1 <- factor(plot.df$X1, 
-                levels=c('bray_curtis','jaccard','unweighted_unifrac','weighted_unifrac',
-                         'ctf','phylo_ctf','rpca','phylo_rpca'))
+                levels=c('rpca','phylo rpca','jaccard',
+                         'bray curtis','unweighted unifrac','weighted unifrac',
+                         'lognorm','raw'))
   plot.df$X2 <- factor(plot.df$X2, 
-                          levels=c('bray_curtis','jaccard','unweighted_unifrac','weighted_unifrac',
-                                   'ctf','phylo_ctf','rpca','phylo_rpca'))
+                       levels=c('rpca','phylo rpca','jaccard',
+                                'bray curtis','unweighted unifrac','weighted unifrac',
+                                'lognorm','raw'))
   plot.df <- rm_dups(plot.df)
   
   # make the plot
+  # CHECK HEX CODES
+  # library(RColorBrewer)
+  # brewer.pal(n=5,"Set1")
+  # 377EB8 CTF BLUE | 4DAF4A RPCA GREEN
+  
   plt <- ggplot(plot.df, aes(x=X1, y=X2, fill=value)) +
     geom_tile() + 
-    geom_text(aes(label=sig),color='black',size=4) +
+    geom_text(aes(label=sig),color='white',size=4) +
     theme_minimal() +
-    scale_fill_gradient(low="#1B9E77", high='lightgrey') +
+    scale_fill_gradient(low="#377EB8", high='lightgrey') +
     theme(axis.text = element_text(size=14),
           legend.text = element_text(size=14),
           axis.title = element_blank(),
           axis.text.x = element_text(angle=90, vjust = 0.3),
-          legend.title = element_text(size=16, face='bold'),
-          plot.title = element_text(size=16, face='bold')) + 
+          legend.title = element_text(size=14, face='bold'),
+          plot.title = element_text(size=14, face='bold')) + 
     labs(title=metric, fill="P-Value")
   print(plt)
 }
-#dev.off()
+dev.off()
